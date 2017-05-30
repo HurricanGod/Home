@@ -2,7 +2,20 @@
  
 在Linux运行的每个进程都有一个唯一的进程标识符PID，PID的数值是逐渐增大的，一般子进程的PID会比父进程大。
 如果 父进程死亡或退出，则子进程会被指定一个父进程**init**（PID为1）。
- 
+
+**system函数**
+
+``
+#include <stdlib.h>
+#include <stdio.h>
+int main()
+{
+    printf("Running ps with system\n");
+    system("ps -ax");
+    printf("Done.\n");
+    exit(0);
+}
+``
  
  
  **fork**函数
