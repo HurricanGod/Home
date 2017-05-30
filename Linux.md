@@ -111,7 +111,23 @@ void main()
 }
 
 ```
- 
+运行结果：
+<p>
+<b>input 16 to stop son process</b>
+<p>16</p>
+<p>Good Bye!</p>
+<p>son process exit!</p>
+<p>status address is bf9eb65c</p>
+<p>*status = c800</p>
+<p>0</p>
+<p>son process exited abnormality!</p>
+<p>exit code is: 182</p>
+<p>child exited abnormal by signal exit code is: 92</p>
+<b>main process is exiting!</b>
+</p>
+
+
+
 **fork**函数
  作用：创建子进程
  区别：fork()函数在父进程返回一个大于0的整数（PID），在子进程返回0
