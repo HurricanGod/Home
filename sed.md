@@ -24,18 +24,21 @@ sed [address1[,address2]] [options] '{command}' [filename]
 void main()
 {
 	FILE *write_fp;
-  char buffer[BUFSIZ + 1];
-  int chars_read;
-  memset(buffer, '\0', sizeof(buffer));
-  fgets(buffer,BUFSIZ,stdin);
+  	char buffer[BUFSIZ + 1];
+  	int chars_read;
+  	memset(buffer, '\0', sizeof(buffer));
+	//初始化缓冲区
+  	fgets(buffer,BUFSIZ,stdin);
 	write_fp = popen("wc -c", "w");
 	if(write_fp!=NULL)
+	//写指针不为空
 	{
 		fwrite(buffer, sizeof(char), strlen(buffer), write_fp);
-    pclose(write_fp);
-    exit(EXIT_SUCCESS);
+    		pclose(write_fp);
+    		exit(EXIT_SUCCESS);
 	}
 	exit(EXIT_FAILURE);
+	//退出失败
 }
 ```
 #### 删除功能d
@@ -57,4 +60,28 @@ void main()
 4. 从第1行开始每隔7行删一行<br/>
 运行 ``cat -n pipe.c | sed '1~7d'``<br/>
 结果 ：第1、8、15行被删除<br/>
+
+5. 删除pipc文件中包含字符串“xxx”和空行之间的所有行<br>
+运行 `` sed -e '/xxx/,/^$/d' pipe.c``<br>
+结果 ：在包含“xxx”行和包含空行之间的行都被删除 <br>
+
+6. 删除空行<br/>
+运行 ``sed -e '/^$/d' pipe.c``<br/>
+
+7. 删除最后一行<br/>
+运行 ：``sed -e '$d' pipe.c``<br/>
+
+8. 删除第一行到空行<br/>
+运行 ：``sed -e '1,/^$/d' pipe.c``<br/>
+
+#### 打印功能
+
+1. 安静模式下打印1行<br/>
+运行 ：``sed -n '1p' pipe.c``<br/>
+结果 ：对应pipe.c的第1行<br/>
+
+2. 非安静模式下打印1行<br/>
+运行 ``sed '1p' express``<br/>
+结果 ：**打印出所有内容，但第1行打印了2次**<br/>
+解析 ：<strong>如果未加-n选项，会打印所有内容；此外"p"前面的数字如果为k，那么打印出来的内容中前k行都是2次。</strong><br/>
  
