@@ -54,7 +54,7 @@
   <tr>
    <td>-L dir</td>
    <td>把指定目录dir加到连接程序搜索文件的路径表中</td>
-   <td>gcc -O meng1.c -o m.exe</td>
+   <td>gcc -c f1.c f2.c -o f.exe -L$Home/lib</td>
   </tr>
  </table>
  
