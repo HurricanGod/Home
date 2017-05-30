@@ -125,7 +125,8 @@ void main()
 <p>child exited abnormal by signal exit code is: 92</p>
 <b>main process is exiting!</b>
 </p>
-
+<br/>
+<hr/>
 
 
 **fork**函数
@@ -137,7 +138,57 @@ void main()
 在UNIX 系统中，一个进程结束了，但是它的父进程没有等待(调用**wait / waitpid**)他， 那么它将变成一个僵尸进程；
 如果该进程的父进程已经先结束，那么该进程就不会变成僵尸进程。
 
-
+**演示僵尸进程的产生**
+```c
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/wait.h>
+#include<stdlib.h>
+#include<signal.h>
+#include<unistd.h>
+int INTR=1;
+void stop()
+{
+	INTR=0;
+	printf("process is exit\n");
+}
+void waiting()
+{
+	while(INTR)
+	{
+		sleep(1);
+		printf("waiting\n");
+	}
+}
+void main()
+{
+	pid_t child;
+	int i,*status;
+	while((child=fork())==-1); 	
+	if(child==0)
+	{
+		//child process
+		signal(16,stop);
+		waiting();
+	}
+	else
+	{
+		//父进程
+		sleep(3);
+		kill(child,16);
+		for(i=0;i<5;i++)
+		{
+			printf("father process output %d\n",i);
+			sleep(1); 
+		}
+		system("ps -A -o stat,ppid,pid,cmd|grep -e '^[Zz]';ps -ax");
+		//调用system函数，执行shell命令查找僵尸进程
+		scanf("%d",&i);
+		printf("father process exit!\n");
+	}
+}
+```
+ 
 
  **gcc命令行选项**
  可将gcc选项分为4组：预处理选项、编译选项、优化选项和连接选项。
