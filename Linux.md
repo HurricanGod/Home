@@ -5,7 +5,7 @@
 
 **system函数**
 
-``
+```
 #include <stdlib.h>
 #include <stdio.h>
 int main()
@@ -15,7 +15,7 @@ int main()
     printf("Done.\n");
     exit(0);
 }
-``
+```
  
  
  **fork**函数
