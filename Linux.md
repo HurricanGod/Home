@@ -3,9 +3,9 @@
 在Linux运行的每个进程都有一个唯一的进程标识符PID，PID的数值是逐渐增大的，一般子进程的PID会比父进程大。
 如果 父进程死亡或退出，则子进程会被指定一个父进程**init**（PID为1）。
 
-**system函数**
+**system函数**：运行以字符串参数的形式传递给它的命令并等待该命令完成 
 
-```
+```c
 #include <stdlib.h>
 #include <stdio.h>
 int main()
@@ -16,9 +16,103 @@ int main()
     exit(0);
 }
 ```
+**运行结果：**system创建一个子进程，子进程执行完ps命令后，父进程才执行，输出“Done”后才结束。
  
+ **exec函数系列**：该系列函数作用是更换进程映像，根据指定文件名找到可执行文件，并用该可执行文件代替调用进程的内容。通俗地将就是：将当前进程替换为一个新进程，且新进程与原进程有相同的PID，原来进程的内容将不会执行。
+ ```c
+#include <unistd.h>
+#include <stdio.h>
+
+int main()
+{
+    printf("Running ps with execlp\n");
+    execlp("ps", "ps", "-ax", 0);
+    printf("Done.\n");
+    exit(0);
+}
+ ```
  
- **fork**函数
+ <b>pid_t wait(int *status)</b>
+ wait系统调用将暂停父进程直到它的子进程结束为止。该调用返回子进程的PID。子进程的退出状态写入status指向的位置。
+
+| 宏定义  | 作用          |
+| ------------- |:-------------:|
+|WIFEXITED(status)| 如果子进程正常结束则为非0值|
+|WEXITSTATUS(status)|取得子进程exit()返回的结束代码|
+|WIFSIGNALED(status)|如果子进程是因为信号而结束则此宏值为真|
+|WTERMSIG(status))|取得子进程因信号而中止的信号代码|
+|WIFSTOPPED(status)|如果子进程处于暂停执行情况则此宏值为真,一般只有使用WUNTRACED 时才会有此情况|
+|WSTOPSIG(status)|取得引发子进程暂停的信号代码|
+ 
+**例子 ：**
+```c
+# include <stdio.h>
+# include <wait.h>
+# include <sys/types.h>
+# include <signal.h>
+# include <unistd.h>
+# include <stdlib.h>
+int INTR=1;
+void stop()
+{
+	printf("Good Bye!\n");
+	INTR=0;
+}
+void waitting()
+{
+	while(INTR);
+}
+void main()
+{
+	pid_t pid;
+	int *status;
+	int message;
+	while((pid=fork())==-1);
+	if(pid==0)
+	{
+		//son process 
+		signal(16,stop);
+		waitting();
+		printf("son process exit!\n");
+		exit(200);
+	}
+	else
+	{
+		//father process
+		printf("input 16 to stop son process\n");
+		scanf("%d",&message);
+		if(message!=16)
+		{
+			while(message!=16)
+			{
+				setbuf(stdin,NULL);
+				printf("input 16 to stop son process\n");
+				scanf("%d",&message);
+			}
+		}
+		kill(pid,message);
+		wait(status);
+		printf("status address is %x\n",status);
+		printf("*status = %x\n",*status);
+		printf("%d\n",WIFEXITED(status));
+		if(WIFEXITED(status))
+		{
+			printf("son process exited normally,exit code is: %d\n", WEXITSTATUS(status));
+		}
+		else
+		{
+			printf("son process exited abnormality!\n");
+			printf("exit code is: %d\n", WEXITSTATUS(status));
+		}
+		if (WIFSIGNALED(status))
+        		printf("child exited abnormal by signal exit code is: %d\n", WTERMSIG(status));
+		printf("main process is exiting!\n");
+	}
+}
+
+```
+ 
+**fork**函数
  作用：创建子进程
  区别：fork()函数在父进程返回一个大于0的整数（PID），在子进程返回0
  
