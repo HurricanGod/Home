@@ -1,4 +1,4 @@
-**sed语法**
+**sed语法**<br/>
 sed [address1[,address2]] [options] '{command}' [filename] 
 例：sed [-nefr] [动作]
 
@@ -86,4 +86,32 @@ void main()
 运行 ``sed '1p' express``<br/>
 结果 ：**打印出所有内容，但第1行打印了2次**<br/>
 解析 ：<strong>如果未加-n选项，会打印所有内容；此外"p"前面的数字如果为k，那么打印出来的内容中前k行都是2次。</strong><br/>
+
+#### 替换功能s`sed 's/old value/new value/'`
+1. 运行 ``cat -n pipe.c |sed 's/include/hello/'``<br/>
+结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/>
+
+2. 多次修改（使用-e选项）<br/>
+运行 ``cat -n pipe.c |sed -e 's/include/hello/' -e 's/hello/include/'``<br/>
+结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/>
+
+3. 用分号来分隔命令<br/>
+运行 ``echo my name is hello | sed 's/is/are/; s/hello/world/' ``<br/>
+结果 ：**my name are world**<br/>
+注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/>
+例 ：
+```makefile
+cat -n pipe.c|sed 's/include/hello/;0~2d'
+# 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
+```
+ 
+4. 全局替换<br/>
+``sed 's/old value/new value/``默认替换的是每一行中出现的第一个old value,如果一行中有多个“old value”的串，它只会替换第1个，若要替换一行中的全部“old value”需要使用<strong>g</strong><br/>
+样例 ：<br/>
+```shell
+echo my name is hello hello | sed 's/hello/world/'
+# 结果：my name is world hello
+echo my name is hello hello | sed 's/hello/world/g' 
+# 结果：my name is world world
+```
  
