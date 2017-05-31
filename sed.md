@@ -45,69 +45,69 @@ void main()
 ```
 #### 删除功能d
 运行`cat -n |sed -e 'd' `<br/>
-结果 ：>**无任何内容**<br/>
+结果 ：>**无任何内容**<br/><br/>
 
 1. 删除指定行<br/>
 运行 ``cat -n pipe.c | sed -e '1d'``<br/>
-结果 ：除了第1行被删除，其余都显式在命令行<br/>
+结果 ：除了第1行被删除，其余都显式在命令行<br/><br/>
 
 2. 删除指定地址范围的行<br/>
 运行 ``at -n pipe.c | sed -e '1,15d'``<br/>
-结果 ：删除第1到15行<br/>
+结果 ：删除第1到15行<br/><br/>
 
 3. 从一行开始每隔一行删一行<br/>
 运行 ``cat -n pipe.c | sed  '0~1d'``<br/>
-结果 ：全部内容被删<br/>
+结果 ：全部内容被删<br/><br/>
 
 4. 从第1行开始每隔7行删一行<br/>
 运行 ``cat -n pipe.c | sed '1~7d'``<br/>
-结果 ：第1、8、15行被删除<br/>
+结果 ：第1、8、15行被删除<br/><br/>
 
-5. 删除pipc文件中包含字符串“xxx”和空行之间的所有行<br>
-运行 `` sed -e '/xxx/,/^$/d' pipe.c``<br>
-结果 ：在包含“xxx”行和包含空行之间的行都被删除 <br>
+5. 删除pipe.c文件中包含字符串“xxx”和空行之间的所有行<br/>
+运行 `` sed -e '/xxx/,/^$/d' pipe.c``<br/>
+结果 ：在包含“xxx”行和包含空行之间的行都被删除 <br/><br/>
 
 6. 删除空行<br/>
-运行 ``sed -e '/^$/d' pipe.c``<br/>
+运行 ``sed -e '/^$/d' pipe.c``<br/><br/>
 
 7. 删除最后一行<br/>
-运行 ：``sed -e '$d' pipe.c``<br/>
+运行 ：``sed -e '$d' pipe.c``<br/><br/>
 
 8. 删除第一行到空行<br/>
-运行 ：``sed -e '1,/^$/d' pipe.c``<br/>
+运行 ：``sed -e '1,/^$/d' pipe.c``<br/><br/>
 
-#### 打印功能
+#### 打印功能<br/>
 
 1. 安静模式下打印1行<br/>
 运行 ：``sed -n '1p' pipe.c``<br/>
-结果 ：对应pipe.c的第1行<br/>
+结果 ：对应pipe.c的第1行<br/><br/>
 
 2. 非安静模式下打印1行<br/>
 运行 ``sed '1p' express``<br/>
-结果 ：**打印出所有内容，但第1行打印了2次**<br/>
+结果 ：**打印出所有内容，但第1行打印了2次**<br/><br/>
 解析 ：<strong>如果未加-n选项，会打印所有内容；此外"p"前面的数字如果为k，那么打印出来的内容中前k行都是2次。</strong><br/>
 
-#### 替换功能s`sed 's/old value/new value/'`
+#### 替换功能s`sed 's/old value/new value/'`<br/>
 1. 运行 ``cat -n pipe.c |sed 's/include/hello/'``<br/>
-结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/>
+结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/><br/>
 
 2. 多次修改（使用-e选项）<br/>
 运行 ``cat -n pipe.c |sed -e 's/include/hello/' -e 's/hello/include/'``<br/>
-结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/>
+结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/><br/>
 
 3. 用分号来分隔命令<br/>
 运行 ``echo my name is hello | sed 's/is/are/; s/hello/world/' ``<br/>
 结果 ：**my name are world**<br/>
-注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/>
+注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/><br/>
 例 ：
 ```shell
 cat -n pipe.c|sed 's/include/hello/;0~2d'
 # 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，
-#因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
+# 因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
 ```
  
 4. 全局替换<br/>
-``sed 's/old value/new value/``默认替换的是每一行中出现的第一个old value,如果一行中有多个“old value”的串，它只会替换第1个，若要替换一行中的全部“old value”需要使用<strong>g</strong><br/>
+``sed 's/old value/new value/``默认替换的是每一行中出现的第一个old value,如果一行中有多个“old value”的串，它只会替换第1个，若要替换一行中的全部“old value”需要使用<strong>g</strong><br/><br/>
 样例 ：<br/>
 ```shell
 echo my name is hello hello | sed 's/hello/world/'
