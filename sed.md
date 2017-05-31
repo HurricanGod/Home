@@ -100,9 +100,10 @@ void main()
 结果 ：**my name are world**<br/>
 注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/>
 例 ：
-```makefile
+```shell
 cat -n pipe.c|sed 's/include/hello/;0~2d'
-# 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
+# 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，
+#因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
 ```
  
 4. 全局替换<br/>
@@ -113,5 +114,20 @@ echo my name is hello hello | sed 's/hello/world/'
 # 结果：my name is world hello
 echo my name is hello hello | sed 's/hello/world/g' 
 # 结果：my name is world world
+ 
+# myfile.html文件内容如下：
+# <b>This</b> is what <b>I</b> meant.
+cat -n myfile.html | sed -e 's/<b>//g' -e 's/<\/b>//g'
+# 结果：1	This is what I meant.
+#      2	
+# 由于“</b>”中的‘/’会引起歧义，所以需要使用“\/”对“/”进行转义
+```
+
+5. 替换每行第N个匹配<br/>
+```shell
+echo my name is hello hello | sed 's/hello/world/2' 
+# my name is hello world
+echo my name is hello hello | sed 's/hello/world/3' 
+# my name is hello hello
 ```
  
