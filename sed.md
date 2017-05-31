@@ -89,17 +89,17 @@ void main()
 
 #### 替换功能s`sed 's/old value/new value/'`<br/>
 1. 运行 ``cat -n pipe.c |sed 's/include/hello/'``<br/>
-结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/><br/>
+   结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/><br/>
 
 2. 多次修改（使用-e选项）<br/>
-运行 ``cat -n pipe.c |sed -e 's/include/hello/' -e 's/hello/include/'``<br/>
-结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/><br/>
+   运行 ``cat -n pipe.c |sed -e 's/include/hello/' -e 's/hello/include/'``<br/>
+   结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/><br/>
 
 3. 用分号来分隔命令<br/>
-运行 ``echo my name is hello | sed 's/is/are/; s/hello/world/' ``<br/>
-结果 ：**my name are world**<br/>
-注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/><br/>
-例 ：
+   运行 ``echo my name is hello | sed 's/is/are/; s/hello/world/' ``<br/>
+   结果 ：**my name are world**<br/>
+   注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/><br/>
+   例 ：
 ```shell
 cat -n pipe.c|sed 's/include/hello/;0~2d'
 # 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，
@@ -151,7 +151,7 @@ cat -n pipe.c|sed -n 'n;p'
    结果：输出奇数行<br/>
    解析：p命令打印完读入的第1行后，执行N命令再读入1行到模式空间并把两行看做1行，接着模式空间被清空，从第3行读取内容……<br/><br/>
 
-2. 运行`` cat -n pipe.c|sed -n 'N;p'``
+2. 运行`` cat -n pipe.c|sed -n 'N;p'``<br/>
    结果：如果pipe.c内容的行数为偶数则打印全部内容，否则pipe.c的最后一行不打印，其它都打印<br/><br/>
 
 3. 输出匹配行的下一行<br/>
