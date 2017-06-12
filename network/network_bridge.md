@@ -16,4 +16,4 @@
 1. 每收到1个帧，记下其源地址和进入网桥的接口
 2. 建立转发表时把帧首部中的源地址写在“地址”栏下面，转发帧时根据**目的地址**转发   
 
-[网桥自学习](https://github.com/HurricanGod/Home/blob/master/img/networkbridge.png)
+![网桥自学习](https://github.com/HurricanGod/Home/blob/master/img/networkbridge.png)
