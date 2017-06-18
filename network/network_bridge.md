@@ -91,9 +91,9 @@ pause
  1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in`` <br>   
  执行结果如下：<br>
  
- >>
+ >>>>
 
-        ```
+       
           Idx         Met         MTU        状态                名称
          ---  ----------  ----------  ------------  ---------------------------
           18          35        1500  connected     VMware Network Adapter VMnet1
@@ -102,7 +102,7 @@ pause
            1          75  4294967295  connected     Loopback Pseudo-Interface 1
            9           5        1500  disconnected  以太网
           17          25        1500  disconnected  本地连接* 4
-         ```
+         
  <br>
  
  2. 
