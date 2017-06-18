@@ -30,5 +30,70 @@
   192.168.123.113       00-e0-66-e4-8e-58     动态    
   192.168.123.189       d4-97-0b-85-32-0b     动态     
  
-##### 一条有趣的命令  
-**set ip=10.200.25&& for /l %j in (1,1,254) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr dynamic >>2.txt )**
+##### Windows下有趣的cmd命令  
+```shell
+set ip=192.168.123 && for /l %j in (1,1,254) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr dynamic >>2.txt )
+set ip=192.168.123&& for /l %j in (1,1,100) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr 动态 >>D:\1.txt )
+```
+``for /l %j in (1,1,254) do (commands)``这个是cmd下的for循环,官方帮助文档如下：
+FOR /L %variable IN (start,step,end) DO command    该集表示以增量形式从开始到结束的一个数字序列。    
+因此，(1,1,5)将产生序列1 2 3 4 5，(5,-1,1)将产生序列(5 4 3 2 1)   
+在for循环里变量要用两个"%"包起来，所以刚才设置的变量ip这里表示为`%ip%`   
+**ping**命令的`-n count`表示要发送的回显请求数，`-w timeout`选项表示等待每次回复的超时时间(毫秒)   
+ping命令被读取时会被替换为``ping 192.168.123.n``(n为(1~254))    
+`arp -a ip`用于获取指定ip的硬件地址，这里把arp命令运行结果通过**管道**传送给下一条命令``findstr``   
+``findstr``命令查找包含字符串**"dynamic"**所在的行，把查找的结果以追加的方式重定向到2.txt文件里   、
+ 
+ ##### 批处理文件bat
+ **find.bat**
+ ```shell
+ ::关闭回显
+ @echo off
+goto start
+功能:查找局域网内指定范围内的ip地址和mac地址
+运行脚本需要4个参数
+%1% : 用于保存中间结果的文件名，可以任意
+%2% : 网段，如192.168.1
+%3% : 范围下限，表示要查找网段范围下限
+%4% : 范围上限，表示要查找网段范围上限
+比如脚本文件在D:\hello.bat
+运行方式:D:\hello.bat D:\2.txt 192.168.1 1 110
+****************************************
+::cd .>%1% 表示清空txt文件
+:start
+::cd .>%1%
+set ip= %2%
+set left=%3%
+set right=%4%
+for /l %%j in (%left%,1,%right%) do (
+  ping %ip%.%%j -n 1 -w 1000 >nul
+  FOR /F "delims=_" %%i IN ('arp -a %ip%.%%j') DO (
+    IF NOT "%%i" == "未找到 ARP 项。" (
+      echo %%i >> %1%
+    )
+  )
+)
+FINDSTR /C:"动态" %1%
+pause
+ ```
+ 
+ ##### 防止arp欺骗攻击，把网关ip地址与mac地址绑定
+ **ip地址与mac地址绑定遇到的问题：**
+ ***windows10下管理员权限执行arp -d ip 命令出现arp项添加失败拒绝访问的问题***    
+ **解决方法**
+ 
+ 1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in``    
+ 执行结果如下：
+ >>
+Idx     Met         MTU          状态                名称
+---  ----------  ----------  ------------  ---------------------------
+ 18          35        1500  connected     VMware Network Adapter VMnet1
+  7          35        1500  connected     VMware Network Adapter VMnet8
+  2          55        1500  connected     WLAN
+  1          75  4294967295  connected     Loopback Pseudo-Interface 1
+  9           5        1500  disconnected  以太网
+ 17          25        1500  disconnected  本地连接* 4
+ 
+ 
+ 2. 
+ 
