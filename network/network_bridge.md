@@ -105,5 +105,5 @@ pause
          
  <br>
  
- 2. 
+ 2. 执行``netsh i i add nei 2 "网关地址" "本机mac地址"``命令即可实现mac地址与网关地址绑定
  
