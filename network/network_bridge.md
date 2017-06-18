@@ -92,16 +92,17 @@ pause
  执行结果如下：<br>
  
  >>
-```
-Idx         Met         MTU        状态                名称
----  ----------  ----------  ------------  ---------------------------
- 18          35        1500  connected     VMware Network Adapter VMnet1
-  7          35        1500  connected     VMware Network Adapter VMnet8
-  2          55        1500  connected     WLAN
-  1          75  4294967295  connected     Loopback Pseudo-Interface 1
-  9           5        1500  disconnected  以太网
- 17          25        1500  disconnected  本地连接* 4
-```
+ 
+ ```
+  Idx         Met         MTU        状态                名称
+  ---  ----------  ----------  ------------  ---------------------------
+  18          35        1500  connected     VMware Network Adapter VMnet1
+   7          35        1500  connected     VMware Network Adapter VMnet8
+   2          55        1500  connected     WLAN
+   1          75  4294967295  connected     Loopback Pseudo-Interface 1
+   9           5        1500  disconnected  以太网
+  17          25        1500  disconnected  本地连接* 4
+  ```
 <br>
  
  2. 
