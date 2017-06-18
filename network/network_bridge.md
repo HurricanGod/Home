@@ -35,15 +35,20 @@
 set ip=192.168.123 && for /l %j in (1,1,254) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr dynamic >>2.txt )
 set ip=192.168.123&& for /l %j in (1,1,100) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr 动态 >>D:\1.txt )
 ```
-``for /l %j in (1,1,254) do (commands)``这个是cmd下的for循环,官方帮助文档如下：
-FOR /L %variable IN (start,step,end) DO command    该集表示以增量形式从开始到结束的一个数字序列。    
-因此，(1,1,5)将产生序列1 2 3 4 5，(5,-1,1)将产生序列(5 4 3 2 1)   
-在for循环里变量要用两个"%"包起来，所以刚才设置的变量ip这里表示为`%ip%`   
-**ping**命令的`-n count`表示要发送的回显请求数，`-w timeout`选项表示等待每次回复的超时时间(毫秒)   
-ping命令被读取时会被替换为``ping 192.168.123.n``(n为(1~254))    
-`arp -a ip`用于获取指定ip的硬件地址，这里把arp命令运行结果通过**管道**传送给下一条命令``findstr``   
-``findstr``命令查找包含字符串**"dynamic"**所在的行，把查找的结果以追加的方式重定向到2.txt文件里   、
- 
+``for /l %j in (1,1,254) do (commands)``这个是cmd下的for循环,官方帮助文档如下：<br>
+FOR /L %variable IN (start,step,end) DO command    该集表示以增量形式从开始到结束的一个数字序列。<br>    
+因此，(1,1,5)将产生序列1 2 3 4 5，(5,-1,1)将产生序列(5 4 3 2 1)<br>
+在for循环里变量要用两个"%"包起来，所以刚才设置的变量ip这里表示为`%ip%`<br><br>
+**ping**命令
+`-n count`表示要发送的回显请求数<br/>
+`-w timeout`选项表示等待每次回复的超时时间(毫秒) <br>  
+ping命令被读取时会被替换为``ping 192.168.123.n``(n为(1~254))  <br> <br>
+
+`arp -a ip`用于获取指定ip的硬件地址，这里把arp命令运行结果通过**管道**传送给下一条命令``findstr``  <br> 
+``findstr``命令查找包含字符串**"dynamic"**所在的行，把查找的结果以追加的方式重定向到2.txt文件里 <br>
+
+-------
+
  ##### 批处理文件bat
  **find.bat**
  ```shell
@@ -78,21 +83,21 @@ pause
  ```
  
  ##### 防止arp欺骗攻击，把网关ip地址与mac地址绑定
- **ip地址与mac地址绑定遇到的问题：**
- ***windows10下管理员权限执行arp -d ip 命令出现arp项添加失败拒绝访问的问题***    
- **解决方法**
+ **ip地址与mac地址绑定遇到的问题：**<br>
+ >***windows10下管理员权限执行arp -d ip 命令出现arp项添加失败拒绝访问的问题***    
+ <br>**解决方法：**<br><br>
  
- 1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in``    
- 执行结果如下：
+ 1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in`` <br>   
+ 执行结果如下：<br>
  >>
-Idx     Met         MTU          状态                名称
----  ----------  ----------  ------------  ---------------------------
- 18          35        1500  connected     VMware Network Adapter VMnet1
-  7          35        1500  connected     VMware Network Adapter VMnet8
-  2          55        1500  connected     WLAN
-  1          75  4294967295  connected     Loopback Pseudo-Interface 1
-  9           5        1500  disconnected  以太网
- 17          25        1500  disconnected  本地连接* 4
+Idx     Met         MTU          状态                名称<br>
+---  ----------  ----------  ------------  ---------------------------<br>
+ 18          35        1500  connected     VMware Network Adapter VMnet1<br>
+  7          35        1500  connected     VMware Network Adapter VMnet8<br>
+  2          55        1500  connected     WLAN<br>
+  1          75  4294967295  connected     Loopback Pseudo-Interface 1<br>
+  9           5        1500  disconnected  以太网<br>
+ 17          25        1500  disconnected  本地连接* 4<br><br>
  
  
  2. 
