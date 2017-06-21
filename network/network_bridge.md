@@ -32,7 +32,44 @@
 
 
 #### ARP攻击
+假设有主机A、B，路由器，各自的ARP缓存如下：<br/>
+![ARP攻击前高速缓存内容](https://github.com/HurricanGod/Home/blob/master/img/arp1.png)
+<br>若攻击者A伪装网关向目标主机发送ARP响应报文，ARP缓存表变化如下：<br>
 ![ARP攻击](https://github.com/HurricanGod/Home/blob/master/img/arp%E6%94%BB%E5%87%BB.png)
+![ARP攻击示意图](https://github.com/HurricanGod/Home/blob/master/img/arp2.png)
+
+-----
+此时攻击者若再伪装被攻击者B向网关发送ARP响应报文，对应ARP缓存表变化如下：<br>
+![伪装被攻击对象发动ARP攻击1](https://github.com/HurricanGod/Home/blob/master/img/arp3.png)
+![伪装被攻击对象发动ARP攻击2](https://github.com/HurricanGod/Home/blob/master/img/arp4.png)
+ 
+  ##### 防止arp欺骗攻击，把网关ip地址与mac地址绑定
+ **ip地址与mac地址绑定遇到的问题：**<br>
+ >***windows10下管理员权限执行arp -d ip 命令出现arp项添加失败拒绝访问的问题***    
+ 
+ <br>**解决方法：**<br><br>
+ 
+ 1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in`` <br>   
+ 执行结果如下：<br>
+ 
+ >>>>
+
+       
+          Idx         Met         MTU        状态                名称
+         ---  ----------  ----------  ------------  ---------------------------
+          18          35        1500  connected     VMware Network Adapter VMnet1
+           7          35        1500  connected     VMware Network Adapter VMnet8
+           2          55        1500  connected     WLAN
+           1          75  4294967295  connected     Loopback Pseudo-Interface 1
+           9           5        1500  disconnected  以太网
+          17          25        1500  disconnected  本地连接* 4
+         
+ <br>
+ 
+ 2. 执行``netsh i i add nei 2 "网关地址" "本机mac地址"``命令即可实现mac地址与网关地址绑定
+ 
+
+:hushed:
 ##### Windows下有趣的cmd命令  
 ```shell
 set ip=192.168.123 && for /l %j in (1,1,254) do ( ping %ip%.%j -n 1 -w 1000 |arp -a %ip%.%j |findstr dynamic >>2.txt )
@@ -84,29 +121,4 @@ for /l %%j in (%left%,1,%right%) do (
 FINDSTR /C:"动态" %1%
 pause
  ```
- 
- ##### 防止arp欺骗攻击，把网关ip地址与mac地址绑定
- **ip地址与mac地址绑定遇到的问题：**<br>
- >***windows10下管理员权限执行arp -d ip 命令出现arp项添加失败拒绝访问的问题***    
- 
- <br>**解决方法：**<br><br>
- 
- 1. 使用`netsh`命令查看网络连接所在的接口号，具体操作为：``netsh i i show in`` <br>   
- 执行结果如下：<br>
- 
- >>>>
-
-       
-          Idx         Met         MTU        状态                名称
-         ---  ----------  ----------  ------------  ---------------------------
-          18          35        1500  connected     VMware Network Adapter VMnet1
-           7          35        1500  connected     VMware Network Adapter VMnet8
-           2          55        1500  connected     WLAN
-           1          75  4294967295  connected     Loopback Pseudo-Interface 1
-           9           5        1500  disconnected  以太网
-          17          25        1500  disconnected  本地连接* 4
-         
- <br>
- 
- 2. 执行``netsh i i add nei 2 "网关地址" "本机mac地址"``命令即可实现mac地址与网关地址绑定
  
