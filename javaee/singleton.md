@@ -29,14 +29,14 @@ public Class Test{
 **运行结果：**
 >
 ```
-i1 == i2		  true
-i1.equals(i2)	true
-a1 == a2		  false
-a1.equals(a2)	true
-b1 == b2		  true
-b1.equals(b2)	true
+i1 == i2		      true
+i1.equals(i2)	            true
+a1 == a2		      false
+a1.equals(a2)	            true
+b1 == b2		      true
+b1.equals(b2)	            true
 ```
- 
+***从上面结果我们可以知道，对于Integer，它缓存了-128~127之间的整数，如果以这范围的整数初始化Integer将得到同一个对象*** 
 #### 单例模式实现常量池
 **需求：**      
 1. 模仿Integer类实现用-128~127之间的整数实例化对象时得到的唯一的      
