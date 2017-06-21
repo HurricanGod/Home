@@ -4,6 +4,8 @@ java的单例模式有两种，分别为：
 1. 饿汉式单例，在加载类信息的就调用私有构造函数实例化自己，不管后面的程序需不需要使用该实例。特点是实现起来简单，但会造成内存浪费。
 2. 懒汉式单例，只有在第1次要使用这个类实例时才创建该实例。特点：会面临多线程的安全性问题，稍不注意就会使得对象的实例不唯一。
 
+**我们来看一下Integer一些有趣的例子**         
+
 ```java
 import org.junit.Test;
 public Class Test{
@@ -29,12 +31,12 @@ public Class Test{
 **运行结果：**
 >
 ```
-i1 == i2		      true
-i1.equals(i2)	            true
-a1 == a2		      false
-a1.equals(a2)	            true
-b1 == b2		      true
-b1.equals(b2)	            true
+i1 == i2		true
+i1.equals(i2)	        true
+a1 == a2		false
+a1.equals(a2)	        true
+b1 == b2		true
+b1.equals(b2)	        true
 ```
 ***从上面结果我们可以知道，对于Integer，它缓存了-128~127之间的整数，如果以这范围的整数初始化Integer将得到同一个对象*** 
 #### 单例模式实现常量池
