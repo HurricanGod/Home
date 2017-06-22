@@ -134,7 +134,8 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
 ```
 <br>
 :new_moon_with_face:
-**运行结果：**<br>
-![传递字符串数组正确运行带管道cmd命令](https://github.com/HurricanGod/Home/blob/master/img/runtimeexec1.png)
+
+**运行结果：**
+![运行带管道cmd命令](https://github.com/HurricanGod/Home/blob/master/img/runtimeexec1.png)
 
  
