@@ -69,8 +69,8 @@ Math.rint(c) = 10.0
  
 ##### Runtime类、Process类及ProcessBuilder类 
 java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的类，每个JVM都对应1个Rumtime类实例，Runtime类本身的构造方法是私有化的，使用了单例模式<br>
-需要注意的是Runtime实例的**exec()**方法，如果用exec()方法来执行windows或linux命令，这时需要特别注意与管道有关的命令<br/>
- 
+需要注意的是Runtime实例的``exec()``方法，如果用exec()方法来执行windows或linux命令，这时需要特别注意与管道有关的命令<br/><br/>
+
 下面使用Runtime实例执行**ipconfig -all**查看本机ip地址信息<br>
 ```java
 @Test
@@ -95,17 +95,22 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
 
 -----
 
-但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有**默认网关**的行
+但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有默认网关的行
 ![运行结果比较](https://github.com/HurricanGod/Home/blob/master/img/runtimeExec.png)
 :scream:
-<br>``ipconfig -all | findstr 默认网关``命令被Runtime实例解释为1个命令，从而执行命令失败，如果需要执行带管道的shell命令就需要使用字符串数组作为参数
-<br>使用``cmd /c "ipconfig -all | findstr 默认网关"``来替换，其中这条cmd命令以数组作为参数传递给**exec()**方法时，命令分为3部分
+<br>``ipconfig -all | findstr 默认网关``命令被Runtime实例解释为1个命令，从而执行命令失败;<br>
+如果需要执行带管道的shell命令就需要使用字符串数组作为参数.<br><br>
+<br>可以使用``cmd /c "ipconfig -all | findstr 默认网关"``来替换，
+<br>其中这条cmd命令以数组作为参数传递给**exec()**方法时，命令分为3部分
 <br>``String[] commands = {"cmd", "/c","ipconfig -all | findstr 默认网关"}``，“**cmd**”作为一个命令参数，“/c”又作为一个参数。
-<br>使用`cmd /?`查看帮助文档如下：
+<br><br>使用`cmd /?`查看帮助文档如下：
 <br>``/C      执行字符串指定的命令然后终止,如果字符串加有引号，可以接受用命令分隔符 "&&"分隔多个命令``
 <br>也就是说会执行**/c**后面的字符串命令，如果需要执行多条命令可以使用``&&``进行分割.
-<br>也就是可以执行形如**cmd /c ipconfig -all| findstr 默认网关&& route print**或
-<br>**cmd /c "ipconfig -all| findstr 默认网关&& route print"**的命令<br>
+<br>可以执行形如下面的命令
+<br>**cmd /c ipconfig -all| findstr 默认网关&& route print**或
+<br>**cmd /c "ipconfig -all| findstr 默认网关&& route print"**<br>
+
+----
 
 **修改后代码如下**
 ```java
@@ -127,7 +132,9 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
         }
     }
 ```
+<br>
+:new_moon_with_face:
 **运行结果：**<br>
-
+![传递字符串数组正确运行带管道cmd命令](https://github.com/HurricanGod/Home/blob/master/img/runtimeexec1.png)
 
  
