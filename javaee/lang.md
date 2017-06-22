@@ -66,3 +66,34 @@ Math.rint(c) = 10.0
 0111 1111 ：127  <br>
 1000 0000 ：-128 <br>
 1111 1111 ：-1   <br>
+ 
+##### Runtime类、Process类及ProcessBuilder类 
+java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的类，每个JVM都对应1个Rumtime类实例，Runtime类本身的构造方法是私有化的，使用了单例模式<br>
+需要注意的是Runtime实例的**exec()**方法，如果用exec()方法来执行windows或linux命令，这时需要特别注意与管道有关的命令<br/>
+ 
+下面使用Runtime实例执行**ipconfig -all**查看本机ip地址信息<br>
+```java
+@Test
+    public void testExecMethodOfRuntime() {
+        String command = "ipconfig -all";
+        Runtime runtime = Runtime.getRuntime();
+        Process process;
+        try {
+            process = runtime.exec(command);
+            InputStreamReader input = new InputStreamReader(process.getInputStream(), "GBK");
+            BufferedReader reader = new BufferedReader(input);
+            String line;
+            while ((line=reader.readLine())!=null){
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
+这时执行命令是没有问题的，也有结果输出。<br>
+
+-----
+ 
+但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有**默认网关**的行
+ 
