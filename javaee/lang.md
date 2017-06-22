@@ -94,6 +94,8 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
 这时执行命令是没有问题的，也有结果输出。<br>
 
 -----
- 
+
 但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有**默认网关**的行
+![运行结果比较](https://github.com/HurricanGod/Home/blob/master/img/runtimeExec.png)
+:scream:
  
