@@ -95,7 +95,9 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
 
 -----
 
-但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有默认网关的行
+但如果执行``ipconfig -all | findstr 默认网关``命令，即从``ipconfig -all``输出结果中获取所有含有默认网关的行<br>
+如果Runtime实例执行带管道命令，如：``runtime.exec("ipconfig -all | findstr 默认网关")``<br><br>
+**结果如下所示**<br>
 ![运行结果比较](https://github.com/HurricanGod/Home/blob/master/img/runtimeExec.png)
 :scream:
 <br>``ipconfig -all | findstr 默认网关``命令被Runtime实例解释为1个命令，从而执行命令失败;<br>
@@ -135,7 +137,7 @@ java中的Runtime类表示运行时操作类，是1个封装了的JVM进程的�
 <br>
 :new_moon_with_face:
 
-**运行结果：**
+**运行结果：**<br>
 ![运行带管道cmd命令](https://github.com/HurricanGod/Home/blob/master/img/runtimeexec1.png)
 
  
