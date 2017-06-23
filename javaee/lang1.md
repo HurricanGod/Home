@@ -24,7 +24,7 @@
 
 
 
-**HashMap**的***resize()***方法
+**HashMap**的``resize()``方法
 
 ```java
     /**
@@ -39,7 +39,7 @@
     final Node<K,V>[] resize()
 ```
 
-**HashTable**的***rehash()***方法
+**HashTable**的``rehash()``方法
 
 ```java
     /**
@@ -107,7 +107,7 @@
     }
 ```
 
-**HashTable**的***put()***方法
+**HashTable**的``put()``方法
 
 ```java
 	/**
