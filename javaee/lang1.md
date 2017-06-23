@@ -14,9 +14,8 @@
 
 **HashTable与HashMap**的区别：<br>
  
-|    |HashMap|HashTable|    
+|    |HashMap|HashTable|
+|:--:|:------|:--------|    
 
-|:--:|:------|:--------|   
-
-|线程安全|不安全|安全，方法都加了synchronized|
+|线程安全|不安全|安全，方法都加了synchronized| 
  
