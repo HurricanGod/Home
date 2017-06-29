@@ -34,6 +34,7 @@
 <br>发生冲突时桶号的计算：H[i] = (H[i-1] + ReHash(key)) % p  (i=1,2,3,……n)
 <br>
 -----
+
 ![哈希表](https://github.com/HurricanGod/Home/blob/master/img/hashtable%E9%97%AD%E6%95%A3%E5%88%97%E6%B3%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81.png)
 
 ***开散列法（链地址法）***
