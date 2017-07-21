@@ -47,8 +47,8 @@ Maven是一个项目管理和综合工具,Maven提供了开发人员构建1个�
 
 1. singleton（单例模式），由Ioc容器返回唯一的Bean实例
 2. prototype（原型模型），被请求时，每次返回1个**新的bean实例**
-3. request ，每个***http request***请求返回**唯一的**Bean实例
-4. session，每个***http session***返回1个唯一的Bean实例
+3. request ，每个**http request**请求返回**唯一的**Bean实例
+4. session，每个**http session**返回1个唯一的Bean实例
 5. globalSession，http session全局Bean实例
 
 > 默认情况下，作用域是单例
