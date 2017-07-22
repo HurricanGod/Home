@@ -2,6 +2,11 @@
 
 ![逻辑文件-物理文件](https://github.com/HurricanGod/Home/blob/master/img/fileStructure.png)
 
+
+### 磁盘结构
+<br/>
+![ 磁盘结构](https://github.com/HurricanGod/Home/blob/master/img/disk.png)
+<br/>
 文件检索的3种方式：
 
 1. 顺序存取
