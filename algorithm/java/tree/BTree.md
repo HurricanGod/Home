@@ -37,7 +37,7 @@ B树至少是半满的，层数较小而且完全平衡。还有1个重要特点
 
 ### B树删除
 
-![B树的删除](https://github.com/HurricanGod/Home/blob/master/img/B%E6%A0%91%E6%8F%92%E5%85%A5.png)
+![B树的删除](https://github.com/HurricanGod/Home/blob/master/img/B%E6%A0%91%E5%88%A0%E9%99%A4.png)
 
 -----
 
