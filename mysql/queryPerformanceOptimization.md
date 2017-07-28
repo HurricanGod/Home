@@ -20,7 +20,7 @@ MySql返回1行的访问类型有（出现在explain中的type列）：
 | :--: | :---------: | :-------: | :--------: | :---: | :-----------: | :-----: | :-----: | :--: | :--: | :------: | ----------- |
 |  1   |   SIMPLE    | testindex |    NULL    | range |    PRIMARY    | PRIMARY |    4    | NULL |  2   |  100.0   | Using where |
 
-
+![explain查询分析](https://github.com/HurricanGod/Home/blob/master/img/mysql-explain-command.png)
 
 **MySql会在3中情况使用Where子句，效率依次降低：**
 
