@@ -17,7 +17,7 @@
    C  str.spilt("\\|")
    D  str.spilt("\\\|")
    ```
-
+![正则表达式错误使用"|"](https://github.com/HurricanGod/Home/blob/master/img/regexerror.png)
    ​
 
 
