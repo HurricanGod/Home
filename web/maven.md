@@ -165,5 +165,6 @@ Maven的web工程使用`Tomcat`插件
 + 本地仓库
   + 默认在`~/.m2/repository`，如果有用户配置则在用户指定的路径里
 + 远程仓库
-  + 中央仓库（不包含有版本的jar包，http://repo1.maven.org/maven2）
+  + 中央仓库（不包含有版本的jar包，http://repo1.maven.org/maven2 ）
   + 私服
+  + http://mvnrepository.com/ (常用)
