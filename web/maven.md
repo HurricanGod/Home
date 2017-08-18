@@ -67,7 +67,7 @@ Project
 
 **依赖范围**`scope`用来控制依赖和编译，测试，运行的classpath的关系，主要的3种依赖关系为：
 
-1. `compile`： 默认依赖范围，对于***编译、测试和运行***3种classpath都有效
+1. `compile`： 默认依赖范围，对于**编译、测试和运行** 3种classpath都有效
 2. `test`： 测试依赖范围，只对于测试classpath有效
 3. `provided`： 已提供依赖范围。对于编译，测试的classpath都有效，但对运行无效，**打包时不把依赖加入到包里**；例如servlet-api，服务器容器里默认有这个jar包，因此项目发布时不需要把本地的`servlet-api`一起打包
 
