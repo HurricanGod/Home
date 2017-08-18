@@ -148,6 +148,11 @@ MyBatis查询缓存机制根据缓存区的作用域（生命周期）可分为�
 
 **二级缓存使用Demo**
 
+-----
+ <br/>
+实体类定义：
+![](https://github.com/HurricanGod/Home/blob/master/img/%E5%86%85%E7%BD%AE%E4%BA%8C%E7%BA%A7%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98%E5%AE%9E%E4%BD%93%E7%B1%BB.png)
+ 
 ```java
 // 接口定义
 public interface IUsrImageDao {
@@ -186,6 +191,9 @@ public interface IUsrImageDao {
 
     }
 ```
+
+**运行结果**
+![MyBatis二级缓存验证运行结果](https://github.com/HurricanGod/Home/blob/master/img/%E5%86%85%E7%BD%AE%E4%BA%8C%E7%BA%A7%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
