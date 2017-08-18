@@ -28,6 +28,7 @@ Windows测试maven**环境配置成功**的方法：命令行下运行`mvn -v`
 ### 用户配置
 
 用户配置存放在`~/.m2/repository/setting.xml`，**setting.xml**一开始是没有的，需要自己新建或把全局配置里的`setting.xml`复制过去
+![](https://github.com/HurricanGod/Home/blob/master/img/maven1.png)
 
 **注**
 
