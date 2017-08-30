@@ -62,23 +62,15 @@ Maven是一个项目管理和综合工具,Maven提供了开发人员构建1个�
       }
 
   ```
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E8%AE%BE%E5%80%BC-1.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E8%AE%BE%E5%80%BC-2.png)
 
   ​
 
 + 构造注入
 
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E6%9E%84%E9%80%A0-1.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E6%9E%84%E9%80%A0-2.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E6%9E%84%E9%80%A0-3.png)
   ​
 
 + 自动注入——`byName`
 
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5-1.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5-2.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/DI-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5-3.png)
   ​
 
 + 自动注入——`byType` ,将会从容器中查找与实体类域属性类型一致（***指同类及子类***）的Bean并将该Bean对象自动注入给该域属性（注：**该类型对象只能有1个实例**）
@@ -128,14 +120,11 @@ Bean后处理器是一种特殊的Bean，Bean中所有Bean在初始化时都会�
           System.out.println(student2.getTeacher() + "\n");
       }
   ```
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/xml-%E5%B9%B3%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-1.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/xml-%E5%B9%B3%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-2.png)
 
   ​
 
 + 包含的方式为应用指定多个配置文件
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/xml-%E5%8C%85%E5%90%AB%E5%BC%8F-1.png)
-  ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-DI/xml-%E5%8C%85%E5%90%AB%E5%BC%8F-2.png)
+
   ​
 
 
