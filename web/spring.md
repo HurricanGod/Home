@@ -52,7 +52,28 @@ Maven是一个项目管理和综合工具,Maven提供了开发人员构建1个�
 **注入分类**：
 
 + 设值注入
+
+  ```java
+  @Test
+      public void testIoc() {
+          ApplicationContext context = new ClassPathXmlApplicationContext("springbean.xml");
+          Graderecord graderecord = (Graderecord)context.getBean("graderecord");
+          graderecord.show();
+      }
+
+  ```
+
+  ​
+
 + 构造注入
+
+  ​
+
++ 自动注入——`byName`
+
+  ​
+
++ 自动注入——`byType` ,将会从容器中查找与实体类域属性类型一致（***指同类及子类***）的Bean并将该Bean对象自动注入给该域属性（注：**该类型对象只能有1个实例**）
 
 
 
@@ -77,3 +98,36 @@ Bean后处理器是一种特殊的Bean，Bean中所有Bean在初始化时都会�
 
 
 `<bean/>标签` 的**id**属性与**name**属性：一般情况下，命名bean使用**id**属性，而不是用**name**属性，在没有id属性的情况下。***name属性与id属性作用相同***；当`</bean>`中含有一些**特殊字符**时，就需要使用name属性。
+
+
+
+----
+
+### 为应用指定多个Spring配置文件
+
++ 将配置文件分解为地位平等的多个配置文件，并将所有配置文件的路径定义为一个`String`数组将其作为容器初始化的参数
+
+  ```java
+  @Test
+      public void testManyConfigFile() {
+          String[] xmlnames = new String[]{"springbean.xml", "application.xml"};
+          ApplicationContext context = new ClassPathXmlApplicationContext(xmlnames);
+          Student student1 = (Student) context.getBean("student");
+          System.out.println(student1.toString());
+          System.out.println(student1.getTeacher() + "\n");
+          Student student2 = (Student) context.getBean("stu");
+          System.out.println(student2.toString());
+          System.out.println(student2.getTeacher() + "\n");
+      }
+  ```
+
+  ​
+
++ 包含的方式为应用指定多个配置文件
+
+  ​
+
+
+
+-----
+
