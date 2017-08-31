@@ -5,7 +5,7 @@
 + `@Controller` 注解在**SpringMVC**处理器中使用
 + `@Service` 注解一般放在**Service**的实现类上
 
-**注：**这4个注解功能一样！
+**注**这4个注解功能一样！
 
 -----
 
@@ -62,11 +62,13 @@ xsi:http://www.springframework.org/schema/context/spring-context.xsd
 
 + **byType**类型的域属性注入（使用`@Autowired` 自动注入）
 
-​	
+​	![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-DI/byType-1.png)
+       ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-DI/byType-2.png)
+       ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-DI/byType-3.png)
 
 + **byName** 类型的域属性注入（使用`@Autowired`  + `@Qualifier`自动注入）
 
-​	
+​	![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-DI/byName-1.png)
 
 + **@Resource** 注解式注入
 
