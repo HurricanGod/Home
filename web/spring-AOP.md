@@ -1,17 +1,9 @@
-## AOP
+## <a name="top">AOP</a>
 
 **AOP原理**：底层采用动态代理实现，有`JDK动态代理` 和 `CGLIB动态代理` 两种。
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/xml-aop/AOP%E5%8E%9F%E7%90%86.png)
 
-```java
-public class A
-{
-  	public void add()	{	}
-  	public void update()  	{	}
-  	public void delete()	{	}
-  	public void findAll()	{	}
-}
-```
+------
 
 - **连接点** ：类里面可以被增强的方法称为连接点
 - **切入点** ：在实际操作中，如果add方法被增强了，那么实际增强的方法称为切入点
@@ -24,6 +16,8 @@ public class A
 - **切面** ：泛指交叉业务逻辑，常用的切面有`通知`和`顾问`，把增强应用到具体方法上面，过程称为切面（把增强用到切入点过程）
 
 -----
+
+### 通知
 
 <a href="#before">Before Advice </a>
 
@@ -251,78 +245,226 @@ public class ServiceAroundAdvice implements MethodInterceptor {
 
 -------
 
-**Spring的AOP操作**
+### 顾问Advisor
 
-1. 在Spring里面进行aop操作，使用aspectj实现
+顾问是Spring提供的另一种切面，可以完成更为复杂的切面织入功能，`PointcutAdvisor`是顾问的一种可以指定具体的切入点。顾问将通知进行了包装，会根据不同通知类型，在不同的时间点，将切面织入到不同的切入点。
 
-   1. aspectj不是spring的一部分，和spring一起使用进行aop操作
-   2. Spring2.0以后新增了对AspectJ的支持
+`PointcutAdvisor`接口较为常用的实现类：
 
-   ​
++ `NameMatchMethodPointcutAdvisor` <a name="NameMatch">名称匹配方法切入点顾问</a>
++ `RegexpMethodPointcutAdvisor`<a name="RegexpMatch">正则表达式匹配方法切入点顾问</a>
 
-2. 使用aspectj实现aop的两种方式
 
-   1. 基于aspectj的xml配置
-   2. 基于aspectj的注解方式
 
-   ​
+### <a href="#NameMatch">名称匹配方法切入点顾问</a>
 
-3. **AOP操作需要的jar包**
+使用**名称匹配方法切入点顾问**需要创建`org.springframework.aop.support.NameMatchMethodPointcutAdvisor`的实例，并把**通知实例**注入到对象的 `advice` 属性里， 要增强的方法注入到 `mappedName` 属性里，具体操作看如下示例：
 
-   1. aopalliance-1.0.jar
-   2. aspectjweaver-1.8.*.jar
-   3. spring-aop-4.2.0.RELEASE.jar
-   4. spring-aspects-4.2.0.RELEASE.jar
+<a name="NoInterfaceService">NoInterfaceService.java</a>
 
---------
+```java
+public class NoInterfaceService {
 
-### 使用表达式配置切入点
+    public void doRemove(User user){
+        System.out.println("删除操作……");
+    }
 
-+ **常用表达式**
-
-```
-execution(<访问修饰符>?<返回类型> <方法全路径名>(<参数>)<异常>)
-1.execution(* package.class.method(..))	表示某个类中的某个方法
-2.execution(* package.class.*(..))	表示某个类中的所有方法
-3.execution(* *.*(..))	表示所有方法
+    public void doQuery(){
+        System.out.println("执行查询操作……");
+    }
+}
 ```
 
 
 
-+ **配置文件写法：**
+**mappedName**支持正则式注入，如下`do*`表示增强`NoInterfaceService`对象里所有以**do**开头的方法，如果改为`doRemove`将只增强**doRemove**方法
 
 ```xml
-<aop:config >
-		<!-- 配置切入点 -->
-		<aop:pointcut expression="execution(* firm.manage.Employee.introduce(..))" id="pointcut1" />
-		
-		<!-- 配置切面，把增强用到方法上面 -->
-		<aop:aspect ref="department">
-			<!-- ref属性配置增强的类型，method属性配置增强类里的要增强的方法， pointcut-ref属性配置增强类引用的切入点-->
-			<!-- before：增强类里的show方法作为前置 -->
-			<aop:before method="show" pointcut-ref="pointcut1"/>
-			<aop:after method="afterShow" pointcut-ref="pointcut1"/>
-		</aop:aspect>
-</aop:config>
-<!--配置完成后show()方法将在firm.manage.Employee.introduce()方法之前执行，afterShow()方法将在firm.manage.Employee.introduce()方法之后执行
--->
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="aroundAdvice" class="hurrican.service.ServiceAroundAdvice"/>
+
+    <!-- 生成被增强方法对象-->
+    <bean id="nointerfaceService" class="hurrican.service.NoInterfaceService"/>
+
+    <!-- 注册通知-->
+    <bean id="checkAuthorityAdvice" class="hurrican.service.UserServiceMethodBeforeAdvice"/>
+
+    <!-- 注册顾问-->
+    <bean id="daoAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="checkAuthorityAdvice"/>
+        <property name="mappedName" value="do*"/>
+    </bean>
+
+    <!-- 注册代理对象-->
+    <bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="nointerfaceService" />
+        <property name="interceptorNames">
+            <list>
+                <value>daoAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
+```
+
+<a name="UserServiceMethodBeforeAdvice">UserServiceMethodBeforeAdvice.java<a>
+
+```java
+public class UserServiceMethodBeforeAdvice implements MethodBeforeAdvice {
+    
+    @Override
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println("需要被前置增强的方法:\t" + method.getName());
+        System.out.println("执行检查用户权限操作！");
+    }
+}
 ```
 
 
 
-### 注解方式完成AOP操作
+### <a href="#RegexpMatch">正则表达式匹配方法切入点顾问</a>
 
-****
+使用**正则表达式匹配方法切入点顾问**需要创建`org.springframework.aop.support.RegexpMethodPointcutAdvisor` 对象，并把**通知实例**注入到对象的 `advice` 属性里，在`pattern`里注入满足要求的方法正则式（**方法正则式要求为全限定方法名的正则式**）
 
-1. 开启AOP注解扫描
+```xml
+<?xml version="1.0" encoding="utf-8"?>
 
-   ```xml
-   <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-   ```
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-   ​
+    <!-- 生成被增强方法对象-->
+    <bean id="nointerfaceService" class="hurrican.service.NoInterfaceService"/>
 
-2. 在要增强的切入点所在的类添加注解**@Aspect**，在切入点上面添加注解`@Before( value = "execution(* 包名.类名.方法名(..)" )`
+    <!-- 注册通知-->
+    <bean id="checkAuthorityAdvice" class="hurrican.service.UserServiceMethodBeforeAdvice"/>
 
-   ​
+    <bean id="daoRegexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="checkAuthorityAdvice"/>
+        <property name="pattern" value=".*do.*"/>
+    </bean>
 
+    <!-- 注册代理对象 使用正则顾问-->
+    <bean id="serviceProxyByRegexp" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="nointerfaceService" />
+        <property name="interceptorNames">
+            <list>
+                <value>daoRegexpAdvisor</value>
+            </list>
+        </property>
+    </bean>
+</beans>
+```
+
+```java
+@Test
+    public void testAdvisorByRegexp() {
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-aop-cglib.xml");
+        NoInterfaceService service = (NoInterfaceService) context.getBean("serviceProxyByRegexp");
+
+        service.doRemove(new User());
+
+        System.out.println();
+        service.doQuery();
+    }
+```
+
+<a href="#NoInterfaceService">NoInterfaceService.java</a>
+
+<a href="#UserServiceMethodBeforeAdvice">UserServiceMethodBeforeAdvice.java<a>
+
+
+
+----
+
+使用**ProxyFactoryBean**产生的增强的代理对象存在的问题：
+
++ 当需要创建的被代理对象有很多时，需要创建大量的代理对象，因为1个代理对象对应1个目标对象，存在大量的冗余
++ 要调用增强的方法必须生成调用代理类对象
+
+
+
+### Bean名称自动代理生成器
+
+只需要注册1个`org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator` 的实例，不用**单独生成**代理对象就可以实现对目标方法的增强；**可以直接获取获取目标对象实例**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 生成被增强方法对象-->
+    <bean id="nointerfaceService" class="hurrican.service.NoInterfaceService"/>
+
+    <!-- 注册通知-->
+    <bean id="checkAuthorityAdvice" class="hurrican.service.UserServiceMethodBeforeAdvice"/>
+
+    <!-- 注册正则顾问-->
+    <bean id="daoRegexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="checkAuthorityAdvice"/>
+        <property name="pattern" value=".*doRemove"/>
+    </bean>
+
+    <!-- 注册自动代理生成器-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="nointerfaceService"/>
+        <property name="interceptorNames" value="daoRegexpAdvisor"/>
+    </bean>
+</beans>
+```
+
+```java
+@Test
+    public void testAdvisorAutoProxyCreator() {
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-aop-cglib.xml");
+        NoInterfaceService service = (NoInterfaceService) context.getBean("nointerfaceService");
+
+        service.doRemove(new User());
+
+        System.out.println();
+        service.doQuery();
+    }
+```
+
+<a href="#NoInterfaceService">NoInterfaceService.java</a>
+
+<a href="#UserServiceMethodBeforeAdvice">UserServiceMethodBeforeAdvice.java<a>
+
+
+
+-------
+
+
+
+<right><a href="#top">**back**</a></right>
