@@ -406,7 +406,7 @@ public class XmlConfigEnhance {
 
 ### <a name="before">前置通知</a>
 
-在要增强的切入点所在的类添加注解``@Aspect``，在切入点上面添加注解`@Before( value = "execution(* 包名.类名.方法名(..)" )`
+在通知所在的类添加注解``@Aspect``，在通知上面添加注解`@Before( value = "execution(* 包名.类名.方法名(..)" )`
 
 <a name="beforexml">**spring-aspectj.xml**</a>
 
