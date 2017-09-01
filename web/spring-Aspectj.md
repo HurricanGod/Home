@@ -53,7 +53,7 @@
   - <a href="#">配置文件实现</a>
   - <a href="#exection">注解实现</a>
 - 最终通知：<a name="final_main">在后置之后执行</a>
-  - <a href="#xml_fina">配置文件实现</a>
+  - <a href="#xml_final">配置文件实现</a>
   - <a href="#final">注解实现</a>
 - 环绕通知：<a name="around_main">在方法之前和之后执行</a>
   - <a href="#xml_around">配置文件实现</a>
