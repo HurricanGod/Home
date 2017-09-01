@@ -47,7 +47,7 @@
   - <a href="#xml_before">配置文件实现</a>
   - <a href="#before">注解实现</a>
 - 后置通知：<a name="after_main">在方法后执行</a>
-  - <a href="xml_after">配置文件实现</a>
+  - <a href="#xml_after">配置文件实现</a>
   - <a href="#after">注解实现</a>
 - 异常通知：<a name="exception_main">方法出现异常</a>
   - <a href="#">配置文件实现</a>
