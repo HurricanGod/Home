@@ -30,9 +30,7 @@
 2. 使用aspectj实现aop的两种方式
 
    - <a name="xml">基于aspectj的xml配置</a>
-
-
-- <a name="annotation">基于aspectj的注解方式</a>
+   - <a name="annotation">基于aspectj的注解方式</a>
 
    ​
 
@@ -408,7 +406,7 @@ public class XmlConfigEnhance {
 
 ### <a name="before">前置通知</a>
 
-在要增强的切入点所在的类添加注解**@Aspect**，在切入点上面添加注解`@Before( value = "execution(* 包名.类名.方法名(..)" )`
+在要增强的切入点所在的类添加注解``@Aspect``，在切入点上面添加注解`@Before( value = "execution(* 包名.类名.方法名(..)" )`
 
 <a name="beforexml">**spring-aspectj.xml**</a>
 
@@ -499,7 +497,7 @@ public class CheckAuthorityEnhance {
 
 
 
-`@Before`的**通知（增强逻辑或用于增强的方法）**可以带一个类型为`JoinPoint`的参数
+`@Before`的`通知（增强逻辑或用于增强的方法）`可以带一个类型为`JoinPoint`的参数
 
 ```java
 @Before(value = "execution(* *..NoInterfaceService.doUpdateEmail(..))")
@@ -587,6 +585,8 @@ public class CheckAuthorityEnhance {
 
 >执行查询操作……
 >写日志并返回查询结果
+
+<br>
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-after-1.png)
 <a href="#after_main">back</a>
 
