@@ -114,8 +114,10 @@ Spring事务默认的回滚方式为：发生运行时异常时回滚，发生�
     </aop:config>
 </beans>
 ```
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/tx/aop-tx.png)
 <a href="#spring-aop.xml">back to  `Aspectj` 的AOP配置事务管理</a>
+
+
 
 ------
 
@@ -126,7 +128,7 @@ Spring事务默认的回滚方式为：发生运行时异常时回滚，发生�
    ```xml
    <!-- 注册事务管理器-->
    <bean id="transactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-   <property name="dataSource" ref="dataSource"></property>
+    <property name="dataSource" ref="dataSource"></property>
    </bean>
    ```
 
@@ -430,7 +432,9 @@ public class BalanceInsufficiencyException extends RuntimeException {
     }
 }
 ```
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/tx/anno-1.png)
 
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/tx/anno-2.png)
 <a href="#sm-tx">**back to Spring+MyBatis注解的事务管理**</a>
 
 <a href="#xml_tr">back to  `Aspectj` 的AOP配置事务管理</a>
