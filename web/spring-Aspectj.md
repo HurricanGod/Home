@@ -203,7 +203,7 @@ public class XmlConfigEnhance {
     }
 ```
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/xml-before-1.png)
-<a href="#befor_main">back</a>
+<a href="#before_main">back</a>
 
 
 <a name="xml_after">**后置通知**</a>
