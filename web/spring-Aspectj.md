@@ -45,19 +45,19 @@
 
 ----
 
-- 前置通知：在方法前执行
+- 前置通知：<a name="befor_main">在方法前执行</a>
   - <a href="#xml_before">配置文件实现</a>
   - <a href="#before">注解实现</a>
-- 后置通知：在方法后执行
+- 后置通知：<a name="after_main">在方法后执行</a>
   - <a href="xml_after">配置文件实现</a>
   - <a href="#after">注解实现</a>
-- 异常通知：方法出现异常
+- 异常通知：<a name="exception_main">方法出现异常</a>
   - <a href="#">配置文件实现</a>
   - <a href="#exection">注解实现</a>
-- 最终通知：在后置之后执行
+- 最终通知：<a name="final_main">在后置之后执行</a>
   - <a href="#xml_fina">配置文件实现</a>
   - <a href="#final">注解实现</a>
-- 环绕通知：在方法之前和之后执行
+- 环绕通知：<a name="around_main">在方法之前和之后执行</a>
   - <a href="#xml_around">配置文件实现</a>
   - <a href="#around">注解实现</a>
 
@@ -204,7 +204,8 @@ public class XmlConfigEnhance {
         userManageService.doRemove();
     }
 ```
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/xml-before-1.png)
+<a href="#befor_main">back</a>
 
 
 <a name="xml_after">**后置通知**</a>
@@ -259,7 +260,8 @@ public class XmlConfigEnhance {
     }
 ```
 
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/xml-afterR-1.png)
+<a href="#after_main">back</a>
 
 
 
@@ -328,7 +330,8 @@ public class XmlConfigEnhance {
         userManageService.doUpdatePassword(new User());
     }
 ```
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/xml-around-1.png)
+<a href="#around_main">back</a>
 
 
 <a name="xml_final">**最终通知**</a>
@@ -388,7 +391,8 @@ public class XmlConfigEnhance {
 
 <a href="#UserManageService">**UserManageService.java**</a>
 
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/xml-final-1.png)
+<a href="#final_main">back</a>
 
 ----
 
@@ -489,8 +493,9 @@ public class CheckAuthorityEnhance {
         service.doQuery();
     }
 ```
-
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-1.png)
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-2.png)
+<a href="#before_main">back</a>
 
 
 
@@ -532,7 +537,8 @@ public class CheckAuthorityEnhance {
 
 <a href="#beforexml">**spring-aspectj.xml**</a>
 
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-3.png)
+<a href="#before_main">back</a>
 
 ------
 
@@ -581,7 +587,10 @@ public class CheckAuthorityEnhance {
 
 >执行查询操作……
 >写日志并返回查询结果
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-after-1.png)
+<a href="#after_main">back</a>
 
+<br><br>
 **获取被增强方法的返回结果**
 
 ```java
@@ -621,7 +630,8 @@ public User queryById(){
 <a href="#NoInterfaceService">**NoInterfaceService.java**</a>
 
 
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-after-2.png)
+<a href="#after_main">back</a>
 
 
 
@@ -662,7 +672,7 @@ public User queryById(){
 
 <a href="#NoInterfaceService">**NoInterfaceService.java**</a>
 
-
+<a href="#around_main">back</a>
 
 -----
 
@@ -677,7 +687,7 @@ public User queryById(){
     }
 ```
 
-
+<a href="#exception_main">back</a>
 
 -----
 
@@ -703,8 +713,8 @@ public User queryById(){
     }
 ```
 
-
-
+![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-final-1.png)
+<a href="#final_main">back</a>
 
 
 -----
