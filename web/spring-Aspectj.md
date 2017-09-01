@@ -43,7 +43,7 @@
 
 ----
 
-- 前置通知：<a name="befor_main">在方法前执行</a>
+- 前置通知：<a name="before_main">在方法前执行</a>
   - <a href="#xml_before">配置文件实现</a>
   - <a href="#before">注解实现</a>
 - 后置通知：<a name="after_main">在方法后执行</a>
@@ -491,8 +491,10 @@ public class CheckAuthorityEnhance {
         service.doQuery();
     }
 ```
+
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-1.png)
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-2.png)
+
 <a href="#before_main">back</a>
 
 
@@ -536,6 +538,7 @@ public class CheckAuthorityEnhance {
 <a href="#beforexml">**spring-aspectj.xml**</a>
 
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-before-3.png)
+
 <a href="#before_main">back</a>
 
 ------
@@ -586,8 +589,8 @@ public class CheckAuthorityEnhance {
 >执行查询操作……
 >写日志并返回查询结果
 
-<br>
 ![](https://github.com/HurricanGod/Home/blob/master/web/spring_img/annotation-aop/aspectj-after-1.png)
+
 <a href="#after_main">back</a>
 
 <br><br>
