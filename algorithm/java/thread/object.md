@@ -1,7 +1,7 @@
 ## <a name="object">Object类方法使用</a>
 
 -----
-
+![](https://github.com/HurricanGod/Home/blob/master/img/uml-object.png)
 <a name="wait">**wait(long timeout)**</a>
 
 ```java
@@ -106,15 +106,15 @@ public class ObjectWaitMethod {
 
 这段代码虽然语法上能通过检查，但运行时会抛出`java.lang.IllegalMonitorStateException` 异常，因为在线程**run方法**里`wait()`和`notify()`方法没有进行**同步机制**获取对象的**监测器**
 
-
+![](https://github.com/HurricanGod/Home/blob/master/img/wait-pro1.png)
 
 **修改版本1**
 
-
+![](https://github.com/HurricanGod/Home/blob/master/img/wait-pro2.png)
 
 
 
 上面代码会出现`线程1`一直处于**等待**状态的情况，当`线程2`先于`线程1`执行时，`wait()`还没有调用而`线程2`的`notify()`已经调用完毕，因而会出现**线程1一直等待的状态**
 
 **最终版本**
-
+![](https://github.com/HurricanGod/Home/blob/master/img/wait-pro3.png)
