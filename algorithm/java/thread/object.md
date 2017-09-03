@@ -2,7 +2,8 @@
 
 -----
 ![](https://github.com/HurricanGod/Home/blob/master/img/uml-object.png)
-<a name="wait">**wait(long timeout)**</a>
+
+<br/><a name="wait">**wait(long timeout)**</a>
 
 ```java
 
