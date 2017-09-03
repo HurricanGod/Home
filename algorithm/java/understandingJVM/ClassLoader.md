@@ -112,7 +112,8 @@
 
 如果一个类加载器收到类加载请求，首先不会自己去尝试加载该类，而是把加载请求传送给父类加载器完成，每一层的类加载器都是如此，因此所有的请求最终都会传送给顶层类加载器，如果父加载器无法完成加载请求会反馈给子类，子类加载器才会尝试自己去加载。
 
-
+![](https://github.com/HurricanGod/Home/blob/master/img/ParentsDelegationModel.png)
+![](https://github.com/HurricanGod/Home/blob/master/img/classloader.png)
 
 使用**父类委派模式**加载类的原因：
 
