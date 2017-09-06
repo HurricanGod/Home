@@ -145,7 +145,7 @@ protected native Object clone() throws CloneNotSupportedException;
 
 **不实现** `Cloneable` 接口直接调用`clone()方法`示例 ：
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/clone(%20).png)
 
 
 
@@ -193,5 +193,5 @@ class User{
 }
 ```
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/clone(1).png)
 
