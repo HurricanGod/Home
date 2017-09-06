@@ -37,7 +37,7 @@ Java的IO操作有**面向字节**和**面向字符**的两种方式
 + **面向字节**的操作以8位为单位对二进制数据进行操作，**对数据不进行转换** ，面向字节流的类都是`InputStream` 和 `OutputStream` 的子类
 + 面向字符的操作以**字符**为单位对数据进行操作，**在读的时候将二进制数据转换为字符， 在写的时候将字符转化为二进制数据** ，这些类都是`Reader` 和`Writer` 的子类
 
-
+![](https://github.com/HurricanGod/Home/blob/master/img/JavaIO.png)
 
 
 -----
@@ -141,7 +141,7 @@ public class MemoryLeak {
 
 ```
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/javaset.png)
 
 
 
