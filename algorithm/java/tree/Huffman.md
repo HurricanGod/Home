@@ -38,9 +38,9 @@
 
 如果计算我们可以得出待编码字符串中含有的字符集及其每个字符对应的数量；字符根据数量构建`Huffman`树，构建过程如下所示：
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/Huffman1.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/Huffman2.png)
 
 
 
