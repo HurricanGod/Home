@@ -24,7 +24,7 @@ order by <列名> [asc|desc] [,<列名> [asc|desc]...]
 + 如果需要**消除结果中重复的元组**，可以使用`distinct` ， `distinct`必须放在**被查询列的最前面** ，注意：`distinct`是对**所有目标列相同**的元组去重，而不是对某一目标列去重
 + **字符匹配**——`[not] like '<匹配串>'`
   + **匹配串** 可以是字符串，也可以包含通配符`%`或`_`
-  + 当需要表示`%`或`_`原本符号意思时需要对通配符进行转义，具体语法为`[not ] like ` '**字符_字符** `escape <换码字符>` ；`like 'name?_%' escape '?'`代表以**name_**开头的字符串
+  + 当需要表示`%`或`_`原本符号意思时需要对通配符进行转义，具体语法为`[not ] like ` '**字符_字符** `escape <换码字符>` ；`like 'name?_%' escape '?'`代表以`name_`开头的字符串
 + **聚集函数**遇到空值时，除`count(*)`外都跳过空值处理非空值；`where` 子句中不能使用聚集函数作为**条件表达式**， **聚集函数**只能用于`select`、`group by`中的`having`子句
   + 如果使用了`group by`子句，聚集函数将作用与每一个分组，每一个分组都会有1个函数值，未对查询结果进行分组则作用于**整个查询结果**
 + `where`子句与`having`短语的区别：
@@ -67,7 +67,7 @@ order by <列名> [asc|desc] [,<列名> [asc|desc]...]
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ```
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/mysql-select1.png)
 
 -----
 
@@ -83,7 +83,7 @@ order by <列名> [asc|desc] [,<列名> [asc|desc]...]
 
    **注意点** ：`order by`可以根据表中**任何字段**排序，**对非目标列进行** `order by`排序是允许的
 
-   ![]()
+   ![](https://github.com/HurricanGod/Home/blob/master/img/mysql-select2.png)
 
 2. **查询每个学科最高分及对应的学生名字，按学科名升序排列**
 
@@ -97,7 +97,7 @@ order by <列名> [asc|desc] [,<列名> [asc|desc]...]
 
    **注意点** ：`group by`先对查询结果进行分组，分组后**聚集函数**作用于每一个分组得到1个函数值
 
-   ![]()
+   ![](https://github.com/HurricanGod/Home/blob/master/img/mysql-select3.png)
 
 3. **查询前三名和倒数前三名的学生的学科总分及学生名字**
 
