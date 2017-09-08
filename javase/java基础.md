@@ -39,7 +39,6 @@ Java的IO操作有**面向字节**和**面向字符**的两种方式
 
 ![](https://github.com/HurricanGod/Home/blob/master/img/JavaIO.png)
 
-
 -----
 
 容器类仅能**持有对象的引用**，把元素加入集合时并不是**将对象信息复制一份到容器里**；加入集合中的对象，不管通过什么方式获得对象的引用并把对象的属性改变了都会被反馈到容器里，因为集合中存放的对象的引用与任何方式获得的对象引用都指向对象在内存中的同一块地址
@@ -144,4 +143,58 @@ public class MemoryLeak {
 ![](https://github.com/HurricanGod/Home/blob/master/img/javaset.png)
 
 
+
+----
+
+**串行化**
+
+序列化只能保存保存对象的非静态成员变量，**不能保存任何成员方法和静态成员变量**，序列化只能保存变量的值，不能保存变量对应的修饰符
+
+有些类型的的对象是**瞬时**的，对象无法保存其状态，需要把这种类型变量用`transient`关键字修饰。例如`FileInputStream`对象就属于**瞬时**的，如果实现了`Serializable`接口的对象的成员变量里有`FileInputStream`对象就需要用`transient`修饰，如果没有修饰将会抛出`java.io.NotSerializableException`异常
+
+```java
+package hurrican.interview;
+
+import java.io.*;
+
+public class TransientObj implements Serializable{
+    private FileInputStream input;
+
+    private String name;
+
+    public TransientObj(String name) {
+        this.name = name;
+    }
+
+    public void setInput(FileInputStream input) {
+        this.input = input;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FileInputStream getInput() {
+        return input;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static void main(String[] args) {
+        TransientObj obj = new TransientObj("hello");
+        try {
+            obj.setInput(new FileInputStream("1.txt"));
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("obj.txt"));
+            objectOutputStream.writeObject(obj);
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+![]()
 

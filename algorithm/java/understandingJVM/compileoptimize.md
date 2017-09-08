@@ -114,7 +114,10 @@ g.equals(3L) = true
 
 **再看一个例子** ：
 
-+ `Integer.valueOf()` 的返回类型为`Integer`  ，当参数（**int类型或String类型**）对应的整数值在**-128~127**之间时，返回缓存里的`Integer对象`，这个对象与用`Integer i= 80`类似的方法得到的对象一样，都是从缓存里取出来的；**用** `new Integer(m)`**创建出来的** `Integer` **对象，不管参数的值是不是在 -128~127，都不是从缓存里返回得到的**
++ `Integer.valueOf()` 的返回类型为`Integer`  ，当参数（**int类型或String类型**）对应的整数值在`-128~127`之间时，返回缓存里的`Integer对象`，这个对象与用`Integer i= 80`类似的方法得到的对象一样，都是从缓存里取出来的；**用** `new Integer(m)`**创建出来的** `Integer` **对象**，不管参数的值是不是在 `-128~127`，**都不是从缓存里返回得到的**
+
+  ​
+
 + `Integer.parseInt(String)` 的返回类型为`int`，是基本数据类型，不是对象；如果用`parseInt(String)`的结果与等值的`Integer`类型变量比较，无论`Integer`的值为多少，结果都为**true**
 
 

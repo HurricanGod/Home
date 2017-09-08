@@ -37,6 +37,8 @@ B树至少是半满的，层数较小而且完全平衡。还有1个重要特点
 
 ### B树删除
 
++ 若在`B树`上删除的**关键码不是叶节点**，设被删除关键码为k，删除关键码k后应该以该节点p所指向的**子树中的最小关键码x代替被删除的关键码k，然后在x所在的叶节点删除x**（`关键码x肯定是在叶节点`）
+
 ![B树的删除](https://github.com/HurricanGod/Home/blob/master/img/B%E6%A0%91%E5%88%A0%E9%99%A4.png)
 
 -----
@@ -111,12 +113,12 @@ values('2017-6-1',2,10.5,'外卖');
 **B-Tree**的局限：
 
 +  如果查找没有从索引列最左边开始，B树索引没什么用处
-  + 例1：执行``select * from testindex where age=18``查询并不会使用到索引
-  + 例2：执行``select * from ordertable where tradetime ='2016-12-25'``查询并不会使用索引加快查询，因为主键为`orderid, tradetime`两个字段，mysql为主键建立B+树索引，orderid排在前面，自然是根据orderid为前缀进行查询，where查询时`tradetime`与`orderid`类型不一样，查询引擎会放弃使用索引查询直接全表查询；如果执行的是``select * from ordertable where orderid =1;``则会使用到索引加快查询
-  + 例3：执行``select * from testindex where name like '%封';``查询并不会使用到索引进行优化查询
-+ 不能跳过索引中的列
-+ 存储引擎不能优化访问任何在第一个范围条件右边的列
-  + 例1：执行`select * from testindex where address like '广东省%' and name ='李封'`查询时，由于有多列索引**(address, name)**,但查询语句where中第1个条件为表示范围的模糊查询，后面的条件即便有索引查询也不能优化
+   + 例1：执行``select * from testindex where age=18``查询并不会使用到索引
+   + 例2：执行``select * from ordertable where tradetime ='2016-12-25'``查询并不会使用索引加快查询，因为主键为`orderid, tradetime`两个字段，mysql为主键建立B+树索引，orderid排在前面，自然是根据orderid为前缀进行查询，where查询时`tradetime`与`orderid`类型不一样，查询引擎会放弃使用索引查询直接全表查询；如果执行的是``select * from ordertable where orderid =1;``则会使用到索引加快查询
+   + 例3：执行``select * from testindex where name like '%封';``查询并不会使用到索引进行优化查询
++  不能跳过索引中的列
++  存储引擎不能优化访问任何在第一个范围条件右边的列
+   + 例1：执行`select * from testindex where address like '广东省%' and name ='李封'`查询时，由于有多列索引**(address, name)**,但查询语句where中第1个条件为表示范围的模糊查询，后面的条件即便有索引查询也不能优化
 
 
 
@@ -202,7 +204,7 @@ select age from testhash where name='张三'
 
 ----
 
-**覆盖索引：**查询的内容为索引包含的字段叫做覆盖索引
+**覆盖索引** ：查询的目标列为索引包含的字段叫做覆盖索引
 
 优点：
 
