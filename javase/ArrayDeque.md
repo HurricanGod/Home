@@ -9,21 +9,60 @@
 ----
 **主要方法**：
 + <a href="#addFirst"> public void addFirst(E e);</a>
-  在双端队列头部插入一个元素,元素为空则抛出`NullPointerException`
+
+  + 在双端队列头部插入一个元素,元素为空则抛出`NullPointerException`
+
+    ​
+
+
+
 + <a href="#addLast"> public void addLast(E e); </a>
-  在双端队列尾部插入一个元素,元素为空则抛出`NullPointerException`
+
+  + 在双端队列尾部插入一个元素,元素为空则抛出`NullPointerException`
+
+    ​
+
+
+
 + <a href="#offerFirst"> public boolean offerFirst(E e); </a>
-  在双端队列头部插入一个元素，成功插入返回`true`
+
+  + 在双端队列头部插入一个元素，成功插入返回`true`
+
+    ​
+
+
+
 + <a href="#offerLast"> public boolean offerLast(E e);</a>
   在双端队列尾部插入一个元素,成功插入返回`true`
+
 + <a href="#removeFirst"> public E removeFirst(); </a>
-  删除双端队列首个元素，内部调用`pollFirst()`方法,如果该方法返回结果为null则会抛出`NoSuchElementException`，不为`null`则返回被删除的元素
+
+  + 删除双端队列首个元素，内部调用`pollFirst()`方法,如果该方法返回结果为null则会抛出`NoSuchElementException`，不为`null`则返回被删除的元素
+
+    ​
+
+
+
 + <a href="#pollFirst"> public E pollFirst(); </a>
-  删除双端队列首个元素，并返回被删除结果，如果队列元素个数为0则返回`null`
+
+  +  删除双端队列首个元素，并返回被删除结果，如果队列元素个数为0则返回`null`
+
+    ​
+
+
+
 + <a href="#removeLast"> public E removeLast(); </a>
-  删除双端队列队尾元素，内部调用`pollLast()`方法,如果该方法返回结果为null则会抛出`NoSuchElementException`，不为`null`则返回被删除的元素
+
+  + 删除双端队列队尾元素，内部调用`pollLast()`方法,如果该方法返回结果为null则会抛出`NoSuchElementException`，不为`null`则返回被删除的元素
+
+
+  ​
+
 + <a href="#pollLast"> public E pollLast(); </a>
-  删除双端队列队尾元素，并返回被删除结果，如果队列元素个数为0则返回`null`
+
+  + 删除双端队列队尾元素，并返回被删除结果，如果队列元素个数为0则返回`null`
+
+
 
 
 
