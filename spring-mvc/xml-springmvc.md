@@ -130,15 +130,6 @@ public class ImageController implements HttpRequestHandler {
 
 <html>
 <head>
-<title>UserController.java</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
-.s0 { color: rgb(204,120,50); }
-.s1 { color: rgb(169,183,198); }
-.s2 { color: rgb(98,151,85); font-style: italic; }
-.s3 { color: rgb(106,135,89); }
-</style>
 </head>
 <BODY BGCOLOR="#2b2b2b">
 <TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
