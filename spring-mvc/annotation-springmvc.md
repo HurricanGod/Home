@@ -63,15 +63,15 @@ public class UserController {
 }
 ```
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/mvc-a-1.png)
 
 
 
 **2. 请求URI中通配符的应用**
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/mvc-a-2.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/mvc-a-3.png)
 
 
 
