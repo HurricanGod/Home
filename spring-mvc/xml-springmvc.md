@@ -6,6 +6,8 @@
 
 <a href="#HandlerMapping">处理器映射器HandlerMapping</a>
 
+<a href="#ViewResolver">视图解析器ViewResolver</a>
+
 
 
 -----
@@ -296,3 +298,43 @@ UserController.java</FONT>
 
 
 <a href="#demo">back</a>
+
+-----
+
+### <a name="ViewResolver">视图解析器ViewResolver</a>
+
+视图解析器用于完成对当前web应用内部资源的封装与跳转，而对于内部资源的查找规则是：`ModelAndView`中指定的视图名称与为视图解析器配置的前缀与后缀相结合的方式，拼接成一个web应用内部资源路径
+
+
+
+`InternalResourceViewResolver`解析器会把处理器方法返回的模型属性存放到对应的`request`中，然后将请求转发到目标URL
+
+
+
+`BeanNameViewResourceViewResolver`视图解析器将**资源**封装为**Spring容器中注册的Bean实例**
+
+
+
+**两种资源视图对象**：
+
++ `RedirectView` —— **外部资源视图**
++ `JstlView` —— **内部资源视图**
+
+
+
+```xml
+<!--定义外部资源视图-->
+<bean id="redirectView" class="org.springframework.web.servlet.view.RedirectView">
+  <property name="url" value="http://www.baidu.com" />
+</bean>
+```
+
+
+
+```xml
+<!--定义内部资源视图-->
+<bean id="innerView" class="org.springframework.web.servlet.view.JstltView">
+  <property name="url" value="page/hello.html" />
+</bean>
+```
+
