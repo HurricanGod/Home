@@ -9,7 +9,7 @@
 
 
 
-**Maven方式添加依赖***：
+**Maven方式添加依赖**：
 
 ```xml
 
@@ -55,13 +55,13 @@
 
 ----
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-1.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-2.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-3.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-4.png)
 
 <a name="controller">**Controller里的处理逻辑** </a>
 
