@@ -44,7 +44,7 @@
 
 ---
 
-**示例Demo**
+<a name="back">**示例Demo**</a>
 
 + <a href="#spring">**Spring.xml** 配置文件</a>
 + <a href="#web">**web.xml** 配置文件</a>
@@ -118,9 +118,9 @@ public class FileUploadController {
 }
 ```
 
+<a href="#back">**back**</a>
 
-
-
+<a name="ajaxupload">**前端ajax上传文件代码** </a>
 
 ```html
 <!DOCTYPE html>
@@ -220,7 +220,7 @@ public class FileUploadController {
 </html>
 ```
 
-
+<a href="#back">**back**</a>
 
 <a name="spring">**Spring.xml** 配置文件</a>
 
@@ -266,3 +266,4 @@ public class FileUploadController {
 </beans>
 ```
 
+<a href="#back">**back**</a>
