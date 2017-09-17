@@ -52,7 +52,6 @@
 + <a href="#controller">**Controller里的处理逻辑** </a>
 
 
-
 ----
 
 ![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-1.png)
@@ -62,6 +61,8 @@
 ![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-3.png)
 
 ![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/img/ajax-upload-4.png)
+
+
 
 <a name="controller">**Controller里的处理逻辑** </a>
 
@@ -217,5 +218,51 @@ public class FileUploadController {
 
 </body>
 </html>
+```
+
+
+
+<a name="spring">**Spring.xml** 配置文件</a>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- SpringMVC默认异常处理器-->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+        <!--<property name="defaultErrorView" value="/page/error.html"/>-->
+    <!--</bean>-->
+
+    <!-- SpringMVC自定义异常处理器-->
+    <!--<bean class="cn.hurrican.exceptions.AccountManageExceptionResolver" />-->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+
+    <context:component-scan base-package="cn.hurrican.*"/>
+
+    <mvc:annotation-driven />
+
+    <mvc:default-servlet-handler />
+
+</beans>
 ```
 
