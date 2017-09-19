@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../css/icon.css">
+    <link rel="stylesheet" type="text/css" href="/mvclearn/css/demo.css">
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.datagrid.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#dg').edatagrid({
+                url: 'get_users.php',
+                saveUrl: 'save_user.php',
+                updateUrl: 'update_user.php',
+                destroyUrl: 'destroy_user.php'
+            });
+        });
+    </script>
+
+</head>
+<body>
+<h2>CRUD DataGrid</h2>
+<div class="demo-info" style="margin-bottom:10px">
+    <div class="demo-tip icon-tip">&nbsp;</div>
+    <div>Double click the row to begin editing.</div>
+</div>
+
+<table id="dg" title="用户信息" style="width:700px;height:250px"
+       toolbar="#toolbar" pagination="true" idField="id"
+       rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+    <tr>
+        <th field="id" width="50" editor="{type:'validatebox',options:{required:true}}">id</th>
+        <th field="username" width="50" editor="{type:'validatebox',options:{required:true}}">用户名</th>
+        <th field="email" width="50" editor="{type:'validatebox',options:{validType:'email'}}">邮箱</th>
+    </tr>
+    </thead>
+</table>
+<div id="toolbar">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">New</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">Save</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
+</div>
+
+</body>
+</html>

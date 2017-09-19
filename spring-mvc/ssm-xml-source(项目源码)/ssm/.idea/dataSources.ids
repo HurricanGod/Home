@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - conference@localhost" uuid="6d78596b-cf03-4bdf-8b1f-8bbbb5cc52de">
+    <database-info product="MySQL" version="5.7.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="conference"/>
+    <table name="account" schema="" catalog="conference" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pwd" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_bankaccount_account" table="bank_account" schema="" catalog="conference" columns="user_id"/>
+      <exported-key name="fk_basicinfo_account" table="basic_info" schema="" catalog="conference" columns="user_id"/>
+      <exported-key name="fk_educationinfo_account" table="educational_info" schema="" catalog="conference" columns="user_id"/>
+      <exported-key name="fk_image_account_id" table="image" schema="" catalog="conference" columns="user_id"/>
+      <exported-key name="fk_securityguarantee_account" table="security_guarantee" schema="" catalog="conference" columns="user_id"/>
+      <exported-key name="fk_workinfo_account" table="work_info" schema="" catalog="conference" columns="user_id"/>
+      <index name="unique_username" unique="true" columns="username"/>
+      <index name="username_index" unique="false" columns="username"/>
+    </table>
+    <table name="accountrecorder" schema="" catalog="conference" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="account" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pwd" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bytePwd" sqlType="VARBINARY" precision="256" scale="0" nullable="false" jdbcType="-3"/>
+      <column name="describe" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bindEmail" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bindPhone" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="recordTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="lastModifyTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="registerTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="userId" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="unique_id" unique="true" columns="id"/>
+    </table>
+    <table name="bank_account" schema="" catalog="conference" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="balance" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8" def="MA=="/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="fk_bankaccount_account" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="basic_info" schema="" catalog="conference" type="TABLE">
+      <column name="basic_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="address" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tel" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="school" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="introdece" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="basic_id"/>
+      <foreign-key name="fk_basicinfo_account" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_basicinfo_account" unique="false" columns="user_id"/>
+    </table>
+    <table name="conferenceinfo" schema="" catalog="conference" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" precision="20" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="cnname" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enname" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tag" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sponsor" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="startdate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="enddate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="deadline" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="acceptance" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="website" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="cnname_website" unique="true" columns="cnname,website"/>
+      <index name="conference_startdate_index" unique="false" columns="startdate"/>
+      <index name="conference_tag_index" unique="false" columns="id,tag"/>
+    </table>
+    <table name="course" schema="" catalog="conference" type="TABLE">
+      <column name="cno" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cname" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="credit" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="cpno" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="cno"/>
+      <foreign-key name="fk_this_this_cpno" columns="cpno" ref-table="course" ref-schema="" ref-catalog="conference" ref-columns="cno" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_this_this_cpno" table="course" schema="" catalog="conference" columns="cpno"/>
+      <exported-key name="fk_this_course_cno" table="elective_s_c" schema="" catalog="conference" columns="course_id"/>
+      <index name="fk_this_this_cpno" unique="false" columns="cpno"/>
+    </table>
+    <table name="educational_info" schema="" catalog="conference" type="TABLE">
+      <column name="edu_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="school" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="major" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="graduation" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="education" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="edu_id,user_id"/>
+      <foreign-key name="fk_educationinfo_account" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_educationinfo_account" unique="false" columns="user_id"/>
+    </table>
+    <table name="elective_s_c" schema="" catalog="conference" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="student_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="course_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="score" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_this_course_cno" columns="course_id" ref-table="course" ref-schema="" ref-catalog="conference" ref-columns="cno" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_this_student_sno" columns="student_id" ref-table="student" ref-schema="" ref-catalog="conference" ref-columns="sno" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_this_course_cno" unique="false" columns="course_id"/>
+      <index name="fk_this_student_sno" unique="false" columns="student_id"/>
+    </table>
+    <table name="image" schema="" catalog="conference" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="url" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_image_account_id" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_image_account_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="security_guarantee" schema="" catalog="conference" type="TABLE">
+      <column name="secturityid" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="question" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="answer" sqlType="VARCHAR" precision="256" scale="0" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="secturityid"/>
+      <foreign-key name="fk_securityguarantee_account" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_securityguarantee_account" unique="false" columns="user_id"/>
+    </table>
+    <table name="student" schema="" catalog="conference" type="TABLE">
+      <column name="sno" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sname" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="department" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sno"/>
+      <exported-key name="fk_this_student_sno" table="elective_s_c" schema="" catalog="conference" columns="student_id"/>
+    </table>
+    <table name="work_info" schema="" catalog="conference" type="TABLE">
+      <column name="work_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="company" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="position" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="duty" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="departure" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="work_id"/>
+      <foreign-key name="fk_workinfo_account" columns="user_id" ref-table="account" ref-schema="" ref-catalog="conference" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_workinfo_account" unique="false" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
