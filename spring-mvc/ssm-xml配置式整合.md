@@ -2,7 +2,7 @@
 
 
 
-+ <a href="#">**Maven**依赖</a>
++ <a href="https://github.com/HurricanGod/Home/blob/master/spring-mvc/mavenDependency.md">**Maven**依赖</a>
 + <a href="#web">**web.xml 配置文件**</a>
 + <a href="#spring">**spring 配置文件**</a>
 + <a href="#mybatis">**mybatis 配置文件**</a>
