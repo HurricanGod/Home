@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>添加帐号管理</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+
+</head>
+<body>
+
+<div id="aaa">
+    <form class="form-horizontal">
+
+        <!-- 帐号-->
+        <div class="form-group">
+            <label for="account" class="col-sm-2 control-label">帐号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="account" placeholder="input account">
+            </div>
+        </div>
+
+        <!-- 密码-->
+        <div class="form-group">
+            <label for="pwd" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="pwd" placeholder="input password">
+            </div>
+        </div>
+
+        <!-- 帐号描述-->
+        <div class="form-group">
+            <label for="describe" class="col-sm-2 control-label">帐号描述</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="describe" placeholder="input describe">
+            </div>
+        </div>
+
+        <!-- 绑定邮箱-->
+        <div class="form-group">
+            <label for="bindEmail" class="col-sm-2 control-label">绑定邮箱</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="bindEmail" placeholder="input email">
+            </div>
+        </div>
+
+        <!-- 绑定手机-->
+        <div class="form-group">
+            <label for="bindPhone" class="col-sm-2 control-label">绑定手机</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" id="bindPhone" placeholder="input phone">
+            </div>
+        </div>
+
+        <!-- 注册日期-->
+        <div class="form-group">
+            <label for="registerDate" class="col-sm-2 control-label">注册日期</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="registerDate" placeholder="日期格式为: yyyy-MM-dd">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div id="res" style="font-size: medium; color: #ac2925"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" id="add">添加</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $("#add").click(function (event) {
+        event.preventDefault();
+
+        var account = $("#account").val();
+        var pwd = $("#pwd").val();
+        var describe = $("#describe").val();
+        var bindEmail = $("#bindEmail").val();
+        var bindPhone = $("#bindPhone").val();
+        var registerTime = $("#registerDate").val();
+
+        $.ajax({
+            type:"post",
+            url:"../account/add.do",
+            data:{  account:account,
+                    pwd:pwd,
+                    describe:describe,
+                    bindEmail:bindEmail,
+                    bindPhone:bindPhone,
+                    registerTime:registerTime
+                },
+            success: function (data) {
+                var obj = eval("(" + data + ")");
+                if(obj.status == false){
+
+                    $("#res").text(obj.msg);
+
+                } else if (obj.status == true) {
+
+                    alert(obj.msg);
+
+                    location.reload();
+
+                }else if(obj.type == "html"){
+                    $("#aaa").html(data);
+                }
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

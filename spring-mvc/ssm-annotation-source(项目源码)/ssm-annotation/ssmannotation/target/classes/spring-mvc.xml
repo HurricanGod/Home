@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!-- SpringMVC默认异常处理器-->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+    <!--<property name="defaultErrorView" value="/page/error.html"/>-->
+    <!--</bean>-->
+
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+
+
+    <!-- 拦截器配置-->
+    <!--
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="拦截器全限定类名"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/user/login.do"/>
+            <mvc:exclude-mapping path="/user/register.do"/>
+            <bean class="cn.hurrican.interceptors.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 开启注解扫描-->
+    <context:component-scan base-package="cn.hurrican.*"/>
+
+    <!-- 开启注解驱动-->
+    <mvc:annotation-driven />
+
+    <!-- 把对静态资源访问请求映射到DefaultServletHttpRequestHandler上-->
+    <mvc:default-servlet-handler />
+
+</beans>

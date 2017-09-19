@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hurrican.dao.AccountMsgDao">
+
+    <!--模糊查询 -->
+    <!--<select id="queryByLike" resultType="TypeName">-->
+        <!--select field1,field2,field3 from tablename -->
+        <!--where field? like concat('%', #{xxx},'%')-->
+    <!--</select>-->
+    <insert id="insertRecord" >
+        insert into
+        accountrecorder (account, pwd, `describe`, bindEmail,
+                         bindPhone, registerTime, userId)
+        values (#{account},#{pwd},#{describe},#{bindEmail},
+                #{bindPhone},#{registerTime},#{userid});
+    </insert>
+
+    <select id="queryByNameFuzzy" resultType="AccountMsg">
+        select account,pwd,`describe`,bindEmail
+        from accountrecorder
+        <where>
+            <if test="account != null">
+                account = #{account}
+            </if>
+            <if test="`describe` != null">
+                `describe` like concat('%', #{describe}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryById" resultType="AccountMsg">
+        select account,pwd,`describe`,bindEmail
+        from accountrecorder
+        where id = #{id}
+    </select>
+
+    <update id="updateAccountMsg" parameterType="AccountMsg">
+        update accountrecorder
+        <set>
+            <if test="pwd != null and pwd !=''">
+              pwd = #{pwd}
+            </if>
+            <if test="bindEmail != null and bindEmail !=''">
+                bindEmail = #{bindEmail}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
