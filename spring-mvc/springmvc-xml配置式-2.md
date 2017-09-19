@@ -20,7 +20,11 @@
 - 在spring配置文件引入`mvc`的约束，约束内容如下：
 
   ```xml
-  xmlns:mvc="http://www.springframework.org/schema/mvc"xsi:schemaLocation="http://www.springframework.org/schema/mvchttp://www.springframework.org/schema/mvc/spring-mvc.xsd"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+  xsi:schemaLocation=
+  "http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd"
   ```
 
   ​
@@ -44,7 +48,6 @@
 
 + `location`表示静态资源所在的目录，**可以是** `/WEB-INF/`目录及其子目录
 + `mapping`表示对该资源的请求
-
 
 
 ----
