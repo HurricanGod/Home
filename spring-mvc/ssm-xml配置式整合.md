@@ -397,7 +397,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <center>
 
-![mapper.xml配置文件]()
+![mapper.xml配置文件](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/ssm-1.png)
 
 </center>
 
@@ -416,7 +416,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
  <a name="AccountMsgDao">`AccountMsgDao.java`</a>
 
-![AccountMsgDao定义]()
+![AccountMsgDao定义](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/accountMsgDao.png)
 
 <a href="#dao">**back → dao接口**</a>
 
@@ -424,7 +424,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <a name="UserDao">`UserDao.java`</a>
 
-![UserDao定义]()
+![UserDao定义](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/userDao.png)
 
 <a href="#dao">**back → dao接口**</a>
 
@@ -443,7 +443,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <a name="AccountMsgService">`AccountMsgService.java`</a>
 
-![AccountMsgService]()
+![AccountMsgService](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/accountMsgService.png)
 
 <a href="#service">**back → service层**</a>
 
@@ -451,7 +451,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <a name="UserService">`UserService.java`</a>
 
-![UserService]()
+![UserService](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/userService.png)
 
 <a href="#service">**back → service层**</a>
 
@@ -463,9 +463,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 **controller层**主要接收客户端请求，把客户端提交的数据封装后调用**Service层**的业务逻辑，并控制页面的跳转，负责完成与客户端交互的任务
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/userController.png)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/accountMsgController.png)
 
 
 
@@ -477,7 +477,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 **拦截器** 拦截主要用于拦截请求**Controller** 里方法，拦截器会在**被拦截方法**前执行，要使用拦截器可以实现`HandlerInterceptor` 接口并在**spring-mvc.xml** 里配置拦截路径；项目中用一个`LoginInterceptor` **登录拦截器** 拦截未登录的用户
 
-![interceptor]()
+![interceptor](https://github.com/HurricanGod/Home/blob/master/spring-mvc/ssm-xml/interceptor.png)
 
 
 
