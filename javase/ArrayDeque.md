@@ -194,7 +194,7 @@
     }
 ```
 
-![队列数据结构]()
+![队列数据结构](https://github.com/HurricanGod/Home/blob/master/img/ArrayDeque.png)
 
 <a href="#main">**back**</a>
 
@@ -217,8 +217,8 @@
             doubleCapacity();
     }
 ```
-
-![队列插入及删除过程]()
+![](https://github.com/HurricanGod/Home/blob/master/img/ArrayDeque-Remove.gif)
+![队列插入及删除过程](https://github.com/HurricanGod/Home/blob/master/img/ArrayDeque-Insert.gif)
 
 <a href="#main">**back**</a>
 
