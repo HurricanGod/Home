@@ -13,9 +13,9 @@
 
 **虚引用的使用**：
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/phantomref.gif)
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/gc.gif)
 
 ```java
 import java.lang.ref.PhantomReference;
