@@ -48,5 +48,5 @@
 
 
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/img/LinkedList.png)
 
