@@ -75,13 +75,13 @@ class Account{
 
 运行结果：
 
-![脏读现象]()
+![脏读现象](https://github.com/HurricanGod/Home/blob/master/algorithm/java/thread/img/dirty_read.png)
 
 
 
 **对读操作也进行同步**解决**脏读**问题
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/algorithm/java/thread/img/dirtyread.gif)
 
 -----
 
