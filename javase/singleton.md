@@ -1,4 +1,7 @@
 #### 设计模式-单例
+
+
+
 保证1个类仅有1个实例，并提供一个访问该实例的方法。因此单例模式的构造函数为私有化的，并且有1个静态方法用于获取唯一的实例    
 java的单例模式有两种，分别为：
 1. 饿汉式单例，在加载类信息的就调用私有构造函数实例化自己，不管后面的程序需不需要使用该实例。特点是实现起来简单，但会造成内存浪费。
@@ -89,3 +92,48 @@ public class IntegerExt {
 }
 
 ```
+
+
+
+**2017年10月14日 19:07:42**
+
+**个人认为最高效的单例设计模式**：将类的**构造方法**设置成**私有**的，再用一个**静态内部类**存放该类的静态对象，对外提供一个**类方法**用于获取单例对象
+
+
+
+```java
+public class Singleton {
+
+    private static class SingletonHolder{
+        static {
+            System.out.println("load inner class");
+        }
+        private static Singleton instance = new Singleton();
+    }
+
+    private Singleton(){}
+
+    public static Singleton getInstance(){
+        return SingletonHolder.instance;
+    }
+
+    public static void main(String[] args) {
+        Singleton instance1 = Singleton.getInstance();
+        Singleton instance2 = Singleton.getInstance();
+
+        System.out.println("instance1 == instance2 = " + (instance1 == instance2));
+    }
+}
+
+```
+
+>load inner class
+>
+>instance1 == instance2 = true
+
+当第一次调用**Singleton**的`getInstance()`类方法时，`getInstance()`方法是返回内部类`SingletonHolder`的静态字段，由于之前未使用到`SingletonHolder`类，所以一开始未加载此类，但要访问这个内部类的字段时就需要加载此内部类，所以先执行内部类的`static`块，执行完毕后再创建`Singleton`类的唯一实例，静态内部加载完成后`getInstance()`就会返回`Singleton`类的唯一实例
+
+
+
+load inner class
+
