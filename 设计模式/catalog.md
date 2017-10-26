@@ -18,5 +18,5 @@
 
 ### 设计模式分类
 
-![设计模式分类图]()
+![设计模式分类图](https://github.com/HurricanGod/Home/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/img/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.png)
 
