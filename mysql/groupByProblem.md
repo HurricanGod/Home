@@ -2,11 +2,11 @@
 
 
 
-![表]()
+![表](https://github.com/HurricanGod/Home/blob/master/mysql/img/groupby1.png)
 
-![出错]()
+![出错](https://github.com/HurricanGod/Home/blob/master/mysql/img/groupby2.png)
 
-![解决]()
+![解决](https://github.com/HurricanGod/Home/blob/master/mysql/img/groupby3.png)
 
 ---
 
