@@ -135,7 +135,7 @@ public class OneProducerConsumerModel {
 
 
 
-在消费者中使用**notifyAll()**方法唤醒所有被阻塞的线程可以解决这种假死现象。
+在消费者中使用**notifyAll**()方法唤醒所有被阻塞的线程可以解决这种假死现象。
 
 ![notifyAll()解决假死问题](https://github.com/HurricanGod/Home/blob/master/algorithm/java/thread/img/notify%E4%B8%80%E4%B8%AA%E7%94%9F%E4%BA%A7%E8%80%85%E5%AF%B9%E5%BA%94%E5%A4%9A%E4%B8%AA%E6%B6%88%E8%B4%B9%E8%80%85%E5%87%BA%E7%8E%B0%E5%81%87%E6%AD%BB%E7%8E%B0%E8%B1%A1%E5%9B%BE.gif)
 
