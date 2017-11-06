@@ -30,7 +30,7 @@
 
 
 
-**线程组(ThreadGroup)**是一个可以统一管理的线程的集合，默认情况下创建的所有线程都属于同一个线程组。`ThreadGroup` 实现了`Thread.UncaughtExceptionHandler`接口，重写的`unCaugthException()`方法如下：
+`线程组(ThreadGroup)`是一个可以统一管理的线程的集合，默认情况下创建的所有线程都属于同一个线程组。`ThreadGroup` 实现了`Thread.UncaughtExceptionHandler`接口，重写的`unCaugthException()`方法如下：
 
 ```java
 private final ThreadGroup parent;
