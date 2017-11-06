@@ -195,3 +195,10 @@ class User{
 
 ![](https://github.com/HurricanGod/Home/blob/master/img/clone(1).png)
 
+
+
+-----
+
+### hashCode()
+
+`hashCode()`方法会返回一个对象的哈希码，`String`类对象的值如果相等则会返回相同的哈希码
