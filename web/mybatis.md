@@ -92,11 +92,11 @@ MyBatis根据关联对象查询的select语句的执行时机分为3种类型：
 
 **延迟加载应用要求：**
 
-关联对象的查询与主加载对象的查询是分别进行的select语句，不能使用***多表连接所进行的select查询***
+关联对象的查询与主加载对象的查询是分别进行的select语句，不能使用**多表连接所进行的select查询**
 
 
 
-**延迟加载设置：** 在MyBatis主配置文件里的`settings`标签下添加**name**为`lazyLoadingEnabled`的**value**为`true` 的***setting***标签
+**延迟加载设置：** 在MyBatis主配置文件里的`settings`标签下添加**name**为`lazyLoadingEnabled`、**value**为`true` 的`<setting>`标签
 
 ```xml
 <settings>
@@ -122,7 +122,7 @@ MyBatis根据关联对象查询的select语句的执行时机分为3种类型：
 
 MyBatis查询缓存的作用域是根据`映射配置文件mapper.xml`的**namespace**划分的，相同的namespace的mapper查询数据存放在同一个缓存区域，不同的namespace下的数据互不干扰。
 
-***无论是一级缓存还是二级缓存都是按照namespace进行分别存放的***
+**无论是一级缓存还是二级缓存都是按照namespace进行分别存放的**
 
 
 
