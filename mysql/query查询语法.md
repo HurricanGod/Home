@@ -37,6 +37,27 @@ order by <列名> [asc|desc] [,<列名> [asc|desc]...]
     - 语法：`select <目标列> from 表1 left outer join 表2 on (关系表达式)`
     - 左外连接语法如上所示，**表1**中不满足条件的元组将会`null`显示出来
 + **嵌套查询**  ，子查询的`select`语句不能使用`order by`子句，`order by`子句只能对**最终查询结果**进行排序
+ 
+如果想要对子查询结果进行排序可以考虑把子查询转换为临时表，再从临时表中查数据
+**示例**：
+```sql
+select ConferenceInfo.id,startdate,cnName,enName
+from ConferenceInfo
+where id in ( 
+	select * 
+	from
+	(
+		select conferenceid
+		from FontConference
+		group by(conferenceid)
+		order by count(conferenceid) desc
+		limit 4
+	)as t
+) 
+AND	startdate > '2017-10-29'
+order by startdate 
+```
+ 
 
 
 
