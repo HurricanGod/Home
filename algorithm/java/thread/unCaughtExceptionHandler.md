@@ -60,3 +60,7 @@ public void uncaughtException(Thread t, Throwable e) {
 
 
 
+
+**注意** ：
+
+自定义线程组并重写 `uncaughtException()` 方法处理线程组内线程中断行为时，每个线程对象的`run()`方法内部不要有 `catch`语句。如果有 `catch` 语句，`public void uncaughtException(Thread t, Throwable e)` 方法将不会执行
