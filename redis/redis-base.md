@@ -187,7 +187,7 @@ typedef struct dictht{
 
 
 <a name="rename">**rename**</a>
-
+![](https://github.com/HurricanGod/Home/blob/master/redis/img/7.png)
 
 
 ----
