@@ -56,7 +56,7 @@ struct sdshdr{
 
 `整数集合`是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合元素数量不多时，`Redis`就会使用整数集合作为集合键的底层实现
 
-![1.png]()
+![1.png](https://github.com/HurricanGod/Home/blob/master/redis/img/1.png)
 
 
 
@@ -138,7 +138,7 @@ typedef struct dictht{
 + `expireat <key> <timestamp>` ——将键key的过期时间设置为**timestamp**所指定的秒数时间戳
 + `setex`——在设置一个字符串键同时为键设置过期时间
 
-![2.png]()
+![2.png](https://github.com/HurricanGod/Home/blob/master/redis/img/2.png)
 
 
 
@@ -166,23 +166,23 @@ typedef struct dictht{
 
 <a name="Exists">**exists**</a>
 
-![3.png]()
+![3.png](https://github.com/HurricanGod/Home/blob/master/redis/img/3.png)
 
 
 
 <a name="Del">**del**</a> 
 
-![4.png]()
+![4.png](https://github.com/HurricanGod/Home/blob/master/redis/img/4.png)
 
 
 
 <a name="type">**type**</a>
 
-![5.png]()
+![5.png](https://github.com/HurricanGod/Home/blob/master/redis/img/5.png)
 
 <a name="keys">**keys key-pattern**</a>
 
-![6.png]()
+![6.png](https://github.com/HurricanGod/Home/blob/master/redis/img/6.png)
 
 
 
