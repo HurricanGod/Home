@@ -120,6 +120,9 @@ typedef struct dictht{
 
 
 
+
+
+
 当使用`Redis`命令对数据库进行读写时，服务器不仅会对键空间执行指定的读写操作，还会执行一些额外的操作，主要包括：
 
 + 在读取1个键后（读操作和写操作都要对键进行读取），服务器会根据键是否存在来更新键空间**命中次数** 或 **键空间不命中次数**
@@ -129,6 +132,10 @@ typedef struct dictht{
 + 服务器每次修改一个键后都会对脏键计数器的值增1，这个计数器会触发服务器的持久化以及复制操作
 + 如果服务器开启的数据通知功能，那么对键进行修改后，服务器将按配置发送相应的数据库通知
 
+
+
+
+----
 
 
 **设置键生存时间(TTL)或过期时间**
@@ -187,8 +194,8 @@ typedef struct dictht{
 
 
 <a name="rename">**rename**</a>
-![](https://github.com/HurricanGod/Home/blob/master/redis/img/7.png)
 
+![](https://github.com/HurricanGod/Home/blob/master/redis/img/7.png)
 
 ----
 
