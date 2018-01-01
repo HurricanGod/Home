@@ -11,7 +11,7 @@
 |   `incr`    |              `incr counter`              |          若字符键的值可以转换为整数则对该整数进行加1          |   ![incr](https://github.com/HurricanGod/Home/blob/master/redis/img/incr.png)    |
 |  `incrby`   |           `incrby counter 100`           |         若字符键的值可以转换为整数则对该整数加上给定值          |                |
 |   `lpush`   |        `lpush list_key v1 v2 v3`         |                 往列表键添加元素                 |                |
-|  `lrange`   |     `lrange list_key index0 index1`      |    获取列表键指定范围的元素，0表示列表第一个元素，-1表示最后1个元素    |  ![lrange]()   |
+|  `lrange`   |     `lrange list_key index0 index1`      |    获取列表键指定范围的元素，0表示列表第一个元素，-1表示最后1个元素    |  ![lrange](https://github.com/HurricanGod/Home/blob/master/redis/img/lrange.png)   |
 | `sismember` |       `sismember set_key element`        |               判断元素是否在集合中存在               | ![sismember](https://github.com/HurricanGod/Home/blob/master/redis/img/sismember.png) |
 | `smembers`  |            `smembers set_key`            |                查看集合中的所有元素                | ![smembers](https://github.com/HurricanGod/Home/blob/master/redis/img/smembers.png)  |
 |   `srem`    |           `srem set_key value`           |                删除集合中的给定元素                |   ![srem](https://github.com/HurricanGod/Home/blob/master/redis/img/srem.png)    |
