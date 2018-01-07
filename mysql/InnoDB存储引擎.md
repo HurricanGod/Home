@@ -132,6 +132,41 @@ select max(auto_inc_col) from t for update
 
 
 
+
+**幻读演示**：
+
+| 时间   | 会话A                                      | 会话B                                      |
+| ---- | ---------------------------------------- | ---------------------------------------- |
+| 1    | `set session tx_isolation='READ-COMMITTED';` |                                          |
+| 2    | `begin`                                  |                                          |
+| 3    | `select * from  next_key_table where a>2 for update;`（事务A此时读取出的数据只有两条，先不提交事务） |                                          |
+| 4    |                                          | `begin`                                  |
+| 5    |                                          | `insert into next_key_table select 4;`（往表里插入1条记录） |
+| 6    |                                          | `commit;`                                |
+| 7    | `select * from  next_key_table where a>2 for update;`（事务A再次查询发现多了1行，这种现象称为幻读） |                                          |
+
+![幻读演示]()
+
+`InnoDB`采用**Next-Key Locking**算法避免幻读，它锁住的并不是一行或者几行记录，而是锁住一个范围，如演示中`InnoDB`存储引擎锁的不是**a=3和a=5**那两行记录，而是锁住**大于2**的所有记录，对于**插入id大于2**的记录都不被允许。
+
+
+
+可以通过`InnoDB存储引擎`的**next-key locking**机制在应用层面实现唯一性检查：
+
++ 用户通过索引查找一个值并对该行加上共享锁，即使查询的值不存在，其锁定也是一个范围
+  + 若没有返回任何行，新插入的值一定是唯一的
+  + 若执行加共享锁的`lock in share mode`操作时出现并发问题，最终也会只有1个事务成功执行，其它事务抛出死锁错误
+
+```sql
+select * from table where col=xxx lock in share mode
+```
+
+
+
+
+
+**默认情况下InnoDB存储引擎不会回滚超时引发的错误异常**，不过若**发现死锁**，`InnoDB`存储引擎会马上**回滚事务**
+
 <a href="#InnodbLock">InnoDB存储引擎中的锁</a>
 
 
