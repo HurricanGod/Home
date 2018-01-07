@@ -69,8 +69,8 @@
 
 这里需要使用分布式事务，节点A完成转账需要调用两个不同节点的数据库，而每个节点的数据库执行的事务操作都是扁平的。步骤2，3任何一步失败都会**导致事务回滚**
 
-
-
+<a href="https://github.com/HurricanGod/Home/blob/master/mysql/mysqlTransactionImpl.md">**`mysql`事务底层实现**</a>
+ 
 **事务控制语句**：
 
 + `start transaction|begin`——显式开启一个事务
