@@ -112,7 +112,7 @@ select max(auto_inc_col) from t for update
 
 
 
-![唯一索引的锁定示例]()
+![唯一索引的锁定示例](https://github.com/HurricanGod/Home/blob/master/redis/img/next-key-locking.gif)
 
 
 
