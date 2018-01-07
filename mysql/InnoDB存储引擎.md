@@ -145,7 +145,7 @@ select max(auto_inc_col) from t for update
 | 6    |                                          | `commit;`                                |
 | 7    | `select * from  next_key_table where a>2 for update;`（事务A再次查询发现多了1行，这种现象称为幻读） |                                          |
 
-![幻读演示]()
+![幻读演示](https://github.com/HurricanGod/Home/blob/master/redis/img/%E5%B9%BB%E8%AF%BB%E6%BC%94%E7%A4%BA.gif)
 
 `InnoDB`采用**Next-Key Locking**算法避免幻读，它锁住的并不是一行或者几行记录，而是锁住一个范围，如演示中`InnoDB`存储引擎锁的不是**a=3和a=5**那两行记录，而是锁住**大于2**的所有记录，对于**插入id大于2**的记录都不被允许。
 
