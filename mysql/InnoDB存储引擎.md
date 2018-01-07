@@ -29,7 +29,8 @@
 
 ----
 
-<a name="#InnodbLock">InnoDB存储引擎中的锁</a>
+<a name="InnodbLock">InnoDB存储引擎中的锁</a>
+
 
 `InnoDB`存储引擎实现了两个标准的行级锁：
 
@@ -44,7 +45,7 @@
 
 如果把上锁的对象看成一棵树，那么对最下层的对象的对象加锁，也就是对最细粒度的对象进行加锁，那么首先需要粗粒度的对象上锁。
 
-![层次结构]()
+![层次结构](https://github.com/HurricanGod/Home/blob/master/redis/img/%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84.png)
 
 如上图所示，若需要对页上的记录r进行加排他锁X，那么分别需要对数据库A、表、页加上意向锁IX，**最后才对记录r加上排它锁**
 
@@ -71,7 +72,8 @@
   + `select ... lock in share mode`——对读取的行记录加上1个共享锁S
   + 两种一致性锁定读**必须在一个事务中**，事务提交时，锁也就释放了，务必加上`begin,start transaction或者set autocommit=0`
 
-
+![](https://github.com/HurricanGod/Home/blob/master/redis/img/%E9%9D%9E%E9%94%81%E5%AE%9A%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%BB.png)
+![](https://github.com/HurricanGod/Home/blob/master/redis/img/%E9%9D%9E%E9%94%81%E5%AE%9A%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%BB.gif)
 -----
 
 **自增长与锁**
@@ -130,6 +132,6 @@ select max(auto_inc_col) from t for update
 
 
 
-
+<a href="#InnodbLock">InnoDB存储引擎中的锁</a>
 
 
