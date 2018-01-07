@@ -45,4 +45,4 @@
 
 
 
-<a href="">`InnoDB存储引擎中的锁`</a>
+<a href="https://github.com/HurricanGod/Home/blob/master/mysql/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md#InnodbLock">`InnoDB存储引擎中的锁`</a>
