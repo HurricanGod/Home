@@ -2,7 +2,7 @@
 
 **分布式锁的实现方式**：
 
-+ <a href="#dbLock">数据库乐观锁</a>
++ <a href="#dbLock">基于Mysql数据库实现</a>
 + <a href="#redisLock">基于**Redis**的分布式锁</a>
 
 
@@ -24,7 +24,7 @@
 
 ----
 
-<a name="dbLock">数据库乐观锁</a>
+<a name="dbLock">基于Mysql数据库实现</a>
 
 在数据库中，`lock`和`latch`都可以称为锁，`latch`一般称为门闩（**轻量级的锁**）
 
