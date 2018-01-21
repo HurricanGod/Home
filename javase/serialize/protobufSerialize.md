@@ -63,7 +63,7 @@ public class ProtoBufUtil {
 
 
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/javase/img/jsonlib-6.png)
 
 `ProtoStuff`序列化与`Json`序列化比较：
 
