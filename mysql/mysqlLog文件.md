@@ -30,13 +30,13 @@
 
 另一个与慢查询相关的日志参数是——**log_queries_not_using_indexes** (表示执行的sql语句若未使用索引，将会被记录到慢查询日志里)
 
-![NotUsingIndex]()
+![NotUsingIndex](https://github.com/HurricanGod/Home/blob/master/mysql/img/NotUsingIndex.png)
 
 
 
 
 
-![ShowLongQueryTime]()
+![ShowLongQueryTime](https://github.com/HurricanGod/Home/blob/master/mysql/img/ShowLongQueryTime.png)
 
 
 
@@ -48,7 +48,7 @@
 
 
 
-![QueryLog]()
+![QueryLog](https://github.com/HurricanGod/Home/blob/master/mysql/img/MysqlQueryLog.png)
 
 
 
@@ -60,7 +60,7 @@
 
 
 
-![mysql.general_log]()
+![mysql.general_log](https://github.com/HurricanGod/Home/blob/master/mysql/img/GeneralLog.png)
 
 
 
