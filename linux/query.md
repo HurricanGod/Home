@@ -52,6 +52,7 @@ find [PATH] [option] [action]
 
 + `find ./ mtime 0`——列出24小时内被改动过的文件
 
+>
 
 
 **find ./ -name filename** ：查找文件名为`filename`的文件
@@ -136,7 +137,7 @@ grep [-acinv]  [--color=aotu]  '待查找的字符串'  filename
 
 `grep -v '^$' filename | grep -v '^#'`
 
-![grep-n]()
+![grep-n](https://github.com/HurricanGod/Home/blob/master/linux/img/grep-v.png)
 
 
 
