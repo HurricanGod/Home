@@ -9,6 +9,7 @@
     ```mysql
     # 创建用户
     create user 'username'@'host' identified by 'password'
+    # username为用户名，@'host' 指定主机或IP，password为用户密码
     # 查询创建的用户
     select  user,host from mysql.user;
     # 删除用户
@@ -21,6 +22,7 @@
 
     ```mysql
     grant privilege_name on *.* to 'username'@'host' identified by 'password';
+    # privilege_name 为权限名
     ```
 
     ​
