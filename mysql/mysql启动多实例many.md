@@ -221,7 +221,7 @@
   **停止mysql3307服务**
 
   ```shell
-  mysql -S -u root -p YourNewPassword /var/lib/mysql_3307/mysqld.sock shutdown
+  mysqladmin -S -u root -p YourNewPassword /var/lib/mysql_3307/mysqld.sock shutdown
   ```
 
   ----
