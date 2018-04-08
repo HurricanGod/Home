@@ -74,7 +74,7 @@
   service apparmor restart
   ```
 
-  ![mysql-apparmor](rollback1)
+  ![mysql-apparmor](https://github.com/HurricanGod/Home/blob/master/mysql/img/manyInstance1.png)
 
 
 
@@ -125,7 +125,7 @@
   max_binlog_size   = 100M
   ```
 
-  ![rollback2]()
+  ![rollback2](https://github.com/HurricanGod/Home/blob/master/mysql/img/manyInstance2.png)
 
 
 
@@ -188,7 +188,7 @@
   skip-grant-tables
   ```
 
-  ![rollback4]()
+  ![rollback4](https://github.com/HurricanGod/Home/blob/master/mysql/img/manyInstance4.png)
 
 + <a href="#top">**返回顶部**</a>
 
