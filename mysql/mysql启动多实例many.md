@@ -11,7 +11,7 @@
 + <a href="#loginService">登录`Mysql3307`实例</a>
 + <a href="#restart">**再次启动mysql3307服务**</a>
 + <a href="#alterPassword">修改mysql中root用户登录密码</a>
-+ **<a href="#startAndStop">开启和关闭mysql3307服务</a>**
++ **<a href="#startAndStop">重新登录mysql3307服务器</a>**
 
 ----
 
@@ -234,22 +234,23 @@
 
   ----
 
-  **<a name="startAndStop">重启mysql3307服务</a>**
+  **<a name="startAndStop">重新登录mysql3307服务器</a>**
 
   ```shell
   mysql -u root -S /var/lib/mysql_3307/mysqld.sock -p
   # 接着就会进入输密码的提示，输入刚才修改的密码就可以登录进去
-
-
-  # 停止mysql3307服务用上面的命令
-  mysqladmin -u root -S /var/lib/mysql_3307/mysqld.sock -p shutdown
-  # 接着在 “Enter password:” 输入密码
   ```
 
-  <a href="#top">**返回顶部**</a>
 
 
 
+
+
+```shell
+ # 停止mysql3307服务用上面的命令
+ mysqladmin -u root -S /var/lib/mysql_3307/mysqld.sock -p shutdown
+ # 接着在 “Enter password:” 输入密码
+```
 
 > 停止mysql服务时若出现：
 >
@@ -267,6 +268,8 @@ flush privileges;
 
 
 
+
+  <a href="#top">**返回顶部**</a>
 
 **参考博客**：
 
