@@ -25,6 +25,23 @@
     # privilege_name 为权限名
     ```
 
+    ![privileges]()
+
     ​
 
-  + 设置用户权限
+  + 查看用户权限
+
+    ```mysql
+    # 查看用户拥有的授权（1）
+    show grants for 'uername'@'host'
+
+    # 查看用户拥有的授权（2）
+    select * from mysql.db where user = 'username' \G
+    ```
+
+
+
+-----
+
+
+

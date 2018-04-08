@@ -69,3 +69,47 @@
 <a name="binaryLog">**二进制日志**</a>
 
 + 二进制日志文件默认情况下没有启动，需要使用手动指定参数来启动
+
+
+
+**查看mysql的binlog命令的方法** ：
+
+```shell
+mysqlbinlog mysql-bin.0000001.log
+```
+
+```mysql
+# mysql 命令行下
+show binlog events;
+show binlog events in 'filename';
+```
+
+
+
+### binlog的操作
+
++ 每次服务器重启，都会调用 ` flush logs` 操作创建1个新的的`binlog`日志
+
+
++ `show master status` —— 查看当前日志的状态
+
+
++ `flush logs` —— 刷新日志文件，会产生一个新的日志文件
+
+
++ `show master logs` —— 查看当前的所有日志文件
+
+
++ `reset master` —— 清空日志
+
+
+
+------
+
+### binlog恢复数据
+
++ `mysqlbinlog mysql-bin-log-name | mysql -u root -p`
+
+
++ `mysqlbinlog mysql-bin-log-name --start-position  数字 --stop-position 数字 | mysql -u root -p`
+

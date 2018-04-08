@@ -274,3 +274,5 @@ flush privileges;
 **参考博客**：
 
 + <a href="http://www.jb51.net/article/108786.htm">**登录时出现ERROR 1045 (28000): Access denied for user 'root'@'localhost'问题**</a>
++ <a href="https://blog.csdn.net/supercrsky/article/details/64443618">**mysqladmin:connect to server at localhost failed, error:"Your password has expired. To log in you must change it using a client that supports expired passwords."**</a>
+
