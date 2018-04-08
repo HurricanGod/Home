@@ -25,7 +25,7 @@
     # privilege_name 为权限名
     ```
 
-    ![privileges]()
+    ![privileges](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-user-privileges.png)
 
     ​
 
