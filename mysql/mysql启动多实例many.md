@@ -240,12 +240,29 @@
   mysql -u root -S /var/lib/mysql_3307/mysqld.sock -p
   # 接着就会进入输密码的提示，输入刚才修改的密码就可以登录进去
 
-  mysql -S -u root -p YourNewPassword /var/lib/mysql_3307/mysqld.sock shutdown
+
   # 停止mysql3307服务用上面的命令
+  mysqladmin -u root -S /var/lib/mysql_3307/mysqld.sock -p shutdown
+  # 接着在 “Enter password:” 输入密码
   ```
 
   <a href="#top">**返回顶部**</a>
 
+
+
+
+> 停止mysql服务时若出现：
+>
+> mysqladmin:connect to server at localhost failed, error:"Your password has expired. To log in you must change it using a client that supports expired passwords."
+>
+> 可按下面操作解决：
+
+```mysql
+/*进入mysql命令行，执行一下命令*/
+set PASSWORD = PASSWORD('YourNewPassword');
+alter USER 'root'@'localhost' PASSWORD expire never;
+flush privileges;
+```
 
 
 
