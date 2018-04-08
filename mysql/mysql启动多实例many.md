@@ -40,7 +40,6 @@
 
 
 
-
 ------
 
 + 鉴于mysql5.7里面的`my.cnf`没有多少配置内容，需要把`mysqld.cnf`文件里的配置内容复制到`my.cnf`里。
@@ -249,3 +248,9 @@
 
 
 
+
+
+
+**参考博客**：
+
++ <a href="http://www.jb51.net/article/108786.htm">**登录时出现ERROR 1045 (28000): Access denied for user 'root'@'localhost'问题**</a>
