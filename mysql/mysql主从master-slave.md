@@ -1,6 +1,5 @@
 # Mysql搭建主从步骤
 
-[TOC]
 
 
 
@@ -19,7 +18,7 @@ grant replication slave on *.* to 'uername'@'host' identified by 'YourPassword';
 
 ```
 
-![privileges]()
+![privileges](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-user-privileges.png)
 
 
 
@@ -38,8 +37,8 @@ show variables like '%log_bin%'
 # 或者使用下面命令：
 show master logs;
 ```
-
-![show-open-binlog]()
+![](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-master-open-binlog.png)
+![show-open-binlog](https://github.com/HurricanGod/Home/blob/master/mysql/img/show-open-binlog.png)
 
 
 
@@ -55,7 +54,7 @@ show master logs;
 
 ### 配置同步日志
 
-![mysql-slave-config1]()
+![mysql-slave-config1](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-slave-config-1.png)
 
 
 
@@ -141,4 +140,4 @@ show slave status \G;
 
 **成功配置mysql主从**：
 
-![mysql-master-slave-ok]()
+![mysql-master-slave-ok](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-master-slave-ok.png)
