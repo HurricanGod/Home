@@ -33,7 +33,7 @@
 
 
 
-![log4j架构]()
+![log4j架构](https://github.com/HurricanGod/Home/blob/master/web/img/log4j.png)
 
 `log4j`两种类型的对象：
 
