@@ -40,8 +40,15 @@
     ```
 
 
-
 -----
 
++ **外键**
 
+  ```mysql
+  # 增加外键约束
+  alter table tableName add constraint FK_tb1_tb2_name foreign key(columnName)  references keyTable(pkColumnName)
+  #注意：columnName 要与 pkColumnName 类型完全一致，技术1个是int另一个是unsigned int 都是不允许的
+  ```
+
+  ​
 
