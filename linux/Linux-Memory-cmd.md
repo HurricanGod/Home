@@ -24,15 +24,14 @@
 ```
 
 
-
-<img align="right" src="https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png"/>
-
 + `a` —— 显示终端上的所有进程，包括其他用户的进程
 + `-l` —— 长格式
 + `-w`—— 宽输出
 + `-e`—— 显示所有进程
 + `-f`—— 全格式
 + `--sort`—— 根据`sort`后面的key进行排序，其中`-`表示逆序，`+`表示正序
+
+![](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png)
 
 **备注** ：
 
