@@ -17,7 +17,7 @@
 ```shell
 >> ps -auxw --sort=-rss
 # 根据占用物理内存大小由高到低输出进程信息
-#USER  PID      %CPU      %MEM     	  VSZ   		RSS 	   TTY STAT START TIME COMMAND
+#USER  PID      %CPU      %MEM     	  VSZ   	RSS 	   TTY STAT START TIME COMMAND
 #用户  进程号  CPU占用率  内存占用率  占用的虚拟内存  占用的物理内存  
 >> ps -auxw --sort=-rss,+%cpu
 # 查看所有进程信息，按照物理内存占用由高到低，cpu使用率由低到高排序
