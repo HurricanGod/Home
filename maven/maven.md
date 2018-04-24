@@ -152,7 +152,7 @@ Maven的web工程使用`Tomcat`插件
 
 ### 父工程统一管理版本号
 
-父工程`dependencyManagement`标签用于管理的依赖，实质并没有真正依赖，它只是管理依赖的版本；**子工程**的`denpendency`标签不用`version`标签确定依赖的***版本号***，版本号由父工程确定
+父工程`dependencyManagement`标签用于管理的依赖，实质并没有真正依赖，它只是管理依赖的版本；**子工程**的`denpendency`标签不用`version`标签确定依赖的**版本号**，版本号由父工程确定
 
 
 
