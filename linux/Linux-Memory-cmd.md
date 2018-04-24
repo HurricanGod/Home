@@ -25,7 +25,7 @@
 
 
 
-<img align="right" src=""/>
+<img align="right" src="https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png"/>
 
 + `a` —— 显示终端上的所有进程，包括其他用户的进程
 + `-l` —— 长格式
