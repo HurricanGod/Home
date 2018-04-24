@@ -31,7 +31,7 @@
 + `-f`—— 全格式
 + `--sort`—— 根据`sort`后面的key进行排序，其中`-`表示逆序，`+`表示正序
 
-![](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png)
+
 
 **备注** ：
 
@@ -48,6 +48,5 @@
   + `T`：终止
 + `START` —— **进程启动的时间和日期**
 + `TIME` —— **进程使用的总CPU时间**
-
-
 + `COMMAND` —— 正在执行的命令行命令
+![](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png)
