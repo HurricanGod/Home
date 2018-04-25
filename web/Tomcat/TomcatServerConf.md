@@ -23,6 +23,7 @@
       </Realm>
       <Host>
         <Valve />
+        <Context />
       </Host>
     </Engine>
   </Service>
