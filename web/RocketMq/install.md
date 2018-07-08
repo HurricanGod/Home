@@ -81,6 +81,7 @@ nohup sh mqnamesrv &
 tail -2 nohup.out
 
 # 若日志输出含有 The Name Server boot success. serializeType=JSON 表名启动 name server 成功
+
 # 若日志输出 Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000006ec800000, 2147483648, 0) failed; 
 # error='Cannot allocate memory' (errno=12) 一般是因为启动时虚拟机内存设置太大导致内存不足无法启动
 ```
