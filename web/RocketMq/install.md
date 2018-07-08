@@ -59,7 +59,8 @@ vim runserver.sh
 # 修改 JVM 配置中的 -server 部分
 # 将 -Xms4g 改为 -Xms512m 初始堆内存大小
 # 将 -Xmx4g 改为 -Xmx512m JVM允许的最大堆内存大小，当剩余堆内存小于40%时会扩展到此值
-# 将 -Xmn2g 改为 -Xmn128m -Xmn参数用来来指定新生代的大小，也可以通过-XX:SurvivorRation参数来调整Eden Space与Survivor Space比例来设置新生代大小
+# 将 -Xmn2g 改为 -Xmn128m -Xmn参数用来来指定新生代的大小，
+# 也可以通过-XX:SurvivorRation参数来调整Eden Space与Survivor Space比例来设置新生代大小
 # 修改结果如下：
 JAVA_OPT="${JAVA_OPT} -server -Xms512m -Xmx512m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"
 
