@@ -108,6 +108,7 @@ tail -2 nohup.out
 + ```shell
   # 停止 broker 服务
   sh mqshutdown broker
+  
   # 停止 nameserver 服务
   sh mqshutdown namesrv
   ```
