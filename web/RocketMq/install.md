@@ -2,10 +2,10 @@
 
 
 
-+ <a href="envCheck">**环境检查**</a>
++ <a href="#envCheck">**环境检查**</a>
 
 
-+ <a href="unzip">**下载并解压rocketmq-all-4.2.0-bin-release.zip**</a>
++ <a href="#unzip">**下载并解压rocketmq-all-4.2.0-bin-release.zip**</a>
 
 
 
@@ -14,7 +14,7 @@
 
 -----
 
-<a name="#envCheck">**环境检查**</a>
+<a name="envCheck">**环境检查**</a>
 
 **环境要求** ：
 
@@ -36,7 +36,7 @@ java - version
 
 ----
 
-<a name="#unzip">**下载并解压rocketmq-all-4.2.0-bin-release.zip**</a>
+<a name="unzip">**下载并解压rocketmq-all-4.2.0-bin-release.zip**</a>
 
 + 下载`rocketmq`发行版，<a href="https://www.apache.org/dyn/closer.cgi?path=rocketmq/4.2.0/rocketmq-all-4.2.0-bin-release.zip">下载地址</a>
 
@@ -48,11 +48,14 @@ java - version
 
 ```shell
 unzip rocketmq-all-4.2.0-bin-release.zip 
+
 # 假设解压后 rocketmq 目录为 /home/hurrican/rocketmq
 # 进入 rocketmq 解压目录下的 bin 文件夹
 cd /home/hurrican/rocketmq/bin
+
 # 修改 runserver.sh
 vim runserver.sh
+
 # 修改 JVM 配置中的 -server 部分
 # 将 -Xms4g 改为 -Xms512m 初始堆内存大小
 # 将 -Xmx4g 改为 -Xmx512m JVM允许的最大堆内存大小，当剩余堆内存小于40%时会扩展到此值
@@ -61,6 +64,7 @@ vim runserver.sh
 JAVA_OPT="${JAVA_OPT} -server -Xms512m -Xmx512m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"
 
 vim runbroker.sh
+
 # 修改 JVM 配置中的 -server 部分
 # 修改结果如下：
 JAVA_OPT="${JAVA_OPT} -server -Xms256m -Xmx256m -Xmn128m"
@@ -71,15 +75,18 @@ JAVA_OPT="${JAVA_OPT} -server -Xms256m -Xmx256m -Xmn128m"
 ```shell
 # 启动 name server
 nohup sh mqnamesrv &
+
 # 查看 name server 的启动日志，启动 name server 后默认会生成 nohup.out
 tail -2 nohup.out
+
 # 若日志输出含有 The Name Server boot success. serializeType=JSON 表名启动 name server 成功
 # 若日志输出 Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000006ec800000, 2147483648, 0) failed; error='Cannot allocate memory' (errno=12) 一般是因为启动时虚拟机内存设置太大导致内存不足无法启动
 ```
 
 **使用 ps 命令查看mqnamesrv进程**，成功启动后如下图所示：
 
-![ps_mqnamesrv]()
+![ps_mqnamesrv](https://github.com/HurricanGod/Home/blob/master/web/RocketMq/img/CheckMqNameSrv.png)
+![mqnamesrv_success_start](https://github.com/HurricanGod/Home/blob/master/web/RocketMq/img/NameServer.png)
 
 
 
