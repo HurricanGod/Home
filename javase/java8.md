@@ -101,7 +101,7 @@ public interface Predicate<T> {
         List<String> collect = list.stream().filter(predicate).collect(Collectors.toList());
         collect.forEach(System.out::println);
     }
-}
+
 ```
 
 > 上面Demo中使用Predicate筛选字符串集合中以"Bi"开头，"java"结尾或"py"结尾的字符串
