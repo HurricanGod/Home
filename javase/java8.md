@@ -108,9 +108,9 @@ public interface Predicate<T> {
 
 `Console`：
 
-> BiConsumer.java
-> BiFunction.java
-> BiConsumer.py
+> BiConsumer.java  <br/>
+> BiFunction.java <br/>
+> BiConsumer.py <br/>
 
 <p align="right"><a href="#top">返回</a></p>
 
@@ -200,8 +200,8 @@ public interface Function<T, R> {
 
 **Console** ：
 
->HELLO HELLO 
->int a = 10 ;
+>HELLO HELLO  <br/>
+>int a = 10 ; <br/>
 >
 
 
