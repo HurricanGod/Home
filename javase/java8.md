@@ -6,22 +6,21 @@
 
 ### 常用函数接口
 
-+ <a name="Predicate">`Predicate`</a>
++ <a href="#Predicate">`Predicate`</a>
 
 
-+ <a name="Consumer">`Consumer`</a>
++ <a href="#Consumer">`Consumer`</a>
 
 
-+ <a name="Function">`Function`</a>
++ <a href="#Function">`Function`</a>
 
 
-+ <a name="BiFunction">`BiFunction`</a>
-
++ <a href="#BiFunction">`BiFunction`</a>
 
 
 ---
 
-<a href="#Predicate">`Predicate`</a>
+<a name="Predicate">`Predicate`</a>
 
 **Predicate** 接口定义如下：
 
@@ -107,15 +106,119 @@ public interface Predicate<T> {
 
 > 上面Demo中使用Predicate筛选字符串集合中以"Bi"开头，"java"结尾或"py"结尾的字符串
 
+`Console`：
+
+> BiConsumer.java
+> BiFunction.java
+> BiConsumer.py
+
 <p align="right"><a href="#top">返回</a></p>
 
 
 
 <hr/>
 
-<a href="#Function">`Function`</a>
+<a name="Function">`Function`</a>
+
+`Function`源码如下所示：
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+
+    /**
+     * 接收泛型参数 T 并返回 R
+     */
+    R apply(T t);
+
+    /**
+     * 返回1个组合函数，参数 before 执行的结果将作为本对象的入参
+     * @param before 本实例执行 apply(T t) 方法前先执行的 Function 实例
+     * @throws NullPointerException if before is null
+     */
+    default <V> Function<V, R> compose(Function<? super V, ? extends T> before) {
+        Objects.requireNonNull(before);
+        return (V v) -> apply(before.apply(v));
+    }
+
+    /**
+     * Returns a composed function that first applies this function to
+     * its input, and then applies the {@code after} function to the result.
+     * @param after the function to apply after this function is applied
+     * @return a composed function that first applies this function and then
+     * applies the {@code after} function
+     * @throws NullPointerException if after is null
+     *
+     * @see #compose(Function)
+     */
+    default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
+        Objects.requireNonNull(after);
+        return (T t) -> after.apply(apply(t));
+    }
+
+    /**
+     * Returns a function that always returns its input argument.
+     *
+     * @param <T> the type of the input and output objects to the function
+     * @return a function that always returns its input argument
+     */
+    static <T> Function<T, T> identity() {
+        return t -> t;
+    }
+}
+
+```
+
++ `apply(T t)` —— 将类型 T 对象转换为 类型 R 的方法
++ `compose(Function<? super V, ? extends T> before)` —— 接收`Function`实例**before**参数并返回新的`Function`实例，**before**实例的`apply(T t)`方法将作为返回`Function`实例的入参
++ `andThen(Function<? super R, ? extends V> after)` —— 接收`Function`实例**after**参数并返回新的`Function`实例，本实例的`apply(T t)`方法的返回值将作为**after**实例的入参
 
 
+
+**Demo** ：
+
+```java
+
+    @Test
+    public void testMethod11() {
+        String hello = ((Function<String, String>) s1 -> s1 + s1)
+                .compose((Function<String, String>) String::toUpperCase).apply("Hello ");
+        System.out.println(hello);
+
+        String line = ((Function<String, String>) s1 -> Joiner.on(" = ").join(s1, 10))
+                .compose(s2 -> "int " + s2)
+                .andThen(str -> str + " ;").apply("a");
+        System.out.println(line);
+    }
+
+```
+
++ 第1个例子`compose()`方法将字符串转换为大写，然后再相加
++ 第1个例子是将 `s1` 与 `10`用 "=" 相连接，得到 ` s1 = 10`，`compose()`方法将字符串 `int` 与  ` s1 = 10` 相加，`andThen()` 方法最后把之前得到的字符串加上一个'";"
+
+
+
+**Console** ：
+
+>HELLO HELLO 
+>int a = 10 ;
+>
+
+
+
+<p align="right"><a href="#top">返回</a></p>
+
+<hr/>
+
+<a name="BiFunction">`BiFunction`</a>
+
+`BiFunction` 其实就是 `Function` 接口的升级版，只是将 `Function`接口的 `apply()`方法由1个参数变为**2个参数**
+
+
+
+
+
+<p align="right"><a href="#top">返回</a></p>
 
 ----
 
