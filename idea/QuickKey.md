@@ -30,7 +30,7 @@
 | `Ctrl + E`             | 打开最近访问的文件                  |                     |
 | `Ctrl + Shift + E`     | 打开**最近编辑**的文件              |                     |
 |                        |                            |                     |
-| `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a>        | <a href="#CtrlShiftI">效果参考</a> |
+| `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a>        | <a href="#DoubleShift">效果参考</a> |
 | `Alt + 1`              |  <a name="Alt1Gif">  - </a>   | <a href="#Alt1">效果参考</a> |
 |                        |                            |                     |
 | `Ctrl +Shift + a`      | 全局搜索 IDEA 的操作和设置           |                     |
