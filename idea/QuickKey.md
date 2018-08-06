@@ -17,7 +17,7 @@
 | `Alt + F9`             | 让代码运行到当前光标所在处              |                     |
 | `Ctrl + F8`            | 在当前光标添加或删除断点               |                     |
 | `Ctrl + G`             | 跳转到某一行代码                   |                     |
-| `Ctrl + Shift + I`     | **以浮窗的形式打开1个类**            | <a href="">效果参考</a> |
+| `Ctrl + Shift + I`     |<a name="CtrlShiftIGif"> **以浮窗的形式打开1个类** </a>           | <a href="#CtrlShiftI">效果参考</a> |
 | `Ctrl + U`             | 跳转到父类                      |                     |
 |                        |                            |                     |
 | `Ctrl + H`             | **打开类的继承关系列表**             |                     |
@@ -27,9 +27,22 @@
 | `Ctrl + E`             | 打开最近访问的文件                  |                     |
 | `Ctrl + Shift + E`     | 打开**最近编辑**的文件              |                     |
 |                        |                            |                     |
-| `Shift + Shift + /`    | 跳转到特性文件夹，**包括虚拟路径**        | <a href="">效果参考</a> |
-| `Alt + 1`              |                            | <a href="">效果参考</a> |
+| `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a>        | <a href="#CtrlShiftI">效果参考</a> |
+| `Alt + 1`              |  <a name="Alt1Gif">  - </a>   | <a href="#Alt1">效果参考</a> |
 |                        |                            |                     |
 | `Ctrl +Shift + a`      | 全局搜索 IDEA 的操作和设置           |                     |
 |                        |                            |                     |
 |                        |                            |                     |
+
+-----
++ <a name="DoubleShift">`Shift + Shift + /`</a>
+![DoubleShift](https://github.com/HurricanGod/Home/blob/master/idea/img/DoubleShift.gif)
+<p align="right"><a href="#DoubleShiftGif">`back`</a></a>
+
++ <a name="CtrlShiftI">`Ctrl + Shift + I`</a>
+![Ctrl + Shift +I](https://github.com/HurricanGod/Home/blob/master/idea/img/Ctrl%2BShift%2BI.gif)
+<p align="right"><a href="#CtrlShiftIGif">`back`</a></a>
+
++ <a name="Alt1">`Alt + 1` </a>
+![Alt + 1](https://github.com/HurricanGod/Home/blob/master/idea/img/Alt%2B1.gif)
+<p align="right"><a href="#Alt1Gif">`back`</a></a>
