@@ -13,3 +13,11 @@
   ```
 
   ​
+
+```shell
+# 查看配置
+git config --list
+# 查看远程地址
+git remote -v
+```
+
