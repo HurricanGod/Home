@@ -1,3 +1,6 @@
+# IDEA常用快捷键
+-----
+
 | 快捷键                    | 用途                         |                     |
 | :--------------------- | :------------------------- | ------------------- |
 | `Ctrl + Shift + Enter` | 行尾补齐分号`;`                  |                     |
@@ -37,12 +40,12 @@
 -----
 + <a name="DoubleShift">`Shift + Shift + /`</a>
 ![DoubleShift](https://github.com/HurricanGod/Home/blob/master/idea/img/DoubleShift.gif)
-<p align="right"><a href="#DoubleShiftGif">***back***</a></a>
+<p align="right"><a href="#DoubleShiftGif">back</a></a>
 
 + <a name="CtrlShiftI">`Ctrl + Shift + I`</a>
 ![Ctrl + Shift +I](https://github.com/HurricanGod/Home/blob/master/idea/img/Ctrl%2BShift%2BI.gif)
-<p align="right"><a href="#CtrlShiftIGif">***back***</a></a>
+<p align="right"><a href="#CtrlShiftIGif">back</a></a>
 
 + <a name="Alt1">`Alt + 1` </a>
 ![Alt + 1](https://github.com/HurricanGod/Home/blob/master/idea/img/Alt%2B1.gif)
-<p align="right"><a href="#Alt1Gif">***back***</a></a>
+<p align="right"><a href="#Alt1Gif">back</a></a>
