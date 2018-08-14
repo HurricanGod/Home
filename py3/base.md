@@ -54,7 +54,7 @@ sql = 'insert into tb1(a,b) values(%s, %s)' % ('张三', 'Hurrican')
 
 + `%s` —— 格式符，表示1个字符串
 + `%` —— 字符串与**元组**之间的分隔符`%`代表**格式化操作**
-+ <a href="#formatSymbol">**常用格式符**</s>
++ <a href="#formatSymbol">**常用格式符**</a>
 
 
 
@@ -73,7 +73,7 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 
 ----
 
-<a name="formatSymbol">**常用格式符**</s>
+<a name="formatSymbol">**常用格式符**</a>
 
 | 格式符          | 含义              |
 | :----------- | :-------------- |
@@ -141,7 +141,7 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 
 
 
-<p align="right"><a href="#formatSymbol">**返回**</a>&nbsp | &nbsp <a href="#top">**返回顶部**</a></p>
+<p align="right"><a href="#formatSymbol">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
 
 ---
 
