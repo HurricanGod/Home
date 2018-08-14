@@ -6,7 +6,7 @@
 
 ----
 
-+ <a href="#">**字符串**</a>
++ <a href="#str">**字符串**</a>
 
 
 + <a href="#">**列表**</a>
@@ -53,7 +53,7 @@ sql = 'insert into tb1(a,b) values(%s, %s)' % ('张三', 'Hurrican')
 ```
 
 + `%s` —— 格式符，表示1个字符串
-+ `%` —— 字符串与**元组**之间的分隔符`%`代表***格式化操作***
++ `%` —— 字符串与**元组**之间的分隔符`%`代表**格式化操作**
 + <a href="#formatSymbol">**常用格式符**</s>
 
 
@@ -92,20 +92,29 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 |              |                 |
 |              |                 |
 
-**备注**：
+<br/><br/>
 
-字符输出格式控制 —— `%[(name)][flags][width].[precision]typecode`
+### **字符串处理** 
+
+
+
+`字符输出格式控制 `
+
+**格式** ： `%[(name)][flags][width].[precision]typecode`
 
 + `name` —— 命名
 + `flags` —— 取值为{'+', '-', ' ', 0}，
   + ` + `表示右对齐
   + ` - `表示左对齐
-  +   表示空格，在正数的前面填充空格，从而与负数对齐
+  + 表示空格，在正数的前面填充空格，从而与负数对齐
   + `0` 表示使用0填充
 + `width` —— 表示显示宽度
 + `precision` —— 表示小数点精度
 
 
+
+
+<br/><br/>
 
 `str.format()`格式化字符串
 
@@ -130,9 +139,9 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 
   ​
 
-**字符串拼接** ：
 
 
+<p align="right"><a href="#formatSymbol">**返回**</a>&nbsp | &nbsp <a href="#top">**返回顶部**</a></p>
 
 ---
 
