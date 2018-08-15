@@ -9,7 +9,7 @@
 + <a href="#str">**字符串**</a>
 
 
-+ <a href="#">**列表**</a>
++ <a href="#list">**列表**</a>
 
 
 + <a href="#">**元组**</a>
@@ -141,11 +141,61 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 
 
 
+
+
+
+
 <p align="right"><a href="#formatSymbol">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
 
 ---
 
-<a name="list">**列表**</a>
+## <a name="list">**列表**</a>
+
+
+
+### 生成器对象
+
+```python
+table = [[1,'abcxxx',100], [2,'abdxxx',120], [3,'abdxxx',65]]
+
+col_list = [row[0] for row in table]
+
+print('col_list = {}\t type of {}'.format(col_list, type(col_list)))
+
+# console：
+# >> col_list = [1, 2, 3]	 type of <class 'list'>
+
+# 增强版的生成器
+filter_col_list = [row[0] for row in table if row[2] >= 100]
+
+print('filter_col_list = {}\t type of {}'.format(filter_col_list, type(filter_col_list)))
+
+# console：
+# >> filter_col_list = [1, 2]	 type of <class 'list'>
+
+```
+
+**说明** ：
+
++ 第一个生成器的功能相当于**投影一张表的某一列**
++ 第二个生成器的功能是相当于**有选择地投影一张表的某一列**
+
+
+
+<p align="right"><a href="#list">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+### 多个列表合并
+
+```python
+data_list = [[1,2,8],[-1,3,9],[5,6]]
+
+# 合并 data_list 为 1 个列表，相当于一维数组
+item = sum(data_list, [])
+
+print(item)
+# console：
+# >> [1,2,8,-1,3,9,5,6]
+```
 
 
 
