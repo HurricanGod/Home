@@ -15,7 +15,7 @@
 + <a href="#">**元组**</a>
 
 
-+ <a href="#">**字典**</a>
++ <a href="#dict">**字典**</a>
 
 
 + <a href="#">**类**</a>
@@ -29,6 +29,17 @@
 
 + <a href="#">**异常**</a>
 
+
++ <a href="#ternaryOperator">**三元运算符**</a>
+
+
++ <a href="#itertools">**itertools**</a>
+
+
++ <a href="#decorator">**装饰器**</a>
+
+
++ <a href="#zip">**zip**</a>
 
 
 
@@ -140,9 +151,7 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
   ​
 
 
-
-
-
+<br/>
 
 
 <p align="right"><a href="#formatSymbol">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
@@ -182,7 +191,7 @@ print('filter_col_list = {}\t type of {}'.format(filter_col_list, type(filter_co
 
 
 
-<p align="right"><a href="#list">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
 
 ### 多个列表合并
 
@@ -190,11 +199,69 @@ print('filter_col_list = {}\t type of {}'.format(filter_col_list, type(filter_co
 data_list = [[1,2,8],[-1,3,9],[5,6]]
 
 # 合并 data_list 为 1 个列表，相当于一维数组
+# 写法①
 item = sum(data_list, [])
 
 print(item)
 # console：
 # >> [1,2,8,-1,3,9,5,6]
+
+# 写法②
+item = [i for l in data_list for i in l]
+```
+
+
+
+### ****切片技巧****
+
+- 反转列表
+
+  ```python
+  sequence = [i for i in range(10)]sequence[:] = sequence[::-1]
+  ```
+
+- 往列表头部添加一个列表
+
+  ```python
+  sequence = [i for i in range(5,10)]sequence[:0] = [i for i in range(0,5)]
+  ```
+
+- 往列表尾部添加一个列表
+
+  ```python
+  #  ①
+  sequence = [i for i in range(0,5)]
+  sequence[:-1] = [i for i in range(6,10)]
+
+  # ②
+  sequence = [i for i in range(0,5)] + [i for i in range(6,10)]
+  ```
+
+  ​
+
+
+<br/>
+
+
+
+
+
+<p align="right"><a href="#list">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+-----
+
+## <a name="dict">**字典**</a>
+
+
+
+### **构造字典**
+
+```python
+d = dict(zip('abcdefg', range(7)))
+# d = {'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6}
+
+d = dict(a=1, b=2, name='Hurrican')
+# {'a': 1, 'c': 'Hurrican', 'b': 2}
 ```
 
 
@@ -203,6 +270,210 @@ print(item)
 
 
 
+<p align="right"><a href="#dict">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+
+
+-----
+
+## <a name="ternaryOperator">**三元运算符**</a>
+
+
+
+### 以下3中写法均为等价
+
+```python
+# ①
+result = a if expression else b
+
+# ②
+if expression:
+    result = a
+else:
+    result = b
+    
+# ③
+result = [b,a](expression)
+
+# 相似的写法
+func = lambda x: x**3
+a = 5
+
+# a > 0 计算a的立方， a < 0 计算 (-a-1) 的立方
+(a > 0) and func(a) or func(-a-1)
+
+
+```
+
+
+
+
+
+<p align="right"><a href="#ternaryOperator">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+------
+
+## <a name="itertools">**itertools**</a>
+
+
+
+### `islice`
+
++ `itertools.islice(iterable, stop)`
+
+
++ `itertools.islice(iterable, start, stop[, step])`
+
+**备注** ：
+
++ `islice` 是一个 `class`，上面两个方法为创建 `islice`对象的两个方法，返回的对象是迭代器， `next()` 方法可以从参数`iterable`返回选中的值
++ `start` —— 如果有指定迭代时将跳过前面的元素，未指定默认为0
++ `stop` —— 指定迭代停止的位置
++ `step` —— 用于指定迭代里步幅，未指定时默认为1
++ 返回值相当于 —— `iterable[start : stop : step]`
+
+
+
+**Demo** ：
+
+> 使用 yield 生成质数迭代对象作为 islice 类的构造参数
+
+```python
+import unittest
+import itertools
+from math import sqrt
+
+def prime():
+    a = 2
+    while True:
+        non_prime = (True, False)[a in (2, 3)]
+        while non_prime:
+            i = 2
+            while i <= sqrt(a):
+                if a % i == 0:
+                   break
+                i += 1
+            non_prime = (True, False)[i > sqrt(a)]
+            a = (a, a+1)[non_prime]
+        yield a
+        a += 1
+
+class FunctionTest(unittest.TestCase):
+    def setUp(self):
+        super().setUp()
+
+    def testIterTool(self):
+        l = list(itertools.islice(prime(), 150))
+        # 在第10 - 20个质数中每隔两个数取一个
+        # l = list(itertools.islice(prime(), 10, 20, 2))
+        print("l1 = \n{}\n".format(l))
+```
+
+
+
+### `iter()`
+
++ `iter(collection)`
+
+
++ `iter（callable， sentinel)`
+
+
+
+
+
+
+
+
+
+<p align="right"><a href="#itertools">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+-----
+
+## <a name="decorator">**装饰器**</a>
+
+
+
+
+
+
+
+
+
+
+
+<p align="right"><a href="#decorator">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
 --------
 
+## <a name="zip">**zip**</a>
+
+
+
+### 矩阵行列互换
+
+```python
+table = [
+    		[1,'Hurrican', '2班'],
+    		[2,'LiLeiLei', '1班'],
+    		[3,'WangPin', '2班'],
+    		[4,'HanMeiMei', '3班']
+		]
+reverse_table = list(zip(*table))
+```
+
+
+
+### 交换字典的键值
+
+```python
+d = {'nickname':'Hurrican', 'openid':'abc...1'}
+reverse_d = dict( zip(d.values(), d.keys()) )
+```
+
+
+
+### 合并相邻项
+
+```python
+a = [1, 2, 3, 4, 5, 6]
+list(zip( a[::2], a[1::2] ))
+```
+
+
+
+### 分割列表
+
+```python
+a = [1, 2, 3, 4, 5, 6]
+list(zip( *[iter(a)]*2 ))
+```
+
+
+
+
+
+
+
+
+
+<p align="right"><a href="#zip">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+----
+
 `dis.dis(var)`
+
+
+
+## 参考链接
+
++ <a href="http://dongweiming.github.io/Expert-Python/#23">**Python高级编程**</a>
+
+
++ <a href="https://www.zhihu.com/question/27376156">**知乎**</a>
+
+
++ <a href="https://blog.csdn.net/u013007900/article/details/55505306">**CSDN博客-1**</a>
+
+
++ <a href="http://python.jobbole.com/82750/">**伯乐在线**</a>
