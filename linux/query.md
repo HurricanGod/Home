@@ -137,6 +137,10 @@ grep [-acinv]  [--color=aotu]  '待查找的字符串'  filename
 
 `grep -v '^$' filename | grep -v '^#'`
 
+
+
+
+
 ![grep-n](https://github.com/HurricanGod/Home/blob/master/linux/img/grep-v.png)
 
 
