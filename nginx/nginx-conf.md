@@ -20,7 +20,7 @@ http{
   	location{
   
 	}
-    }
+  }
 }
 ```
 
@@ -58,6 +58,7 @@ events{
 http{  
   # include 相对路径引用，表示引入的 mime.types 文件是相对当前配置文件 nginx.conf 所在的目录
   # 绝对路径是以 Linux 根目录 "/" 为开始的文件目录
+  # mime.types 文件的作用是存储文件扩展名与文件类型的映射表
   include   mime.types;    
   default_type  application/octet-stream;    
   sendfile  on;  
@@ -71,6 +72,8 @@ http{
       index	index.html index.htm;
     }
     
+    # 500 502 503 504 指的是状态码
+    # 当返回上面任何一个状态码时，都返回网站根目录下的50x.html
     error_page	500 502 503 504 /50x.html;
     
     location = /50x.html{
@@ -92,13 +95,61 @@ http{
 
 
 
+
+
+
+
 ### <a name="default_cmd">常用指令声明</a>
 
 
 
+| 指令                   | 说明                                 |
+| :------------------- | :--------------------------------- |
+| `worker_processes`   | `Nginx`的工作进程数，一般为**CPU总核数**或总核数的2倍 |
+| `worker_connections` | 允许单个进程并发连接的最大请求数                   |
+| `include`            | 用于引入配置文件                           |
+| `default_type`       | 设置默认文件类型                           |
+| `sendfile`           | 是否开启高效文件传输模式，默认为**on**             |
+| `keepalive_timeout`  | 设置长连接超时时间                          |
+| `listen`             | 监听端口，默认监听**80**端口                  |
+| `server_name`        | 设置主机域名                             |
+| `root`               | **设置主机站点根目录地址**                    |
+| `index`              | 指定默认索引文件                           |
+| `error_page`         | 自定义错误页面                            |
+| `user`               | 配置用户和组的指令                          |
+|                      |                                    |
+|                      |                                    |
 
++ `error_page`可以指定单个错误的处理页面，利用在线资源处理指定错误，更改网站响应状态码
 
+  + **为每种类型的错误单独设置处理方式**
 
+  ```nginx
+  # 指定网站根目录下的 40x.html 页面处理403错误
+  error_page 403 /40x.html
+  ```
+
+  <br/>
+
+  + **利用在线资源进行错误处理**
+
+  ```nginx
+  error_page 500 502 504 http://www.baidu.com
+  ```
+
+  <br/>
+
+  + **更改响应状态码**
+
+  ```nginx
+  # 当服务端响应状态码为502时，通过nginx转发后返回给浏览器的状态码为200
+  error_page 502 = 200 /default.html
+
+  # 当返回502状态码时返回 default.html，状态码由重定向后经过决定
+  error_page 502 =  /default.html
+  ```
+
+  ​
 
 
 
@@ -109,4 +160,39 @@ http{
 <p align="right"><a href="#default_cmd">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
 
 -----
+
+## <a name="use_group">用户和组</a>
+
+> Nginx 服务由一个主进程和多个工作进程组成，主进程以 root 权限运行，工作进程默认情况下以 nobody 用户运行。
+>
+> nobody 用户是一个不能登录的账号，有一个专门的ID，可以将每个工作进程进行隔离，保护服务器安全，工作进程设置的执行用户权限越低，服务器安全系数越高
+
+**查看 Nginx 服务器中的主进程和 Worker进程**
+
+```shell
+ps -aux |grep nginx
+
+# nginx 默认启动一个主进程和一个worker进程
+# root 20035 1  0 23:04 ? 00:00:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+# www-data 20036 20035  0 23:04 ?        00:00:00 nginx: worker process
+
+```
+
+
+
+
+
+
+
+
+
+
+
+----
+
+## <a name="control">访问控制</a>
+
+
+
+
 
