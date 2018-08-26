@@ -32,7 +32,7 @@
 
 
 + `lsof -i:端口号` —— 根据端口号查看进程
-![](https://github.com/HurricanGod/Home/blob/master/linux/img/lsof.png)
+  ![](https://github.com/HurricanGod/Home/blob/master/linux/img/lsof.png)
 
 ----
 
@@ -44,9 +44,16 @@
 
 ----
 
-**清空文件**  →  `echo '' > 文件名`
+### echo命令
 
 
+
++ **清空文件**  →  `echo '' > 文件名`
+
+
++ **控制输出** —— `-e`选项后面的参数(**字符串**)可以有转义字符
+  + `\c` —— 出现在参数最后的位置，在`\c`之前的参数被显示后，光标不换行，新输出的内容接在该行的后面
++ `-n换行输出`
 
 
 
@@ -183,7 +190,6 @@ tail -10 file
 # file 为文件名
 ll |tail -2	# 输出ll命令结果的最后两行
 ```
-
 
 -----
 <a name="iftop">实时网络监控</a>
