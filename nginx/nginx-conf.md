@@ -52,6 +52,7 @@ http{
 # worker_processes 是指令名称	1 是参数
 worker_processes 1;
 events{  
+  # 允许单个进程并发连接的最大请求数
   worker_connections 1024;
 }
 
@@ -61,14 +62,24 @@ http{
   # mime.types 文件的作用是存储文件扩展名与文件类型的映射表
   include   mime.types;    
   default_type  application/octet-stream;    
-  sendfile  on;  
+  
+  # 开启高效文件传输模式
+  sendfile  on;
+  
+  # 设置长连接超时时间
   keepalive_timeout 65;  
   
-  server{        
-    listen  80;        
-    server_name 127.0.0.1 localhost;        
+  server{    
+    # 监听端口
+    listen  80;  
+    
+    # 设置主机域名
+    server_name 127.0.0.1 localhost;    
+    
     location / {
+      # 设置主机站点根目录地址
       root	html;
+      # 指定默认索引文件
       index	index.html index.htm;
     }
     
@@ -192,7 +203,25 @@ ps -aux |grep nginx
 
 ## <a name="control">访问控制</a>
 
+`nginx`用于配置访问权限控制的指令有：
+
++ `allow` —— 用于设置**允许访问**的权限
++ `deny` —— 用于设置**禁止访问**的权限
++ 权限指令后面可以跟上：
+  + 允许访问的IP、IP段
+  + 禁止访问的IP、IP段
+  + **all** —— 表示所有的
++ 单个`IP`指定的作用范围最小，`all`指定的作用范围最大
++ 同一块下，若同时出现多个权限指令，**先出现的访问权限设置生效**，并且会对后出现的设置进行覆盖，**未覆盖的范围依然生效**
++ 当多个块（`http`、`server`、`location`）都出现了权限设置指令，**内层块**中的**权限级别**要比外层块中设置的权限级别**高**
 
 
 
+
+
+```nginx
+# 所有客户端将被禁止访问
+allow 192.168.10.123;
+deny all;
+```
 

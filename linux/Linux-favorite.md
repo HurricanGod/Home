@@ -56,7 +56,6 @@
 + `-n换行输出`
 
 
-
 ----
 
 <a name="type">**type** —— 找出给定命令的信息</a>
@@ -154,11 +153,13 @@ s: 指定要送出的信息
 
 <a name="userManage">**Linux用户管理**</a>
 
-|         命令         |      描述       |
-| :----------------: | :-----------: |
-| `useradd new-user` | 创建一个先的linux用户 |
-| `passwd username`  |  重置Linux用户密码  |
-| `deluser username` |    删除一个用户     |
+| 命令                           | 描述            |
+| :--------------------------- | :------------ |
+| `useradd new-user`           | 创建一个先的linux用户 |
+| `passwd username`            | 重置Linux用户密码   |
+| `deluser username`           | 删除一个用户        |
+| `chgrp username filename -R` | 改变文件所属用户组     |
+| `chown username filename -R` | 改变文件所属用户      |
 
 
 
