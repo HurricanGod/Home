@@ -1,4 +1,28 @@
-# <a name="top">Nginx基本配置</a>
+# <a name="top">Nginx基本配置与常用指令</a>
+
+
+
++ <a href="#conf">**配置文件结构**</a>
+  + <a href="#minimum_conf">`nginx.conf最低配置`</a>
+  + <a href="#default_cmd">`常用指令声明`</a>
+
+<br/>
+
++ <a href="#use_group">**用户和组**</a>
+
+<br/>
+
++ <a href="#control">**访问控制**</a>
+  + <a href="#location">`location前缀`</a>
+  + <a href="#precise_match">`精确匹配`</a>
+
+<br/>
+
++ <a href="#log">**日志**</a>
+
+<br/>
+
++ <a href="#virtual_host">**虚拟主机**</a>
 
 
 
@@ -43,12 +67,14 @@ http{
 + `location` ——  `server` 中对应目录级别的控制块，可以有多个
 
 
-
 <p align="right"><a href="#conf">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
-**最低配置** —— `nginx.conf`
+
+
+###  <a name="minimum_conf">`nginx.conf最低配置`</a>
 
 ```nginx
+user root;
 # worker_processes 是指令名称	1 是参数
 worker_processes 1;
 events{  
@@ -107,7 +133,9 @@ http{
 
 
 
+<p align="right"><a href="#conf">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
+----
 
 
 ### <a name="default_cmd">常用指令声明</a>
@@ -193,9 +221,7 @@ ps -aux |grep nginx
 
 
 
-
-
-
+<p align="right"><a  href="#conf">返回目录</a></p>
 
 
 
@@ -224,4 +250,177 @@ ps -aux |grep nginx
 allow 192.168.10.123;
 deny all;
 ```
+
+<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+
+-----
+
+### <center><a name="location">**location前缀**</a></center>
+
+| 前缀   | 说明                                       |
+| :--- | :--------------------------------------- |
+| `=`  | 根据其后的指定模式进行<a href="#precise_match">精确匹配</a>，路径完全一致时才会执行其后的指令块 |
+| `~`  | 使用正则表达式完成`location`指令的匹配，区分大小写           |
+| `~*` | 使用正则表达式完成`location`指令的匹配，**不区分大小写**      |
+| `^~` | **不使用正则表达式**，完成以指定模式开头的 `location` 匹配    |
+| `@`  | 用于定义 `location` 块，**不能被外部客户端访问**，只能被 `nginx` 内部配置指令访问 |
+
++ 配置文件中同时出现多个`location`时，普通 `location` 之间遵循**最大匹配原则**，匹配度最高的`location`将会被执行
+
+
++ 最大前缀 `location` 与正则 `location` 同时存在时，若正则匹配 `location` **先匹配成功将不会匹配最大前缀** `location`
+
+
++ `location / {}` —— 遵循普通 `location` 最大前缀匹配，任何URI中都必然以`/`跟开头，一个URI若配置中有更合适的匹配将会被替代，`location / {}` **相当于站点默认配置**
+
+
++ `location = /{}` —— 遵循的是<a href="#precise_match">**精确匹配**</a>，**只能匹配站点根目录**，同时会禁止搜索正则 `location`，效率比`location / {}`高
+
+
+
+多种类型的`location`同时出现时，**优先级如下**：
+
+精准匹配(`=`)   >  最大前缀匹配(``^~``)   >  正则匹配  >  普通最大前缀匹配
+
+<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+
+----
+
+<a name="precise_match">**精确匹配**</a>
+
+> 精确匹配指用户访问的URI与指定的URI完全一致的情况，才会执行其后的指令。
+
+
+
+```nginx
+server{
+  listen 80;
+  server_name localhost;
+  root /home/admin/website;
+  index index.html index.htm;
+  # location 配合 "=" 前缀的精确匹配
+  location = /img{
+  		allow 127.0.0.1;
+	}
+  location = /js{
+  		allow 119.123.64.135;
+	}
+  deny all;
+}
+```
+
+
+
+设`nginx`服务器ip为`138.89.57.129`，**精确匹配测试结果如下** ：
+
+| URL                                   | 主机`119.123.64.135`的响应结果 | 主机`127.0.0.1`的响应结果 |
+| :------------------------------------ | :---------------------- | :----------------- |
+| `http://138.89.57.129/img/qrcode.png` | 403 Forbidden           | 正常访问               |
+| `http://138.89.57.129/js/index.js`    | 正常访问                    | 403 Forbidden      |
+|                                       |                         |                    |
+|                                       |                         |                    |
+
+
+
+
+
+<a name="regex_match">**正则匹配**</a>
+
++ 存在多个正则`location`情况下，只要前面的正则`location`匹配成功后面的`location`就不会被匹配到
+
+
+
+**root与alias的区别** ：
+
+```nginx
+location /img/ {
+  alias /var/hurrican/website
+}
+
+location /img/ {
+  root /var/hurrican/website
+}
+```
+
+当请求路径为`/img/hello.png`时：
+
++ `root` 将请求路径映射为 `/var/hurrican/website/img/hello.png`
++ `alias` 将请求路径映射为 `/var/hurrican/website/hello.png`
+
+
+
+<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+
+
+
+----
+
+## <a name="log">**日志**</a>
+
+配置日志相关指令：
+
++ `log_format` —— 自定义日志格式
++ `access_log` —— 设置日志存储指令，缓存大小
+
+
+
+**日志指令示例** ：
+
+```nginx
+# main 表示日志格式名称
+log_format  main 'remote-address = $remote_user "$request" $status';
+
+# 第1个参数：指定 access log 存放的路径
+# 第2个参数：指定日志文件格式
+access_log  /var/logs/nginx/access.log main;
+
+```
+
+
+
+
+
+**日志格式相关的内置变量** ：
+
+| 内置变量                    | 含义                             |
+| :---------------------- | :----------------------------- |
+| `$remote_addr`          | 客户端IP地址                        |
+| `$remote_user`          | 客户端用户名，**用于记录浏览者进行身份验证时提供的名称** |
+| `$time_local`           |                                |
+| `$request`              | 请求的URI和HTTP协议                  |
+| `$status`               | http状态码                        |
+| `$body_bytes_sent`      | 发送给客户端文件主体内容的大小                |
+| `$http_referer`         |                                |
+| `$http_user_agent`      |                                |
+| `$http_x_forwarded_for` | 客户端IP地址列表（**包括中间经过的代理**）       |
+
+
+
+### <a name="off_log">**关闭日志**</a>
+
++ **关闭 access 日志**
+
+```nginx
+access_log  off; 
+```
+
++ **关闭error 日志**
+
+```nginx
+error_log  /dev/null;
+```
+
+
+
+
+
+
+
+<p align="right"><a href="#log">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+
+------
+
+## <a name="virtual_host">**虚拟主机**</a>
+
+> 一个物理服务器上划分多个磁盘空间，每个空间对应一个虚拟主机，每台主机可以对外提供Web服务。
 
