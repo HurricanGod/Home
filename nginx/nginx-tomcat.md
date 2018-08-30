@@ -36,7 +36,7 @@ server{
   # 以 .jsp 或 .do 结尾的请求都会被转发到 8080 端口中的 Tomcat服务器中
   location ~\.(jsp|do){
   		proxy_pass http://127.0.0.1:8080;
-    	proxy_set_header X-Client-IP $remote_addr;
+    		proxy_set_header X-Client-IP $remote_addr;
 	}
   
   # 
