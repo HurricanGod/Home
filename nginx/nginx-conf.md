@@ -6,24 +6,19 @@
   + <a href="#minimum_conf">`nginx.conf最低配置`</a>
   + <a href="#default_cmd">`常用指令声明`</a>
 
-<br/>
 
 + <a href="#use_group">**用户和组**</a>
 
-<br/>
 
 + <a href="#control">**访问控制**</a>
   + <a href="#location">`location前缀`</a>
   + <a href="#precise_match">`精确匹配`</a>
 
-<br/>
 
 + <a href="#log">**日志**</a>
 
-<br/>
 
 + <a href="#virtual_host">**虚拟主机**</a>
-
 
 
 -----
@@ -221,7 +216,7 @@ ps -aux |grep nginx
 
 
 
-<p align="right"><a  href="#conf">返回目录</a></p>
+<p align="right"><a  href="#top">返回目录</a></p>
 
 
 
@@ -251,7 +246,7 @@ allow 192.168.10.123;
 deny all;
 ```
 
-<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+<p align="right"><a href="#control">返回</a> &nbsp &nbsp<a  href="#top">返回目录</a></p>
 
 -----
 
@@ -282,7 +277,7 @@ deny all;
 
 精准匹配(`=`)   >  最大前缀匹配(``^~``)   >  正则匹配  >  普通最大前缀匹配
 
-<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
 ----
 
@@ -349,7 +344,7 @@ location /img/ {
 
 
 
-<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+<p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
 
 
@@ -416,7 +411,7 @@ error_log  /dev/null;
 
 
 
-<p align="right"><a href="#log">返回</a> &nbsp&nbsp<a  href="#conf">返回目录</a></p>
+<p align="right"><a href="#log">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
 ------
 
@@ -424,3 +419,65 @@ error_log  /dev/null;
 
 > 一个物理服务器上划分多个磁盘空间，每个空间对应一个虚拟主机，每台主机可以对外提供Web服务。
 
+
+
++ <a href="#base_port">**基于端口号配置虚拟主机**</a>
+
+
++ <a href="#">**基于IP配置虚拟主机**</a>
+
+
++ <a href="#base_domain">**基于域名配置虚拟主机**</a>
+
+
+
+
+
+<a name="base_port">**基于端口号配置虚拟主机**</a>
+
++ 基于 **端口** 配置虚拟主机原理是让 `nginx` 监听多个端口，根据端口号区分不同的网站
++ `nginx` 配置文件中，**http** 块每个 `server` 块都是一个虚拟主机
+
+
+
+<br/>
+
+<a name="base_domain">**基于域名配置虚拟主机**</a>
+
+**虚拟域名** —— 使用操作系统里的`hosts`文件配置虚拟域名：
+
++ `Windows下hosts文件路径` ——  `C:\Windows\System32\drivers\etc`
+
+
++ `Linux下hosts文件路径` —— `/etc/hosts`
+
+
++ 配置虚拟域名：
+
+  ```nginx
+  127.0.0.1 www.hurrican.cn
+  127.0.0.1 hurrican.cn
+  ```
+
++ `server` 块配置：
+
+  ```nginx
+  server{
+    listen 80;
+    server_name www.hurrican.cn;
+    root /home/hurican/web;
+    index index.html;
+  }
+  ```
+
+
+
+**备注** ：
+
++ 可以使用通配符 `*` 与 `正则表达式` 设置域名，实现域名的泛解析
++ `server_name` 有多种设置方式，只要有一种配置成功就会停止继续匹配
++ 匹配优先级顺序为： `精确匹配` >  `以通配符开始的字符串` >  `以通配符结束的字符串`  >  `正则表达式`
+
+
+
+<p align="right"><a href="#virtual_host">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
