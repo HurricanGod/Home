@@ -411,6 +411,17 @@ unset start_sh_map["1"]
 
   ​
 
++ **生成序列**
+
+  ```sh
+  echo $(seq 10)
+
+  # console:
+  # 1 2 3 4 5 6 7 8 9 10
+  ```
+
+  ​
+
 
 
 <p align="right"><a href="#list">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
