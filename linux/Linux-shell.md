@@ -9,11 +9,21 @@
 
 
 + <a href="#variable">**Shell变量**</a>
+  + <a href="#string">**字符串处理**</a>
 
 
 
 
++ <a href="#map">**map**</a>
 
+
++ <a href="#list">**list**</a>
+
+
++ <a href="#arithmetic_op">**算术运算**</a>
+
+
++ <a href="#control">**控制结构**</a>
 
 
 
@@ -155,6 +165,10 @@ name="Hurrican 123"
 
 
 
+
+---
+
+
 ### 数组
 
 + 显示声明一个数组 —— `declare -a 数组名`
@@ -169,8 +183,8 @@ name="Hurrican 123"
 **样例** ：
 
 ```sh
-# 定义一个数组，名字为 list，值为 {1, 2, 3, 4, 5, 6}
-declare -a list=(1, 2, 3, 4, 5, 6)
+# 定义一个数组，名字为 list，值为 {1 2 3 4 5 6}
+declare -a list=(1 2 3 4 5 6)
 
 # 访问下标为0的数组
 echo "first element is ${list[0]}"
@@ -179,35 +193,272 @@ echo "first element is ${list[0]}"
 echo "list[@] is ${list[@]}"
 echo "list[*] is ${list[*]}"
 
+# 获取数组长度
+${#list[@]}
+${#list[*]}
+
+# 删除数组首元素
+unset list[0]
 ```
 
 
 
+<p align="right"><a href="#variable">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+-----
+
 ### 有效的变量引用表达式
 
++ **变量定义如下** ：
+
+  ```shell
+  # 定义变量 
+  declare -a var
+  ```
+
+  ​
+
+|         | 表达式                           | 含义                                       |
+| :------ | :---------------------------- | :--------------------------------------- |
+| 变量      | `$var`                        | 引用名为 `var` 的变量                           |
+| 变量      | `${var}`                      | 避免出现混淆的方式引用名为 `var` 的变量，与`$var`的效果一样<br/>`${var}` 若为数组，则引用的是数组第一个元素 |
+|         |                               |                                          |
+| 数组      | `${var[n]}`                   | 引用数组变量第n个元素的值                            |
+| 数组      | `${var[@]}`<br/>`${var[*]}`   | 引用数组`var`中的所有非空元素                        |
+|         |                               |                                          |
+| 命令行参数长度 | `${#*}`                       | 取运行命令行时实际给出的所有实参字符串的个数，即命令号参数 `$*`数组的长度  |
+|         | `${#@}`                       | 取运行命令行时实际给出的所有实参字符串的个数，即命令号参数 `$@`数组的长度  |
+|         |                               |                                          |
+| 数组长度    | `${#var[*]}`<br/>`${#var[@]}` | 获取数组中设置了值的元素个数，相当于取数组**非空元素数量**          |
+|         |                               |                                          |
+| 预定义特殊变量 | `$#`                          | 命令行参数个数，**不包括** `$0`(**shell脚本名本身**)     |
+| 预定义特殊变量 | `$?`                          | 表示上一条命令执行后的返回值，是一个**十进制**数               |
+| 预定义特殊变量 | `$$`                          | 当前进程号                                    |
+| 预定义特殊变量 | `$*`                          | 表示命令行中实际给出的所有实参                          |
+| 预定义特殊变量 | `$@`                          | 表示命令行中实际给出的所有实参                          |
+|         |                               |                                          |
+
+**注意**：
+
++ `${var[*]}` 与 `${var[@]}` 当使用 `""`括起来时是有差别的
+  + `${var[*]}` 被扩展成一个一个字符串，这个字符串是由**数组中各元素以空格**隔开组成，相当于`python`中的`" ".join(list)`
+  + `${var[@]}` 被扩展成多个字符串，每个数组元素就是一个字符串
 
 
-| 表达式  | 说明   |      |
-| :--- | :--- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
++ 执行`shell`脚本时可以带参数，这些参数可以称为**位置参数**，引用方式依次为：`$0`、`$1`、`$2` ... `$9`、 `${10}`
+  + `$0` —— **总是表示**命令本身或`shell`脚本名，不能用 `set` 命令重新赋值
+  + `shift n` 命令 —— 将**位置参数** 右移 `n` 位（`$0`不参与移位）
 
 
 
 
 
 <p align="right"><a href="#variable">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+---
+
+### <a name="string">**字符串处理**</a>
+
++ **删除字符串前缀**
+
+  + `${var#pattern}` —— 非贪婪模式
+
+  + `${var##pattern}` —— 贪婪模式
+
+    ```shell
+    path="/home/hurrican/hello.sh"
+    echo "path = ${path}"
+    echo '${path#*/} = '${path#*/}	
+    # ${path#*/} = home/hurrican/hello.sh
+
+    echo '${path##*/} = '${path##*/}
+    # '${path##*/} = hello.sh
+    ```
+
+    ​
+
+
++ **删除字符串后缀**
+
+  + `${var%pattern}` —— 非贪婪模式
+
+  + `${var%%pattern}` —— 贪婪模式
+
+    ```shell
+    path="/home/hurrican/hello.sh"
+    echo "path = ${path}"
+
+    echo '${path%/*} = '${path%/*}
+    # ${path%/*} = /home/hurrican
+
+    echo '${path%%/*} = '${path%%/*}
+    # ${path%%/*} = 
+    ```
+
++ **截取字串**
+
+  ```shell
+  string="Hello Shell..."
+  # 从索引 0 开始，取5个字符串
+  echo ${string:0:5}
+
+  # 从索引 5 开始，取5个字符串
+  echo ${string:5:5}
+  ```
+
+
++ **字符串替换** 
+
+  + `${var/old/new}` —— **从左往右** 搜索满足的串，只要找到一个就停止搜索，用新串替换旧串
+
+  ```shell
+  email="Hurrican@163.com"
+  echo 'email is '${email}
+  echo '${email/@163.com/qq.com} = '${email/163.com/qq.com}
+  # email="Hurrican@qq.com"
+
+  email="Hurrican@163.com_@163.com"
+  echo '${email/@163.com/qq.com} = '${email/163.com/qq.com}
+  # ${email/@163.com/qq.com} = Hurrican@qq.com_@163.com
+  ```
+
+  + `${var//old/new}` —— **全局替换**
+
++ ```shell
+  email="Hurrican@163.com_@163.com"
+  ${email//@163.com/qq.com} = Hurrican@qq.com_@qq.com
+
+  # ${email//@163.com/qq.com} = Hurrican@qq.com_@qq.com
+  ```
+
+  ​
+
+
+
+
+
+<p align="right"><a href="#string">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+
+
+------
+
+## <a name="map">**map**</a>
+
+```shell
+declare -a start_sh
+start_sh[0]="/home/hurrican/tomcat8_1/tomcat8.5/bin/startup.sh"
+start_sh[1]="/home/hurrican/tomcat8_2/tomcat8.5/bin/startup.sh"
+
+# 注意：一定要用 -A 选项
+declare -A start_sh_map
+# 往 map 放元素
+start_sh_map["1"]=${start_sh[0]}
+start_sh_map["2"]=${start_sh[1]}
+
+# 从 map 中取元素
+echo ${start_sh_map["1"]}
+echo ${start_sh_map["2"]}
+
+# 获取 map 中的元素个数
+echo 'start_sh_map.size = '${#start_sh_map[@]}
+
+# 从 map 里删除元素
+unset start_sh_map["1"]
+```
+
+
+
+
+
+<p align="right"><a href="#map">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+
+
+
+
+----
+
+## <a name="list">**list**</a>
+
++ 往 `list` 里添加元素
+
+  ```shell
+  declare -a list
+  list=(1 2 3 4 5 1)
+  echo 'current list is: '${list[*]}
+  # 在 list 尾部追加
+  list=(${list[*]} 6)
+  echo 'after append,the list is: '${list[*]}
+
+  # 在 list 头部追加
+  list=(0 ${list[*]})
+
+  # current list is: 1 2 3 4 5 1
+  # after append,the list is: 1 2 3 4 5 1 6
+  ```
+
++ 删除 `list` 中的每个元素
+
+  ```shell
+  # 删除 list 中的元素
+  unset list[5]
+  echo 'after delete,the list is: '${list[*]}
+  # after delete,the list is: 1 2 3 4 5 6
+  ```
+
+  ​
+
+
+
+<p align="right"><a href="#list">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+
+
+------
+
+## <a name="arithmetic_op">**算术运算**</a>
+
+**语法格式** ——  ` let 算术表达式`
+
++ `let j=6*10+5` ==> `((j=6*100+5))`
+
+
+
+
+
+<p align="right"><a href="#arithmetic_op">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="control">**控制结构**</a>
+
++ `if` 语句格式
+
+  ```shell
+  if 测试条件
+  then
+  	command
+  else
+  	command
+  fi
+  ```
+
+  ​
+
+
++ **条件测试**
+  + `test -f $1` —— `test`命令测试
+  + `[]`条件测试 —— 左中括号 `[` 后面跟着**1个空格**， `]` 前面也有**1个空格**，
+
+
++ **测试运算符**
+
+
+
+
+
+<p align="right"><a href="#control">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+----
+
