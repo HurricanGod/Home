@@ -400,7 +400,7 @@ unset start_sh_map["1"]
   # after append,the list is: 1 2 3 4 5 1 6
   ```
 
-+ 删除 `list` 中的每个元素
++ 删除 `list` 中的某个元素
 
   ```shell
   # 删除 list 中的元素
