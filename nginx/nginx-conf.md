@@ -479,5 +479,12 @@ error_log  /dev/null;
 + 匹配优先级顺序为： `精确匹配` >  `以通配符开始的字符串` >  `以通配符结束的字符串`  >  `正则表达式`
 
 
-
 <p align="right"><a href="#virtual_host">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
+
+
+
+-----
+
+## <a name="ref_website">**参考资料**</a>
+
++ <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html">**nginx官方文档**</a>
