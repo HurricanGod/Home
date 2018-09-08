@@ -37,7 +37,6 @@
 + <a href="#datetime">**时间日期**</a>
 
 
-
 ----
 
 ## <a name="groupcmd">**成组命令**</a>
@@ -562,9 +561,6 @@ if test -f /hurrican/;then echo "dir";else echo "file";fi
 | `-d 文件名` | **文件存在**且是**目录**返回True     |                               |
 | `-s 文件名` | **文件存在**且**文件长度大于0**返回True | `test -s /hurrican/readme.md` |
 |          |                            |                               |
-|          |                            |                               |
-|          |                            |                               |
-|          |                            |                               |
 
 
 
@@ -621,8 +617,8 @@ if test -f /hurrican/;then echo "dir";else echo "file";fi
 
 ### <a name="for">`for`循环</a>
 
-+ 值表方式 —— `for var [in var_set]; do command;done`
-+ 算术表达式方式 —— `for((expression1;expression2;expression3)); do command; done`
++ **值表**方式 —— `for var [in var_set]; do command;done`
++ **算术表达式**方式 —— `for((expression1;expression2;expression3)); do command; done`
 
 
 
@@ -710,3 +706,7 @@ function function_name()
   yesterday_str=`date -d @${yesterday} +"%y-%m-%d %H:%M:%S"`
   echo "yesterday_str = ${yesterday_str}"
   ```
+
+
+
+<p align="right"><a href="#datetime">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
