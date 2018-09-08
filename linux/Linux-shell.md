@@ -12,21 +12,29 @@
   + <a href="#string">**字符串处理**</a>
 
 
-
-
 + <a href="#map">**map**</a>
 
 
 + <a href="#list">**list**</a>
 
 
++ <a href="#set">**set**</a>
+
+
 + <a href="#arithmetic_op">**算术运算**</a>
 
 
 + <a href="#control">**控制结构**</a>
+  + <a href="#if">**if语法**</a>
+  + <a href="#for">**for语法**</a>
 
 
 
+
++ <a href="#function">**函数**</a>
+
+
++ <a href="#datetime">**时间日期**</a>
 
 
 
@@ -366,6 +374,17 @@ echo 'start_sh_map.size = '${#start_sh_map[@]}
 
 # 从 map 里删除元素
 unset start_sh_map["1"]
+
+# 获取所有的 key
+echo ${!start_sh_map[@]}
+
+# 遍历 map
+for key in ${!start_sh_map[@]}
+do
+    echo "value = ${key}"
+    echo "value = ${start_sh_map[$key]}"
+    echo ""
+done
 ```
 
 
@@ -428,6 +447,65 @@ unset start_sh_map["1"]
 
 
 
+
+
+----
+
+## <a name="set">**set**</a>
+
+```shell
+#!/bin/sh
+#打开expand_aliases选项
+shopt -s expand_aliases
+
+declare -A array
+array["7080"]="server_7080"
+array["7180"]="server_7180"
+array["7280"]="server_7280"
+array["7380"]="server_7380"
+array["7580"]="server_7580"
+
+list=(server_7080 server_7180 server_7280 server_7380 server_7480)
+
+# 合并两个数组
+merge=(${list[*]} ${array[*]})
+
+# 求交集
+echo -e "\n交集:array & list"
+{ for i in ${merge[*]}; do echo ${i}; done;} | sort | uniq -d
+
+
+# 求并集
+echo -e "\n并集:array | list"
+{ for i in ${merge[*]}; do echo ${i}; done;} | sort | uniq
+
+
+# 求差集 array - list
+echo -e "\n差集:array - list"
+absolute_set=`{ for i in ${merge[*]}; do echo ${i}; done;} | sort | uniq -u`
+intersection=`{ for i in ${merge[*]}; do echo ${i}; done;} | sort | uniq -d`
+diff_set=`{ for i in ${list[*]} ${intersection[*]}; do echo ${i}; done;} | sort | uniq -u`
+diff_set=`{ for i in ${diff_set[*]} ${absolute_set[*]}; do echo ${i}; done;} | sort | uniq -u`
+
+echo -e "${diff_set[*]}"
+```
+
+
+
+`uniq`命令：`uniq [-optional] [input][output]`
+
+| 选项       | 含义                 | 命令                                       |
+| :------- | :----------------- | :--------------------------------------- |
+| `-d`     | 显示**重复**的行         | `echo -e "1\n2\n3\n4\n1\n1" \|sort\|uniq -d` |
+| `-u`     | 仅显示出现1次的行          | `echo -e "1\n2\n3\n4\n1\n1" \|sort\|uniq -u` |
+| `-c`     | 显示重复的次数            |                                          |
+| `input`  | 输入文件，没有默认从标准输入流中读取 |                                          |
+| `output` | 输出文件，未指定则输出到标准输出   |                                          |
+
+
+
+<p align="right"><a href="#set">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
 ------
 
 ## <a name="arithmetic_op">**算术运算**</a>
@@ -446,19 +524,21 @@ unset start_sh_map["1"]
 
 ## <a name="control">**控制结构**</a>
 
-+ `if` 语句格式
+### <a name="if">`if` 语句格式</a>
 
-  ```shell
-  if 测试条件
-  then
-  	command
-  else
-  	command
-  fi
-  ```
+```shell
+if 测试条件
+then
+	command
+else
+	command
+fi
 
-  ​
+# 命令行下执行 if 语句
+if test -f /hurrican/;then echo "dir";else echo "file";fi
+```
 
+​
 
 + **条件测试**
   + `test -f $1` —— `test`命令测试
@@ -471,7 +551,162 @@ unset start_sh_map["1"]
 
 
 
+
++ **文件测试运算符**
+
+| 参数       | 功能                         | 命令                            |
+| :------- | :------------------------- | :---------------------------- |
+| `-r 文件名` | **文件存在**且用户**可读**返回True    | `test -r /hurrican/readme.md` |
+| `-w 文件名` | **文件存在**且用户**可写**返回True    |                               |
+| `-f 文件名` | **文件存在**且是**普通文件**返回True   | `test -f /hurrican/readme.md` |
+| `-d 文件名` | **文件存在**且是**目录**返回True     |                               |
+| `-s 文件名` | **文件存在**且**文件长度大于0**返回True | `test -s /hurrican/readme.md` |
+|          |                            |                               |
+|          |                            |                               |
+|          |                            |                               |
+|          |                            |                               |
+
+
+
+-----
+
++ **字符串测试运算符**
+
+| 参数                       | 功能                               |
+| :----------------------- | :------------------------------- |
+| `-z s1`                  | 字符串长度为0时返回`True`                 |
+| `-n s1`                  | 字符串长度大于0时返回`True`                |
+| `s1`                     | 字符串 `s1` 不是空串返回 `True`           |
+| `s1 = s2`<br/>`s1 == s2` | 字符串 `s1`与字符串 `s2`**相等**返回`True`  |
+| `s1 != s2`               | 字符串 `s1`与字符串 `s2`**不相等**返回`True` |
+| `s1 < s2`                | 按字典序比较，`s1` 在`s2`之前返回`True`      |
+| `s1 > s2`                | 按字典序比较，`s1` 在`s2`之后返回`True`      |
+
+
+
+-----
+
++ **数值测试运算符**
+
+| 参数          | 功能         | 命令   |
+| :---------- | :--------- | :--- |
+| `n1 -eq n2` | `n1 == n2` |      |
+| `n1 -ne n2` | `n1 != n2` |      |
+| `n1 -lt n2` | `n1 < n2`  |      |
+| `n1 -le n2` | `n1 <= n2` |      |
+| `n1 -gt n2` | `n1 > n2`  |      |
+| `n1 -ge n2` | `n1 >= n2` |      |
+
+
+
+
+
+-----
+
++ **逻辑运算符**
+
+```shell
+# 逻辑非 —— !
+[ ! -f /hurrican ]
+
+# 逻辑与 —— -a
+[ "${var}" != "" -a ${var} -gt 0 ]
+
+# 逻辑或 —— -o
+```
+
+
+
+<p align="right"><a href="#control">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p><br/>
+
+### <a name="for">`for`循环</a>
+
++ 值表方式 —— `for var [in var_set]; do command;done`
++ 算术表达式方式 —— `for((expression1;expression2;expression3)); do command; done`
+
+
+
+`Demo`：
+
+```shell
+#!/bin/sh
+set=(1 2 3 4 5 6)
+
+# 值表方式遍历集合
+for ele in ${set[*]}
+do
+	echo ${ele}
+done
+
+echo -e "\n- - - - - - - - - - - - - - - - - - - -\n"
+
+# 算术表达式方式遍历集合
+for((i=0;i<${#set[*]};i++))
+do
+	echo ${set[i]}
+done
+```
+
+
+
 <p align="right"><a href="#control">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
 
 ----
 
+## <a name="function">**函数**</a>
+
+**语法格式** ：
+
+```shell
+function function_name()
+{
+  command
+  [return n]
+}
+```
+
+**备注**：
+
++ 函数的传递使用**位置传参**和**变量**直接传递（**相当于全局变量**）
++ 函数的返回值未指定时默认为最后一条命令执行后的退出值
+
+
+
+
+
+
+
+<p align="right"><a href="#function">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="datetime">**时间日期**</a>
+
++ 获取当前时间戳 ——  `date "+%s"`(**以秒为单位**)
+
+
++ 获取当前日期字符串 —— `date +"%y-%m-%d %H:%M:%S"` → **18-09-09 01:14:35**
+
+
++ 获取指定时间的时间戳 —— `date -d "yyyy-mm-dd HH:MM:SS" +"%s"`(**以秒为单位**)
+
+
++ 日期加减
+
+  ```shell
+  #!/bin/sh
+  # 获取当前时间字符串
+  echo "current_str = "`date +"%y-%m-%d %H:%M:%S"`
+
+  # 获取当前时间戳
+  current=`date "+%s"`
+  echo "current = ${current} s"
+
+  # 获取一天前的时间戳
+  ((yesterday = ${current} - 3600 * 24))
+  echo "yesterday = ${yesterday} s"
+
+  # 获取一天前时间戳对应的日期字符串
+  yesterday_str=`date -d @${yesterday} +"%y-%m-%d %H:%M:%S"`
+  echo "yesterday_str = ${yesterday_str}"
+  ```

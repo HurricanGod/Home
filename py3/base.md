@@ -42,8 +42,7 @@
 + <a href="#zip">**zip**</a>
 
 
-
-
++ <a href="#code">**编码**</a>
 
 
 
@@ -449,15 +448,22 @@ a = [1, 2, 3, 4, 5, 6]
 list(zip( *[iter(a)]*2 ))
 ```
 
-
-
-
-
-
-
-
-
 <p align="right"><a href="#zip">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+---
+
+## <a name="code">**编码**</a>
+
++ `python3`中字符就是 **unicode字符** ，字符串就是**unicode字符数组**
++ `str` 转 `bytes` 叫做 **encode** ，`bytes` 转 `str` 叫 **decode**
+
+
+
+
+
+
+
+<p align="right"><a href="#code">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
 
 ----
 
