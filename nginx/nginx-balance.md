@@ -248,8 +248,8 @@ server{
 |                   |                                          |
 
 
-
-<br/><p><a href="#gzip">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<br/>
+<p><a href="#gzip">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -----
 
@@ -272,8 +272,8 @@ server{
 
 
 
-
-<br/><p><a href="#rewrite">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<br/>
+<p><a href="#rewrite">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -------
 
@@ -290,8 +290,8 @@ server{
 
 
 
-
-<br/><p><a href="#config_optimize">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<br/>
+<p><a href="#config_optimize">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ------
 
@@ -301,7 +301,7 @@ server{
 
 
 
-<br/><p><a href="#cdn">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p><a href="#cdn">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ------
 
