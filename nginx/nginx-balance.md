@@ -26,7 +26,6 @@
 + <a href="#cdn">**CDN**</a>
 
 
-
 -----
 
 <a name="simple_web">**单实例Tomcat + Nginx**</a>
@@ -62,7 +61,7 @@ server{
 
 
 
-<p><a href="#simple_web">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#simple_web">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ----
 
@@ -99,11 +98,33 @@ server{
 
 
 
-<p><a href="#proxy">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#proxy">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ---
 
 ## <a nname="balance">**负载均衡**</a>
+
+**负载均衡** 是对工作任务进行平衡、分割到多个操作单元上执行，优点如下：
+
++ 提高服务器响应速度
++ 避免软件或硬件出现单点失效
++ 解决网络拥塞问题，实现地理位置无关性
+
+
+
+----
+
+**常见的负载均衡架构**：
+
++ ***链路负载均衡***
++ ***集群负载均衡****
++ ***操作系统负载均衡***
+
+
+
+
+
+
 
 `Nginx`中使用`upstream`指令实现负载均衡，负载均衡典型的配置方式有：
 
@@ -169,7 +190,7 @@ upstream 192.168.123.10{
 
 
 
-<p><a href="#balance">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#balance">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -----
 
@@ -223,7 +244,7 @@ server{
 
 
 
-<p><a href="#cache">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#cache">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ---
 
@@ -248,8 +269,8 @@ server{
 |                   |                                          |
 
 
-<br/>
-<p><a href="#gzip">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+<p align="right"><a href="#gzip">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -----
 
@@ -272,8 +293,8 @@ server{
 
 
 
-<br/>
-<p><a href="#rewrite">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+<p align="right"><a href="#rewrite">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -------
 
@@ -291,17 +312,38 @@ server{
 
 
 <br/>
-<p><a href="#config_optimize">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#config_optimize">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ------
 
-## <a name="cdn">**CDN**</a>
+## <a name="cdn">**CDN** ——（内容分发网络）</a>
 
 > CDN 是一种新型的网络构建方式，主要用于网站加速。
+>
+> 依靠部署到各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和效率。
+
+`CDN` = 镜像(`Mirror`) + 缓存(`Cache`) + 整体负载均衡(`GSLB`)
+
+<br/>
+
+**优点** ：
+
++ ***就近获取所需内容****
++ ***降低网络拥塞***
++ 反向代理的延伸
 
 
 
-<p><a href="#cdn">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
+**缺点**：
+
++ 部署成本高
++ 维护成本高
+
+
+
+
+
+<p align="right"><a href="#cdn">返回</a>&nbsp&nbsp |&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ------
 
