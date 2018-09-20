@@ -68,7 +68,7 @@
   git reset --hard HEAD^
   ```
 
-  ![commit_id]()
+  ![commit_id](https://github.com/HurricanGod/Home/blob/master/project-manage/git/img/commit_id.png)
 
 ---
 
