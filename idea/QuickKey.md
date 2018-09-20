@@ -68,4 +68,4 @@
 
 + ***不显示某些文件***
 
-  ![ignore]()
+  ![ignore](https://github.com/HurricanGod/Home/blob/master/idea/img/ignore.jpg)
