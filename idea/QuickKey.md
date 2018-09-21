@@ -38,7 +38,7 @@
 | `Ctrl + Alt + H`       | 打开**调用了当前光标所指方法**的所有类的方法列表               |                                 |
 |                        |                                          |                                 |
 | `Ctrl + E`             | 打开最近访问的文件                                |                                 |
-| `Ctrl + Shift + E` | `Alt + E`    | 打开**最近编辑**的文件                            |                                 |
+| `Ctrl + Shift + E` or  `Alt + E`    | 打开**最近编辑**的文件                            |                                 |
 |                        |                                          |                                 |
 | `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a> | <a href="#DoubleShift">效果参考</a> |
 | `Alt + 1`              | <a name="Alt1Gif">  - </a>               | <a href="#Alt1">效果参考</a>        |
