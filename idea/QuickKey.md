@@ -32,13 +32,13 @@
 | `Ctrl + G`             | 跳转到某一行代码                                 |                                 |
 | `Ctrl + Shift + I`     | <a name="CtrlShiftIGif"> **以浮窗的形式打开1个类** </a> | <a href="#CtrlShiftI">效果参考</a>  |
 | `Ctrl + U`             | 跳转到父类                                    |                                 |
-|                        |                                          |                                 |
+|   -                    |                                          |                                 |
 | `Ctrl + H`             | **打开类的继承关系列表**                           |                                 |
 | `Ctrl + Shift + H`     | 打开某个类方法的继承关系列表                           |                                 |
 | `Ctrl + Alt + H`       | 打开**调用了当前光标所指方法**的所有类的方法列表               |                                 |
 |                        |                                          |                                 |
 | `Ctrl + E`             | 打开最近访问的文件                                |                                 |
-| `Ctrl + Shift + E`     | 打开**最近编辑**的文件                            |                                 |
+| `Ctrl + Shift + E` | `Alt + E`    | 打开**最近编辑**的文件                            |                                 |
 |                        |                                          |                                 |
 | `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a> | <a href="#DoubleShift">效果参考</a> |
 | `Alt + 1`              | <a name="Alt1Gif">  - </a>               | <a href="#Alt1">效果参考</a>        |
