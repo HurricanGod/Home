@@ -17,9 +17,9 @@
 
 +  查看配置
 
-  ```shell
-  git config --list
-  ```
+   ```shell
+   git config --list
+   ```
 
 
 
@@ -69,6 +69,39 @@
   ```
 
   ![commit_id](https://github.com/HurricanGod/Home/blob/master/project-manage/git/img/commit_id.png)
+
+  ​
+
+  **背景** ：
+
+  > ​     有1个文件在某次提交时被删除或者清空了，但一时没有注意到。经过n多次commit后才发现这个文件内容没了，此时我要多么希望能回到过去把文件复制出来，当前版本可以不用做任何改动，只需再`commit`一次就好了！
+  >
+  > ​    在 git 的世界里还真可以穿越，哈哈，没想到吧~
+  >
+  > ​
+
+  ```shell
+  # 步骤1：使用下面其中一个命令查看 commit  记录
+  ① git log
+  ② git log -- 待穿越的文件名
+
+  # 重点：
+  # 记下最新一个 commit 的 id，能不能穿越回来就靠它了
+  # 假设当前最新的一个 commit_id 为 c3fbadcb7d28b37da3807a4e8981063cefe82fa7
+  # 找到要恢复到的 commit_id，至于怎么找就看平时 commit 时规不规范
+  # 假设要恢复的 commit_id 为 13d99a259725fdb244c4d210ba78d93b53261dde
+
+  # 使用 git reset --hard commit id 回到过去
+  git reset --hard 13d99a259725fdb244c4d210ba78d93b53261dde
+
+  # 好了，回到过去了！把要恢复的文件单独复制出来
+  # 如果穿越到过去不回来的话，穿越到的时期到当前最新一次commit时间内的修改都会丢失
+  # 醒醒，回到现实吧
+  git reset --hard c3fbadcb7d28b37da3807a4e8981063cefe82fa7
+
+  ```
+
+  ​
 
 ---
 
