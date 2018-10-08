@@ -111,7 +111,6 @@ server{
 + 解决网络拥塞问题，实现地理位置无关性
 
 
-
 ----
 
 **常见的负载均衡架构**：
@@ -166,7 +165,7 @@ upstream 192.168.123.10{
 
 + 使用`weight`参数设置权重大小，`weight`越大被分配到的概率就越大
 + 主要用于服务器硬件配置不一致的场景
-<br/><br/>
+  <br/><br/>
 
 ```nginx
 upstream 192.168.123.10{
@@ -188,6 +187,54 @@ upstream 192.168.123.10{
 + 将每个请求按照访问IP的`hash`结果进行分配，同个IP的客户端固定访问一台Web服务器
 + 可以解决`Session`共享问题
 + **ip_hash负载均衡的方式无法保证Web服务器的均衡负载**
+
+
+
+
+**样例** ：
+
+```nginx
+user root;
+worker_processes 2;
+pid /run/nginx.pid;
+events {
+	worker_connections 1024;
+}
+http {
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 65;
+	types_hash_max_size 2048;
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	ssl_prefer_server_ciphers on;
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	gzip on;
+	gzip_disable "msie6";
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+    server{
+        listen 80;
+        server_name 118.89.57.129 localhost 127.0.0.1;
+        
+        location / {
+            proxy_pass http://118.89.57.129;
+            access_log /home/hurrican/nginx/web/web-access.log;
+        }
+        error_page 500 502 503 504 /50x.html;
+    }
+    upstream 118.89.57.129{
+        ip_hash;
+        server localhost:8080;
+        server localhost:8081;
+    }
+}
+```
+
+
+
 
 
 

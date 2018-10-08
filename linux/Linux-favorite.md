@@ -212,3 +212,23 @@ ifconfig
 iftop -i eth0
 ```
 
+
+
+
+
+----
+
+## <a name="iptables">防火墙</a>
+
++ 添加过滤规则
+
+  ```shell
+  iptables -t filter -A INPUT -p tcp -m tcp --dport 8080 -s localhost -j ACCEPT
+
+  iptables -t filter -A INPUT -p tcp -m tcp --dport 8080 -j REJECT
+  ```
+
+  + `-p` 参数：用于指定协议
+  + `-dport`参数： 指定目标端口，指数据从外网访问服务器使用的端口号
+  + `-sport`参数：数据源端口，指从服务器出去的端口
+  + `-j`参数：**ACCEPT**表示接收
