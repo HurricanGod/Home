@@ -1,6 +1,7 @@
 # <a name="top">高级特性</a>
 
 + <a href="#insert">**insert高级语法**</a>
++ <a href="#processlist">**查看MySQL进程状态**</a>
 
 
 
@@ -58,3 +59,15 @@ where id=10
 <p align="right"><a href="#insert">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
 ----
+
+## <a name="processlist">查看MySQL进程状态</a>
+
+```mysql
+show processlist;
+```
+![processlist.png]()
+
+<p align="right"><a href="#processlist">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
+
+----
+
