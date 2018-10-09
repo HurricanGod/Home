@@ -29,6 +29,7 @@ insert into exception_log set last_update_time=now(),exception_name=DEFAULT;
 ```
 <br/>
 + 一次性插入多个值
+
 ```mysql
 insert into 
 exception_log(detail,last_update_time) values
@@ -37,6 +38,18 @@ exception_log(detail,last_update_time) values
 ('test4', now());
 ```
 
++ 将查询结果作为插入的值
+
+**语法** ： `insert into table_name(field0, field1) select field0, field1 from table_name [ where condition]`
+
+```mysql
+insert into 
+exception_log(exception_name,last_update_time) 
+select exception_name,last_update_time  
+from exception_log 
+where id=10
+;
+```
 
 
 <p align="right"><a href="#insert">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
