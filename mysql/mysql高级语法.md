@@ -2,6 +2,7 @@
 
 + <a href="#insert">**insert高级语法**</a>
 + <a href="#processlist">**查看MySQL进程状态**</a>
++ <a href="#transaction">**事务**</a>
 
 
 
@@ -51,8 +52,7 @@ insert into
 exception_log(exception_name,last_update_time) 
 select exception_name,last_update_time  
 from exception_log 
-where id=10
-;
+where id=10;
 ```
 
 
@@ -70,4 +70,12 @@ show processlist;
 <p align="right"><a href="#processlist">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
 ----
+## <a name="transaction">事务</a>
+
+
+
+<p align="right"><a href="#transaction">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
+
+-----
+
 
