@@ -3,6 +3,7 @@
 + <a href="#insert">**insert高级语法**</a>
 + <a href="#processlist">**查看MySQL进程状态**</a>
 + <a href="#transaction">**事务**</a>
++ <a href="#function">**常用函数**</a>
 
 
 
@@ -72,10 +73,42 @@ show processlist;
 ----
 ## <a name="transaction">事务</a>
 
++ 普通的MySQL执行语句后，当前的数据提交操作均可被其他客户端可见；事务则暂时***关闭自动提交机制***，需要 `手动commit` 提交持久化数据操作
++ 数据定义语言（DDL）语句不能被回滚，比如创建或删除数据库的语句，修改表结构语句
++ `set autocommit = 0|1` 用于设置当前会话是否自动提交事务，其中**1**表示自动提交事务
+
+```mysql
+begin(或者 start transaction)
+
+commit
+
+rollback
+```
 
 
 <p align="right"><a href="#transaction">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
 -----
 
+## <a name="function">常用函数</a>
+
+函数名 |功能描述|样例
+:---  |:---    |:---
+concat(str1[,str2,...]) | 字符串连接| `select concat('a', 'b');`
+concat_ws(separator,str1,str2[,str3,...]) | 字符串连接| `select concat_ws(':','a', 'b','bbaa');`
+length(str) |计算字符串字节长度|
+char_length(str)|计算字符个数|
+strcmp(string1 ,string2)|逐字符比较两字串大小|
+-|-|
+sqrt(x)|算术平方根|
+rand()|获取随机小数，0-1|
+round(x)| 四舍五入取整|
+truncate(x, d)|截取d位小数|
+-|-|
+current_timestamp()|当前日期时间|
+now()|当前日期时间|
+current_date()|当前日期|
+
+
+<p align="right"><a href="#function">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
