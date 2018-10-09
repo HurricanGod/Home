@@ -28,6 +28,7 @@ CREATE TABLE `exception_log` (
 insert into exception_log set last_update_time=now(),exception_name=DEFAULT;
 ```
 <br/>
+
 + 一次性插入多个值
 
 ```mysql
@@ -41,6 +42,7 @@ exception_log(detail,last_update_time) values
 <br/>
 
 + 将查询结果作为插入的值
+
 **语法** ： `insert into table_name(field0, field1) select field0, field1 from table_name [ where condition]`
 
 ```mysql
