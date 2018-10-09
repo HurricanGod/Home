@@ -38,8 +38,9 @@ exception_log(detail,last_update_time) values
 ('test4', now());
 ```
 
-+ 将查询结果作为插入的值
+<br/>
 
++ 将查询结果作为插入的值
 **语法** ： `insert into table_name(field0, field1) select field0, field1 from table_name [ where condition]`
 
 ```mysql
