@@ -12,6 +12,8 @@
 + <a href="#transaction">**事务**</a>
 
 
++ <a href="#table_preserve">**表维护**</a>
+
 
 
 ----
@@ -136,3 +138,17 @@ show processlist;
 
 -----
 
+## <a name="table_preserve">**表维护**</a>
+
++ `analyze table table_name`
+
+
++ `optimize table table_name`
+
+
+
+
+
+
+
+<p align="right"><a href="#table_preserve">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
