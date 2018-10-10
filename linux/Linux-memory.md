@@ -4,7 +4,10 @@
 
 + <a href="#memory" >**Linux内存**</a>
 
+
+
 + <a href="#mem_top" >**查看Linux内存占用情况**</a>
+
 
 + <a href="#top_cmd">**Top命令**</a>
 
@@ -15,10 +18,35 @@
 
 + ***虚拟内存***
 > 虚拟内存就是为了满足物理内存的不足而提出的策略，使用磁盘空间虚拟出一块逻辑内存。用作虚拟内存的磁盘空间被称为交换空间，
-当物理内存不足时，Linux就会将暂时不用的内存块信息写到虚拟内存里，以后需要用到时再从虚拟内存里读入到物理内存里即可。
+> 当物理内存不足时，Linux就会将暂时不用的内存块信息写到虚拟内存里，以后需要用到时再从虚拟内存里读入到物理内存里即可。
 
 
-+ 
++ ***cached & buffers***
+
+> buffers —— 用于块设备做缓冲（块设备的读写缓冲区），只记录文件系统的metadata 以及 tracking in-flight pages
+>
+> cached —— 作为页面缓存的内存，文件系统的 cache。Linux内核为提高读写性能和速度，会将文件在内存中进行缓存，这部分内存称为缓存内存。
+>
+> 缓存内存（Cache Memory）不会自动释放，在需要使用是会自动释放
+
+
+
++ ***共享内存***
+
+> 共享内存是指多个进程共享一段物理内存，将同一段物理内存映射到不同进程的虚拟空间实现的，进程间通信的最简单方式之一。
+>
+> 由于共享内存映射到了不同进程虚拟空间，所以不同进程里可以直接使用，不需要进行额外的复制，因此效率很高
+
+
+
++ `VSS(Virtual Set Size)` —— 虚拟耗用内存，包含共享库占用的内存
++ `RSS` —— 实际使用的物理内存
++ `PSS` —— 实际使用的物理内存
++ `USS` —— 进程独占的物理内存，**不包含共享库占用的内存**
+
+
+
+
 
 <p align="right"><a href="#memory">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
 
@@ -63,7 +91,7 @@
 + `START` —— **进程启动的时间和日期**
 + `TIME` —— **进程使用的总CPU时间**
 + `COMMAND` —— 正在执行的命令行命令
-![](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png)
+  ![](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-auxw.png)
 
 <p align="right"><a href="#mem_top">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
 
