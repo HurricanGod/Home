@@ -2,6 +2,8 @@
 
 
 
++ <a href="#memory" >**Linux内存**</a>
+
 + <a href="#mem_top" >**查看Linux内存占用情况**</a>
 
 + <a href="#top_cmd">**Top命令**</a>
@@ -9,8 +11,19 @@
 
 
 -----
+## <a name="memory" >Linux内存</a>
 
-<a name="mem_top" >**查看Linux内存占用情况**</a>
++ ***虚拟内存***
+> 虚拟内存就是为了满足物理内存的不足而提出的策略，使用磁盘空间虚拟出一块逻辑内存。用作虚拟内存的磁盘空间被称为交换空间，
+当物理内存不足时，Linux就会将暂时不用的内存块信息写到虚拟内存里，以后需要用到时再从虚拟内存里读入到物理内存里即可。
+
+
++ 
+
+<p align="right"><a href="#memory">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
+----
+
+## <a name="mem_top" >**查看Linux内存占用情况**</a>
 
 
 
