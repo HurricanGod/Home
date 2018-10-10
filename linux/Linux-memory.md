@@ -4,7 +4,7 @@
 
 + <a href="#mem_top" >**查看Linux内存占用情况**</a>
 
-+ <a href="#top">**Top命令**</a>
++ <a href="#top_cmd">**Top命令**</a>
 
 
 
@@ -54,13 +54,13 @@
 <p align="right"><a href="#mem_top">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
 
 ----
-## <a name="top">Top命令</a>
+## <a name="top_cmd">Top命令</a>
 对 `top` 输出结果指定某列进行排序：
 + `top` → `shift + f` 
 + 使用 `↑` 或 `↓` 选择排序列，使用 `s` 进行确定
 + `q` 退出生效
 
-<p align="right"><a href="#top">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
+<p align="right"><a href="#top_cmd">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
 
 
 
