@@ -3,6 +3,9 @@
 + <a href="#insert">**insert高级语法**</a>
 
 
++ <a href="#lock_query">**加锁查询**</a>
+
+
 + <a href="#processlist">**查看MySQL进程状态**</a>
 
 
@@ -83,6 +86,23 @@ CREATE TABLE `exception_log` (
 <p align="right"><a href="#insert">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
 ----
+## <a name="lock_query">**加锁查询**</a>
+> 查询时使用 for update 可以进行加锁查询。当表结构采用的存储引擎为Innodb时，若查询条件为主键，所加的锁为行锁
+
+
+使用 `for update` 加锁方式查询
+```mysql
+SELECT id, last_update_time
+FROM exception_log
+WHERE exception_name = 'npe'
+LIMIT 0, 1
+FOR UPDATE
+```
+
+
+<p align="right"><a href="#lock_query">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
+
+----
 
 ## <a name="processlist">查看MySQL进程状态</a>
 
@@ -94,6 +114,7 @@ show processlist;
 <p align="right"><a href="#processlist">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 
 ----
+
 ## <a name="transaction">事务</a>
 
 + 普通的MySQL执行语句后，当前的数据提交操作均可被其他客户端可见；事务则暂时**关闭自动提交机制**，需要 `手动 commit` 提交持久化数据操作
