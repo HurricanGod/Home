@@ -34,6 +34,9 @@ whereis  []  文件或目录名
 ```shell
 locate [-i] keyword		# 忽略大小写差异
 locate [-r] keyword		# 后面可接正则表达式的显式方式
+
+# 若新创建的文件无法使用 locate 搜索到具体路径，可以使用 updatedb 更新数据库
+updatedb
 ```
 
 
