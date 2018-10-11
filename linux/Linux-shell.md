@@ -529,6 +529,8 @@ echo -e "${diff_set[*]}"
 if 测试条件
 then
 	command
+elif
+	command
 else
 	command
 fi
