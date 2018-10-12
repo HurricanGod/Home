@@ -73,8 +73,47 @@
 
 -----
 
-## <a name="mysql_install">**MySQL安装**</a>
+## <a name="mysql_install">**MySQL5.7安装**</a>
 
++ **准备** ：
+```shell
+apt update
+
+# 查看 apt-get install mysql-server 可以安装的 MySQL 版本
+apt-cache search mysql|grep mysql-server
+
+# 获取 MySQL5.7 版本相关文件
+wget -P /home/mysql http://dev.mysql.com/get/mysql-apt-config_0.8.0-1_all.deb
+dpkg -i /home/mysql/mysql-apt-config_0.8.0-1_all.deb
+
+apt-get update
+
+# 安装 MySQL 服务器，过程略
+apt-get install mysql-server
+
+```
+
+***安装过程中有个输入 root 账户密码的步骤，需要记住这个密码***
+
+
+
++ **配置MySQL5.7**
+登录 `MySQL` 服务器
+```mysql
+~# mysql -u root -p
+Enter password: 
+
+# 以 root 身份登录进去后创建1个允许远程访问的用户
+# 语法： create user '用户名'@'IP' identified by '密码';
+# IP 选项中 % 是通配符，表示允许所有用户登录
+create user 'Hurrican'@'%' identified by 'Xmx256Xms128';
+
+# 刷新用户权限
+flush privileges;
+
+```
+**备注**:
++ 若进行上述操作任**无法使用外网访问服务器**上的 `MySQL` 时可以参考<a href="https://www.cnblogs.com/funnyboy0128/p/7966531.html">这篇博客</a>
 
 
 
