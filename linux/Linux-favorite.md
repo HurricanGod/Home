@@ -51,7 +51,7 @@
 + `ps -T -p pid` —— 显示进程 `pid` 包含的线程
 ![thread_in_pid]()
 
-<p><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ----
 
@@ -73,7 +73,7 @@ kill -s SIGCHLD pid
 
 
 
-<p><a href="#ps">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#ps">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 ----
 
 ## <a name="echo">echo命令</a>
@@ -95,7 +95,7 @@ kill -s SIGCHLD pid
 + `-n换行输出`
 
 
-<p><a href="#echo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#echo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 ----
 
 ## <a name="type">**type** —— 找出给定命令的信息</a>
@@ -143,7 +143,7 @@ df -hT /home
 
 ![](https://github.com/HurricanGod/Home/blob/master/linux/img/dfh.png)
 
-<p><a href="#disk">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#disk">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ------
 
@@ -201,7 +201,7 @@ s: 指定要送出的信息
 
 
 
-<p><a href="#userManage">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#userManage">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ------
 
@@ -225,7 +225,7 @@ tail -10 file
 ll |tail -2	# 输出ll命令结果的最后两行
 ```
 
-<p><a href="#head_tail">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#head_tail">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
   
 -----
 ## <a name="network_monitor">网络监控</a>
@@ -241,7 +241,7 @@ iftop -i eth0
 ```
 
 
-<p><a href="#network_monitor">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+<p align="right"><a href="#network_monitor">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 
 ----
@@ -261,4 +261,4 @@ iftop -i eth0
   + `-sport`参数：数据源端口，指从服务器出去的端口
   + `-j`参数：**ACCEPT**表示接收
   
- <p><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+ <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
