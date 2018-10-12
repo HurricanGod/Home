@@ -1,31 +1,44 @@
-## <a name="top">Linux常用命令</a> 
+# <a name="top">Linux常用命令</a> 
 
++ <a href="#netstat">`netstat`</a>
 
++ <a href="#ps">**进程**</a>
 
----
++ <a href="#echo">`echo`</a>
 
++ <a href="#disk">**磁盘**</a>
 
++ <a href="#userManage">**用户管理**</a>
 
++ <a href="#head_tail">`head & tail`</a>
 
++ <a href="#network_monitor">**网络监控**</a>
 
-
++ <a href="#iptables">**防火墙**</a>
 
 ----
 
-### <a name="netstat">netstat</a>
+## <a name="netstat">netstat</a>
 
 + `netstat` **-ntlp**  —— 显示**TCP相关**的进程监听的端口信息
+  + `-a (all)`：显示所有选项，默认不显示LISTEN相关
+  + `-t (tcp)`：仅显示tcp相关选项
+  + `-u (udp)`：仅显示udp相关选项
+  + `-n`：拒绝显示别名，能显示数字的全部转化成数字
+  + `-l `：仅列出有在 Listen (监听) 的服務状态
+  + `-p`：显示建立相关链接的程序名
+  + `-s`：按各个协议进行统计
+  + `-T (show threads)`：显示线程
+  
+  
 
+
+
+
++  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
 ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
-> `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-
-
-
-
-
 + `netstat -tulp n` —— 显示对应进程**pid**的网络端口
-
 
 
 + `nbtstat -A x.x.x.x` —— `x.x.x.x`为ip地址，该命令用于获取ip地址对应的域名
@@ -33,18 +46,37 @@
 
 + `lsof -i:端口号` —— 根据端口号查看进程
   ![](https://github.com/HurricanGod/Home/blob/master/linux/img/lsof.png)
+  
+
++ `ps -T -p pid` —— 显示进程 `pid` 包含的线程
+![thread_in_pid]()
+
+<p><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ----
 
-### <a name="ps">ps</a>
+## <a name="ps">进程</a>
 
++ ***查找进程***
 `ps -ef|grep 搜索串` —— 查看含有**搜索串**的进程信息
 
 
++ ***查找僵尸进程并kill掉***
 
+```shell
+# 列出进程表中的僵尸进程
+ps aux|grep Z
+
+# 杀掉僵尸进程
+kill -s SIGCHLD pid
+```
+
+
+
+<p><a href="#ps">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 ----
 
-### echo命令
+## <a name="echo">echo命令</a>
 
 
 
@@ -63,9 +95,10 @@
 + `-n换行输出`
 
 
+<p><a href="#echo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 ----
 
-<a name="type">**type** —— 找出给定命令的信息</a>
+## <a name="type">**type** —— 找出给定命令的信息</a>
 
 + `type -p command` —— 找出给定命令的绝对路径
 + `type -a command` —— 找出并显示命令的所有信息
@@ -76,14 +109,20 @@
 
 ------
 
-<a name="du">文件系统磁盘使用情况 —— **du**</a>
+## <a name="disk">磁盘</a>
+
+### <a name="du">磁盘使用情况 —— **du**</a>
 
 > du(disk usage)——用于查找文件或目录的磁盘使用情况
 
-+ `du -h /home` —— 显示 `/home`目录下的所有文件和目录以及显式块大小
+```shell
+#  显示 `/home`目录下的所有文件和目录以及显式块大小
+du -h /home
 
+# 目录的总磁盘大小
+du -sh /home
 
-+ `du -sh /home` —— 目录的总磁盘大小
+```
 
 ![du-h](https://github.com/HurricanGod/Home/blob/master/linux/img/du-h.png)
 
@@ -91,16 +130,20 @@
 
 ------
 
-<a name="df">显式linux系统的磁盘利用率 —— **df**</a>
+### <a name="df">磁盘利用率 —— **df**</a>
 
-+ `df -h` —— 显示设备名称、总块数、总磁盘空间、已用磁盘空间、可用磁盘空间和文件系统上的挂载点
+```shell
+# 显示设备名称、总块数、总磁盘空间、已用磁盘空间、可用磁盘空间和文件系统上的挂载点
+df -h
 
-
-
-+ `df -hT /home` —— **显示特定分区信息**
+# 显示特定分区信息
+df -hT /home
+```
 
 
 ![](https://github.com/HurricanGod/Home/blob/master/linux/img/dfh.png)
+
+<p><a href="#disk">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ------
 
@@ -118,19 +161,7 @@
 
 ----
 
-<a name="showZProcess">**找出僵尸进程**</a>
 
-+  `ps aux|grep Z` —— 列出进程表中的僵尸进程
-
-
-+ `kill -s SIGCHLD pid` —— 杀掉僵尸进程
-
-
-
-
-
-
-----
 
 <a name="kill">**kill**命令</a>
 
@@ -158,7 +189,7 @@ s: 指定要送出的信息
 
 -----
 
-<a name="userManage">**Linux用户管理**</a>
+## <a name="userManage">用户管理</a>
 
 | 命令                           | 描述            |
 | :--------------------------- | :------------ |
@@ -170,12 +201,13 @@ s: 指定要送出的信息
 
 
 
-
+<p><a href="#userManage">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 ------
 
-### <a name="head">通过管道截取上一条命令的前n行</a>
+## <a name="head_tail">head & tail</a>
 
+**通过管道截取上一条命令的前n行**
 ```shell
 head -n 10 file
 head -10 file
@@ -184,13 +216,7 @@ head -10 file
 ll |head -2	# 输出ll命令结果的前2行
 ```
 
-
-
-
-
-----
-
-<a name="tail">通过管道截取上一条命令的最后n行</a>
+**通过管道截取上一条命令的最后n行**
 
 ```shell
 tail -n 10 file
@@ -199,8 +225,10 @@ tail -10 file
 ll |tail -2	# 输出ll命令结果的最后两行
 ```
 
+<p><a href="#head_tail">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+  
 -----
-<a name="iftop">实时网络监控</a>
+## <a name="network_monitor">网络监控</a>
 ```shell
 # 安装 iftop 工具
 apt install iftop
@@ -213,7 +241,7 @@ iftop -i eth0
 ```
 
 
-
+<p><a href="#network_monitor">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
 
 ----
@@ -232,3 +260,5 @@ iftop -i eth0
   + `-dport`参数： 指定目标端口，指数据从外网访问服务器使用的端口号
   + `-sport`参数：数据源端口，指从服务器出去的端口
   + `-j`参数：**ACCEPT**表示接收
+  
+ <p><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
