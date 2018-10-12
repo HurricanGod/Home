@@ -100,7 +100,7 @@ apt-get install mysql-server
 + **配置MySQL5.7**
 登录 `MySQL` 服务器
 ```mysql
-~# mysql -u root -p
+mysql -u root -p
 Enter password: 
 
 # 以 root 身份登录进去后创建1个允许远程访问的用户
