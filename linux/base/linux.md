@@ -12,7 +12,6 @@
 + <a href="#tip">**事半功倍的小提示**</a>
 
 
-
 ------
 
 ## <a name="file">**文件**</a>
@@ -80,6 +79,21 @@
 
   ![cd](https://github.com/HurricanGod/Home/blob/master/linux/base/img/cd.gif)
 
+  ```shell
+  # 假设当前路径为 /hurrican/linux/test
+  # 使用 pwd 检验当前路径是否为  /hurrican/linux/test
+  # cd .. 跳转到 /hurrican/linux 目录
+  cd ..
+
+  # cd ../../ 跳转到 /hurrican 目录
+  cd ../../
+
+  # 假设 /hurrican 目录有 maven 目录，可以使用如下目录记录 /hurrican/maven
+  cd ../maven
+  ```
+
+  ​
+
 
 + `pwd` —— 显示当前目录，见上图
 
@@ -100,12 +114,35 @@
 
 + `touch` —— **新建文件**
 
+  ```shell
+  # 创建 hello.txt 文件，里面什么内容也没有
+  touch hello.txt
+  ```
+
+  ​
+
 
 
 
 <p align="right"><a href="#command">返回</a></p>
 
 + `mv` —— **移动文件** or **文件重命名**
+
+  ```shell
+  # 假设当前目录为 /hurrican/linux/test
+  # 使用 pwd 检验当前路径是否为  /hurrican/linux/test
+  # /hurrican/linux 下有 test 文件夹 和 my 文件夹
+  # /hurrican/linux/test 目录下有 a.txt b.txt
+
+  # 将 a.txt移动到 my 文件夹下的命令如下：
+  mv a.txt ../my
+
+  # 将 b.txt 重命名为 c.txt 的方法如下：
+  mv b.txt c.txt
+  # /hurrican/linux
+  ```
+
+  ​
 
 
 
@@ -120,6 +157,23 @@
 <p align="right"><a href="#command">返回</a></p>
 
 + `cp` —— **复制文件**
+
+  ```shell
+    # 假设当前目录为 /hurrican/linux/test
+    # 使用 pwd 检验当前路径是否为  /hurrican/linux/test
+    # /hurrican/linux/test 目录下有 c.txt
+    
+    # 复制 c.txt 到当前文件夹，复制后的名字为 d.txt 的命令如下：
+    cp c.txt d.txt
+    
+    # 将 c.txt复制到 /hurrican/linux 的命令如下：
+    cp c.txt ../
+    
+    # 或者可以使用全路径
+    cp c.txt  /hurrican/linux
+  ```
+
+  ​
 
 
 
