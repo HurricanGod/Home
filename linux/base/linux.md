@@ -35,7 +35,7 @@
 
   + **写权限是什么？**——**写权限**是指用户对**文件内容的修改**、 **重命名**、**删除文件**等权限
   + **谁可以写文件？**
-    + <a href="#">`root用户`</a>
+    + <a href="#user">`root用户`</a>
     + 文件的主人
 
 + `执行`
@@ -46,6 +46,7 @@
 
     ![enable_exec](https://github.com/HurricanGod/Home/blob/master/linux/base/img/enable_exec.png)
 
+----
 
 
 ### `ls -l(或ll)`命令作用
