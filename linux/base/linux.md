@@ -8,6 +8,11 @@
 
 + <a href="#command">**常用命令**</a>
 
+
++ <a href="#tip">**事半功倍的小提示**</a>
+
+
+
 ------
 
 ## <a name="file">**文件**</a>
@@ -25,11 +30,11 @@
 + `读权限`
 
   +  **什么是读权限？** —— 哪`Windows`系统来类比，当你打开一个文件查看内容时就是**在使用读权限** ，`Linux`中也一样你查看文件中的内容就是要**有读权限** ，若**没有读权限**将不能打开文件读取内容
-  + **谁可以读文件？**
-    + <a href="#user">`root用户`</a>
-    + 文件的主人——使用 `ls -l(有些地方可以简写为ll)`查看文件所属主人
-    + ![file_ll](https://github.com/HurricanGod/Home/blob/master/linux/base/img/file_ll.png)
-    + **待补充...**
+  +  **谁可以读文件？**
+     + <a href="#user">`root用户`</a>
+     + 文件的主人——使用 `ls -l(有些地方可以简写为ll)`查看文件所属主人
+     + ![file_ll](https://github.com/HurricanGod/Home/blob/master/linux/base/img/file_ll.png)
+     + **待补充...**
 
 + `写权限`
 
@@ -45,21 +50,6 @@
   + 一般具有执行权限的文件都是**绿色**的
 
     ![enable_exec](https://github.com/HurricanGod/Home/blob/master/linux/base/img/enable_exec.png)
-
-----
-
-
-### `ls -l(或ll)`命令作用
-
-![ll_detail](https://github.com/HurricanGod/Home/blob/master/linux/base/img/ll_detail.png)
-
-
-
-
-
-
-
-
 
 
 
@@ -94,6 +84,10 @@
 + `pwd` —— 显示当前目录，见上图
 
 
+<p align="right"><a href="#command">返回</a>|</p>
+
+
+
 + `mkdir` —— 创建文件夹
 
   + `mkdir /hurrican` —— 将创建`hurrican`文件夹
@@ -102,27 +96,61 @@
   ![mkdir](https://github.com/HurricanGod/Home/blob/master/linux/base/img/mkdir.gif)
 
 
+<p align="right"><a href="#command">返回</a>|</p>
+
 + `touch` —— **新建文件**
 
+
+
+
+<p align="right"><a href="#command">返回</a>|</p>
 
 + `mv` —— **移动文件** or **文件重命名**
 
 
+
+
+<p align="right"><a href="#command">返回</a>|</p>
+
 + `locate` + `updatedb` —— **查找文件的路径**
 
+
+
+
+<p align="right"><a href="#command">返回</a>|</p>
 
 + `cp` —— **复制文件**
 
 
+
+
+<p align="right"><a href="#command">返回</a>|</p>
+
 + `ls`
 
+  + `ls -l`——有些系统可以简写为`ll`
+
+    ![](https://github.com/HurricanGod/Home/blob/master/linux/base/img/ll_detail.png)
 
 
-**Tip** ：
+
+
+
+
+<p align="right"><a href="#command">返回</a>|<a href="#top">返回目录</a></p>
+
+-----
+
+## <a name="tip">**事半功倍的小提示**</a>
+
+
 
 + `↑` 可以重新执行已执行过的命令，可以一直按`↑` 查找执行过的历史命令
 + `↓` —— 试试就知道有什么作用了
 + `Tab` —— **智能补全路径、命令**，想少敲键盘**一定要常用Tab键**
+
+
+
 
 
 
