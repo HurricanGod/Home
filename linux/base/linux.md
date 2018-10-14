@@ -28,7 +28,7 @@
   + **谁可以读文件？**
     + <a href="#">`root用户`</a>
     + 文件的主人——使用 `ls -l(有些地方可以简写为ll)`查看文件所属主人
-    + ![file_ll]()
+    + ![file_ll](https://github.com/HurricanGod/Home/blob/master/linux/base/img/file_ll.png)
     + **待补充...**
 
 + `写`
@@ -44,13 +44,13 @@
 
   + 一般具有执行权限的文件都是**绿色**的
 
-    ![]()
+    ![enable_exec](https://github.com/HurricanGod/Home/blob/master/linux/base/img/enable_exec.png)
 
 
 
 ### `ls -l(或ll)`命令作用
 
-![ll_detail]()
+![ll_detail](https://github.com/HurricanGod/Home/blob/master/linux/base/img/ll_detail.png)
 
 
 
@@ -75,7 +75,7 @@
 + 普通用户
 + 超级用户 —— `root` ，具有最高权限。可以理解为管理员，**可以用户行使所有用户的权限**，比如可以读写执行其它用户的文件。
 
-
+![root_flag](https://github.com/HurricanGod/Home/blob/master/linux/base/img/root_flag.png)
 
 
 
@@ -87,7 +87,7 @@
 
 + `cd` —— 切换文件夹，使用方法见下图：
 
-  ![cd]()
+  ![cd](https://github.com/HurricanGod/Home/blob/master/linux/base/img/cd.gif)
 
 
 + `pwd` —— 显示当前目录，见上图
@@ -98,7 +98,7 @@
   + `mkdir /hurrican` —— 将创建`hurrican`文件夹
   + `mkdir -p /hurrican/linux/test` ——  `-p`选项用户递归创建文件夹。例如在存在`hurrican`文件夹情况下，若`linux文件夹`不存在则会**先创建linux文件夹**， 创建成功后再创建 `test` 文件夹
 
-  ![mkdir]()
+  ![mkdir](https://github.com/HurricanGod/Home/blob/master/linux/base/img/mkdir.gif)
 
 
 + `touch` —— **新建文件**
