@@ -26,7 +26,7 @@
 
   +  **什么是读权限？** —— 哪`Windows`系统来类比，当你打开一个文件查看内容时就是**在使用读权限** ，`Linux`中也一样你查看文件中的内容就是要**有读权限** ，若**没有读权限**将不能打开文件读取内容
   + **谁可以读文件？**
-    + <a href="#">`root用户`</a>
+    + <a href="#user">`root用户`</a>
     + 文件的主人——使用 `ls -l(有些地方可以简写为ll)`查看文件所属主人
     + ![file_ll](https://github.com/HurricanGod/Home/blob/master/linux/base/img/file_ll.png)
     + **待补充...**
