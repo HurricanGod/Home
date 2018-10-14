@@ -84,7 +84,7 @@
 + `pwd` —— 显示当前目录，见上图
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 
 
@@ -96,35 +96,35 @@
   ![mkdir](https://github.com/HurricanGod/Home/blob/master/linux/base/img/mkdir.gif)
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 + `touch` —— **新建文件**
 
 
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 + `mv` —— **移动文件** or **文件重命名**
 
 
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 + `locate` + `updatedb` —— **查找文件的路径**
 
 
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 + `cp` —— **复制文件**
 
 
 
 
-<p align="right"><a href="#command">返回</a>|</p>
+<p align="right"><a href="#command">返回</a></p>
 
 + `ls`
 
