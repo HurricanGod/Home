@@ -35,7 +35,7 @@
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-   ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+    ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
 +  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
@@ -73,6 +73,7 @@ kill -s SIGCHLD pid
 
 
 <p align="right"><a href="#ps">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
+
 ----
 
 ## <a name="echo">echo命令</a>
@@ -94,8 +95,11 @@ kill -s SIGCHLD pid
 + `-n换行输出`
 
 
+
+
 <p align="right"><a href="#echo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
------
+
+----
 
 ## <a name="type">**type** —— 找出给定命令的信息</a>
 
