@@ -6,7 +6,7 @@
 + <a href="#mysql_install">**MySQL安装**</a>
 
 
-
++ <a href="#redis">**Redis的安装**</a>
 
 
 
@@ -119,3 +119,10 @@ flush privileges;
 
 
 <p align="right"><a href="#mysql_install">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+
+----
+## <a name="redis">Redis的安装</a>
+
+<a href="http://download.redis.io/releases/">**Redis源码压缩包下载地址**</a>
+
