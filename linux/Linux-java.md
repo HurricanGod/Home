@@ -125,6 +125,7 @@ flush privileges;
 ## <a name="redis">Redis的安装</a>
 
 <a href="http://download.redis.io/releases/">**Redis源码压缩包下载地址**</a>
+
 需要装 `redis-4.0.0` 可以使用 ` wget http://download.redis.io/releases/redis-4.0.0.tar.gz` 将资源下载到服务器，然后再**编译安装**
 
 + 解压下载后的 `redis` 压缩包 —— `tar -zxvf redis-4.0.0.tar.gz -C /usr/redis`
