@@ -126,3 +126,8 @@ flush privileges;
 
 <a href="http://download.redis.io/releases/">**Redis源码压缩包下载地址**</a>
 
+
+
+
+<p align="right"><a href="#redis">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
+
