@@ -135,6 +135,15 @@ flush privileges;
 
 + 继续执行 `make install`
 
++ **启动** & **停止** Redis服务
+```sh
+# 启动 redis 服务端：redis-server 配置文件名
+redis-server /etc/redis/redis.conf
+
+# 停止 redis 服务
+redis-cli -h 127.0.0.1 -p 6379 shutdown
+```
+
 
 **make test** 过程中若出现 `You need tcl 8.5 or newer in order to run the Redis test` 错误需要先安装 `tcl`
 ```shell
@@ -146,13 +155,6 @@ make
 make install   
 ```
 
-```sh
-# 启动 redis 服务端：redis-server 配置文件名
-redis-server /etc/redis/redis.conf
-
-# 停止 redis 服务
-redis-cli -h 127.0.0.1 -p 6379 shutdown
-```
 
 
 
