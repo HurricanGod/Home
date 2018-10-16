@@ -29,16 +29,15 @@
   + `-p`：显示建立相关链接的程序名
   + `-s`：按各个协议进行统计
   + `-T (show threads)`：显示线程
-  
-  
+
 
 
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+   ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
-+ `netstat -tulp n` —— 显示对应进程**pid**的网络端口
++  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
 
 + `nbtstat -A x.x.x.x` —— `x.x.x.x`为ip地址，该命令用于获取ip地址对应的域名
@@ -46,10 +45,10 @@
 
 + `lsof -i:端口号` —— 根据端口号查看进程
   ![](https://github.com/HurricanGod/Home/blob/master/linux/img/lsof.png)
-  
+
 
 + `ps -T -p pid` —— 显示进程 `pid` 包含的线程
-![thread_in_pid]()
+  ![thread_in_pid]()
 
 <p align="right"><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
@@ -58,7 +57,7 @@
 ## <a name="ps">进程</a>
 
 + ***查找进程***
-`ps -ef|grep 搜索串` —— 查看含有**搜索串**的进程信息
+  `ps -ef|grep 搜索串` —— 查看含有**搜索串**的进程信息
 
 
 + ***查找僵尸进程并kill掉***
@@ -96,7 +95,7 @@ kill -s SIGCHLD pid
 
 
 <p align="right"><a href="#echo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
-----
+-----
 
 ## <a name="type">**type** —— 找出给定命令的信息</a>
 
@@ -161,8 +160,6 @@ df -hT /home
 
 ----
 
-
-
 <a name="kill">**kill**命令</a>
 
 ```shell
@@ -182,8 +179,6 @@ s: 指定要送出的信息
 <a name="history">**history**</a>
 
 > 显示用户之前执行的bash脚本历史记录
-
-
 
 
 
@@ -226,7 +221,7 @@ ll |tail -2	# 输出ll命令结果的最后两行
 ```
 
 <p align="right"><a href="#head_tail">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
-  
+
 -----
 ## <a name="network_monitor">网络监控</a>
 ```shell
@@ -242,7 +237,6 @@ iftop -i eth0
 
 
 <p align="right"><a href="#network_monitor">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
-
 
 ----
 
@@ -260,5 +254,5 @@ iftop -i eth0
   + `-dport`参数： 指定目标端口，指数据从外网访问服务器使用的端口号
   + `-sport`参数：数据源端口，指从服务器出去的端口
   + `-j`参数：**ACCEPT**表示接收
-  
+
  <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 

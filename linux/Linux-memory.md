@@ -12,7 +12,6 @@
 + <a href="#top_cmd">**Top命令**</a>
 
 
-
 -----
 ## <a name="memory" >Linux内存</a>
 
@@ -46,6 +45,8 @@
 
 
 
+
+<a href="https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py">**Python脚本实现内存监控**</a>
 
 
 <p align="right"><a href="#memory">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
