@@ -52,3 +52,16 @@
 
   ​
 
+
+
+
+----
+
+## <a name="character_code">查看字符集编码</a>
+
+
+
+```mysql
+show variables where variable_name like 'character_set_%';
+```
+
