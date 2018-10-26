@@ -93,6 +93,22 @@ server{
   | `proxy_read_timeout`    | 配置 `Nginx` 向后端服务器组发送`read`请求后，等待响应的超时时间  |
   | `proxy_send_timeout`    | 配置 `Nginx` 向后端服务器组发送`write`请求后，**等待响应的超时时间** |
   | `proxy_redirect`        | 用于修改后端服务器返回到响应头中的`Location` 和 `Refresh`  |
+  
+
+```nginx
+ location / {
+     index index.jsp;
+     proxy_redirect off;
+     proxy_set_header Host $host;
+     proxy_set_header   X-Real-IP   $remote_addr;
+     proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+     proxy_pass http://mobile/;
+     
+     access_log /mnt/logs/nginx/access.log;
+     error_log /mnt/logs/nginx/error.log;
+}
+
+```
 
 
 
