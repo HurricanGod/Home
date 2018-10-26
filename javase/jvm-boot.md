@@ -138,7 +138,7 @@ public class JvmEntryTest {
 | **-XX:NewRatio=2**                | **新生代内存容量与老生代内存容量的比例**  |              ||
 | **-XX:ThreadStackSize=512**       | **设置线程栈大小，若为0则使用系统默认值** |              ||
 | **-XX:NewSize=2.125m**            | **新生代对象生成时占用内存的默认值**    |              ||
-| **-XX:MaxMetaspaceSize**            | **设置元空间的最大值，不设置默认没有上限**    |              ||
+| **-XX:MaxMetaspaceSize**            | **设置元空间的最大值，不设置默认没有上限**    |              |设置合理的元空间最大值以避免虚拟内存切换以及本地内存分配失败|
 | **--XX:MetaspaceSize**            | **设置元空间初始大小，未指定则根据程序运行时动态调整**    |              |设置元空间初始大小可以避免频繁的`Full GC`|
 | -                                 |                         |              ||
 | *-XX:-HeapDumpOnOutOfMemoryError* | *当首次遭遇OOM时导出此时堆中相关信息*   | *调试参数*       ||
