@@ -143,13 +143,13 @@ server{
   listen 80;
   server_name 192.168.123.100;
   location / {
-        proxy_pass http://192.168.123.10;
+        proxy_pass http://random_domain;
     }
 }
 
-upstream 192.168.123.10{
-  server http://192.168.123.10:8080;
-  server http://192.168.123.10:8090;
+upstream random_domain{
+  server http://127.0.0.1:8080;
+  server http://127.0.0.1:8090;
 }
 ```
 
@@ -168,11 +168,11 @@ upstream 192.168.123.10{
   <br/><br/>
 
 ```nginx
-upstream 192.168.123.10{
-  server http://192.168.123.10:8080 weight=1;
-  server http://192.168.123.10:8090 weight=3;
-  # 设置 http://192.168.123.10:8070 为备用服务器，只有上面两台服务器都出故障才会请求 backup 服务器
-  server http://192.168.123.10:8070 backup;
+upstream random_domain{
+  server http://127.0.0.1:8080 weight=1;
+  server http://127.0.0.1:8090 weight=3;
+  # 设置 http://127.0.0.1:8070 为备用服务器，只有上面两台服务器都出故障才会请求 backup 服务器
+  server http:/127.0.0.1:8070 backup;
 }
 ```
 
@@ -220,12 +220,12 @@ http {
         server_name 118.89.57.129 localhost 127.0.0.1;
         
         location / {
-            proxy_pass http://118.89.57.129;
+            proxy_pass http://random_domain;
             access_log /home/hurrican/nginx/web/web-access.log;
         }
         error_page 500 502 503 504 /50x.html;
     }
-    upstream 118.89.57.129{
+    upstream random_domain{
         ip_hash;
         server localhost:8080;
         server localhost:8081;
