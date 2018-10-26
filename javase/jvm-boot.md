@@ -125,26 +125,28 @@ public class JvmEntryTest {
 
 > -XX作为前缀的参数列表在jvm中可能是不健壮的，SUN也不推荐使用，后续可能会在没有通知的情况下就直接取消了。
 
-| 参数                                | 用途                      | 类型           |
-| :-------------------------------- | :---------------------- | :----------- |
-| `-XX:+MaxFDLimit`                 | 最大化文件描述符的数量限制           | **改变行为参数**   |
-| `-XX:+ScavengeBeforeFullGC`       | 新生代GC优先于Full GC执行       |              |
-| `-XX:-UseConcMarkSweepGC`         | 对老生代采用并发标记交换算法进行GC      |              |
-| `-XX:-UseParallelGC`              | 启用并行GC                  |              |
-| -                                 |                         |              |
-| **-XX:MaxHeapFreeRatio=70**       | **GC后java堆中空闲量占的最大比例**  | ***性能调优参数*** |
-| **-XX:MaxNewSize=10m**            | **新生成对象能占用内存的最大值**      |              |
-| **-XX:MaxPermSize=64m**           | **永久代对象能占用内存的最大值**      |              |
-| **-XX:NewRatio=2**                | **新生代内存容量与老生代内存容量的比例**  |              |
-| **-XX:ThreadStackSize=512**       | **设置线程栈大小，若为0则使用系统默认值** |              |
-| **-XX:NewSize=2.125m**            | **新生代对象生成时占用内存的默认值**    |              |
-| -                                 |                         |              |
-| *-XX:-HeapDumpOnOutOfMemoryError* | *当首次遭遇OOM时导出此时堆中相关信息*   | *调试参数*       |
-| *-XX:-PrintGC Details*            | *每次GC时打印详细信息*           |              |
-| *-XX:-PrintGCTimeStamps*          | *打印每次GC的时间戳*            |              |
-| *-XX:-TraceClassLoading*          | *跟踪类的加载信息*              |              |
-| *-XX:-TraceClassResolution*       | *跟踪常量池*                 |              |
-| *-XX:-TraceClassUnloading*        | *跟踪类的卸载信息*              |              |
+| 参数                                | 用途                      | 类型           |描述|
+| :-------------------------------- | :---------------------- | :----------- | :----------- |
+| `-XX:+MaxFDLimit`                 | 最大化文件描述符的数量限制           | **改变行为参数**   ||
+| `-XX:+ScavengeBeforeFullGC`       | 新生代GC优先于Full GC执行       |              ||
+| `-XX:-UseConcMarkSweepGC`         | 对老生代采用并发标记交换算法进行GC      |              ||
+| `-XX:-UseParallelGC`              | 启用并行GC                  |              ||
+| -                                 |                         |              ||
+| **-XX:MaxHeapFreeRatio=70**       | **GC后java堆中空闲量占的最大比例**  | ***性能调优参数*** ||
+| **-XX:MaxNewSize=10m**            | **新生成对象能占用内存的最大值**      |              ||
+| **-XX:MaxPermSize=64m**           | **永久代对象能占用内存的最大值**      |              |JDK8以前|
+| **-XX:NewRatio=2**                | **新生代内存容量与老生代内存容量的比例**  |              ||
+| **-XX:ThreadStackSize=512**       | **设置线程栈大小，若为0则使用系统默认值** |              ||
+| **-XX:NewSize=2.125m**            | **新生代对象生成时占用内存的默认值**    |              ||
+| **-XX:MaxMetaspaceSize**            | **设置元空间的最大值，不设置默认没有上限**    |              ||
+| **--XX:MetaspaceSize**            | **设置元空间初始大小，未指定则根据程序运行时动态调整**    |              |设置元空间初始大小可以避免频繁的`Full GC`|
+| -                                 |                         |              ||
+| *-XX:-HeapDumpOnOutOfMemoryError* | *当首次遭遇OOM时导出此时堆中相关信息*   | *调试参数*       ||
+| *-XX:-PrintGC Details*            | *每次GC时打印详细信息*           |              ||
+| *-XX:-PrintGCTimeStamps*          | *打印每次GC的时间戳*            |              ||
+| *-XX:-TraceClassLoading*          | *跟踪类的加载信息*              |              ||
+| *-XX:-TraceClassResolution*       | *跟踪常量池*                 |              ||
+| *-XX:-TraceClassUnloading*        | *跟踪类的卸载信息*              |              ||
 
 
 
