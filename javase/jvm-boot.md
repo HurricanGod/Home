@@ -134,7 +134,7 @@ public class JvmEntryTest {
 | -                                 |                         |              |
 | **-XX:MaxHeapFreeRatio=70**       | **GC后java堆中空闲量占的最大比例**  | ***性能调优参数*** |
 | **-XX:MaxNewSize=10m**            | **新生成对象能占用内存的最大值**      |              |
-| **-XX:MaxPermSize=64m**           | **老生代对象能占用内存的最大值**      |              |
+| **-XX:MaxPermSize=64m**           | **永久代对象能占用内存的最大值**      |              |
 | **-XX:NewRatio=2**                | **新生代内存容量与老生代内存容量的比例**  |              |
 | **-XX:ThreadStackSize=512**       | **设置线程栈大小，若为0则使用系统默认值** |              |
 | **-XX:NewSize=2.125m**            | **新生代对象生成时占用内存的默认值**    |              |
