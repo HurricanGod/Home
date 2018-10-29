@@ -65,3 +65,11 @@
 show variables where variable_name like 'character_set_%';
 ```
 
+## 查询数据库里的表数量
+```mysql
+select count(*) tables, table_schema 
+from information_schema.TABLES 
+where table_schema = 'database_name' 
+group by table_schema;
+```
+
