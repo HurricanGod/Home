@@ -129,3 +129,5 @@
 ## 整行高亮
 
 + 在**代码文件**后面添加`#L{start}`或`#L{start}-{end}`
+
+<a href="https://github.com/cssmagic/blog/issues/49">正确接收Github信息邮件的方式</a>
