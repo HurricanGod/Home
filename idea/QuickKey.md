@@ -51,9 +51,11 @@
 + <a name="DoubleShift">`Shift + Shift + /`</a>
   ![DoubleShift](https://github.com/HurricanGod/Home/blob/master/idea/img/DoubleShift.gif)
   <p align="right"><a href="#DoubleShiftGif">back</a></p>
+  
 + <a name="CtrlShiftI">`Ctrl + Shift + I`</a>
   ![Ctrl + Shift +I](https://github.com/HurricanGod/Home/blob/master/idea/img/Ctrl%2BShift%2BI.gif)
   <p align="right"><a href="#CtrlShiftIGif">back</a></p>
+  
 + <a name="Alt1">`Alt + 1` </a>
   ![Alt + 1](https://github.com/HurricanGod/Home/blob/master/idea/img/Alt%2B1.gif)
 + ​
