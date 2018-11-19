@@ -25,9 +25,9 @@
 
 `DefaultSingletonBeanRegistry`类实现了`SingletonBeanRegistry`接口，Spring启动时默认使用该实现进行单例对象的管理。类间关系如下图所示：
 
-![DefaultSingletonBeanRegistry]()
+![DefaultSingletonBeanRegistry](https://github.com/HurricanGod/Home/blob/master/spring/img/DefaultSingletonBeanRegistry.png)
 
-![BeanFactory]()
+![BeanFactory](https://github.com/HurricanGod/Home/blob/master/spring/img/BeanFactory.png)
 
 
 
