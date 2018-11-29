@@ -5,7 +5,7 @@
 ### 目录与文件
 
 + **术语**
-  + `$CATALINA_HOME` → `catalina_home` → 指**Tomcat安装的跟目录**
+  + `$CATALINA_HOME` → `catalina_home` → 指**Tomcat安装的根目录**
     + `$CATALINA_HOME/ReadMe.txt` 表示Tomcat安装跟目录下的`ReadMe.txt`文件
   + `$CATALINA_BASE` → 可以为每个Tomcat实例定义1个`$catalina_base`，这样就可以**启动多个Tomcat实例**
     + 未配置多个Tomcat实例时， `catalina_home`相当于`$catalina_base`
