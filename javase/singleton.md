@@ -59,14 +59,16 @@ public class IntegerExt {
     public int toIntValue(){
         return i;
     }
-    private static IntegerExt[] cacheInt = null;  //定义用于保存单例对象的数组
+    // 定义用于保存单例对象的数组，必须使用 volatile 关键字修饰
+    // 不使用 volatile 在指令重排序的情况下可能发生后获得锁线程访问未初始化完成的实例
+    private static volatile IntegerExt[] cacheInt = null;  
     public static IntegerExt getInstance(int i){
     	if(i>=-128 && i<=127){
       // 判断缓存数据是否为null，若为null则创建1个新实例
     		if(cacheInt == null){
     			synchronized(IntegerExt.class){
-            //再次判断是否创建实例，原理：可能存在在某个线程进入同步块前有多个线程已经进入了第1个判断条件
-            //但同步块里只允许1个线程进入，如果不加null的判断，
+            //再次判断是否创建实例，原因：可能存在某个线程进入同步块前有多个线程已经进入了第1个判断条件
+            //但同步块里只允许1个线程进入，如果不进行null的判断，
             //当进入同步块的线程执行完毕后其它形成就会进入同步块继续创建实例，使得实例不止1个
       				if(cacheInt == null){
     					cacheInt = new IntegerExt[256];
@@ -90,7 +92,6 @@ public class IntegerExt {
     	return isequal;
     }
 }
-
 ```
 
 
