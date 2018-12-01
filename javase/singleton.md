@@ -41,7 +41,7 @@ a1.equals(a2)	        true
 b1 == b2		true
 b1.equals(b2)	        true
 ```
-***从上面结果我们可以知道，对于Integer，它缓存了-128~127之间的整数，如果以这范围的整数初始化Integer将得到同一个对象*** 
+***对于Integer，它缓存了-128~127之间的整数，如果以这范围的整数初始化Integer将得到同一个对象*** 
 #### 单例模式实现常量池
 
 :kissing_heart:
