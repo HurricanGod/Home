@@ -8,9 +8,9 @@
 
 **以太网**中MAC帧有效长度为`64 ~ 1518`,以太网`MAC`帧格式如下所示：
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/network/img/mac.jpg)
 
-由上图可知，IP协议的所能传输的最大单元为***1500***字节
+由上图可知，IP协议的所能传输的最大单元为**1500**字节
 
 
 
