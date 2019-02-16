@@ -158,7 +158,7 @@ save 60 10000
 
 **RDB文件结构**：
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/redis/img/rdb.jpg)
 
 + 载入RDB文件时，程序读到`SELECTDB`时就知道接下来要把数据加载到哪个数据库
 + 程序读入`db_number`后，服务器将调用`select`命令切换数据库
