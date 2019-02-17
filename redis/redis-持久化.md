@@ -199,7 +199,7 @@ Redis服务器设置一个`AOF重写缓冲区`，这个缓冲区在创建子进�
 
 **子进程执行AOF文件重写期间**，服务器进程执行以下3个工作：
 
-<img align="right" src="#"/>
+<img align="right" src="https://github.com/HurricanGod/Home/blob/master/redis/img/aof-rewrite.jpg"/>
 
 + 执行客户端发来的命令
 + 将执行后的写命令追加到`AOF缓冲区`
