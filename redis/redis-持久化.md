@@ -11,7 +11,6 @@
 + <a href="#aof">`AOF持久化`</a>
 
 
-
 ----
 
 ## <a name="key_expire">`过期键处理策略`</a>
@@ -26,7 +25,7 @@
 
 
 
-+ **过期键删除策略****
++ **过期键删除策略**
 
   + ***定时删除***
 
@@ -138,7 +137,7 @@ save 60 10000
 
 > Redis服务器进程是一个事件循环，循环中的文件事件负责接收客户端命令请求，执行写命令的同时会把内容添加的 aof_buf 缓冲区末尾，服务器每次结束一个事件循环时会判断是否需要调用 flushAppendOnlyFile函数将 aof_buf 缓冲区中的内容写入和保存到 AOF 文件里
 >
->  flushAppendOnlyFile函数的行为由服务器配置参数 appendfsync 选项决定
+> flushAppendOnlyFile函数的行为由服务器配置参数 appendfsync 选项决定
 
 ​	
 
@@ -153,7 +152,6 @@ save 60 10000
 
 
 + 文件同步
-
 
 
 
