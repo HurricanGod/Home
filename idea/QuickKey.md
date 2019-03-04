@@ -43,9 +43,10 @@
 | `Shift + Shift + /`    | <a name="DoubleShiftGif">跳转到特性文件夹，**包括虚拟路径**</a> | <a href="#DoubleShift">效果参考</a> |
 | `Alt + 1`              | <a name="Alt1Gif">  - </a>               | <a href="#Alt1">效果参考</a>        |
 |                        |                                          |                                 |
-| `Ctrl +Shift + a`      | 全局搜索 IDEA 的操作和设置                         |                                 |
-|                        |                                          |                                 |
+| `Ctrl +Shift + a`      | 全局搜索 IDEA 的操作和设置 |                                 |
 | `Ctrl + Alt + F3` |打开文件所在的目录    |搜索`Show in Explorer`                                 |
+|                        |                                          |                                 |
+
 
 -----
 + <a name="DoubleShift">`Shift + Shift + /`</a>
