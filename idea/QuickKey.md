@@ -45,7 +45,7 @@
 |                        |                                          |                                 |
 | `Ctrl +Shift + a`      | 全局搜索 IDEA 的操作和设置                         |                                 |
 |                        |                                          |                                 |
-|                        |                                          |                                 |
+| `Ctrl + Alt + F3` |打开文件所在的目录    |搜索`Show in Explorer`                                 |
 
 -----
 + <a name="DoubleShift">`Shift + Shift + /`</a>
