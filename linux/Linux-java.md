@@ -162,3 +162,35 @@ make install
 
 <p align="right"><a href="#redis">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
+## <a name="kafka">Kafka安装</a>
+假设`Kafka`目录安装在`/home/hurrican/kafka`
+
++ **查看Topic列表** ：
+```shell
+cd /home/hurrican/kafka/bin/
+./kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
+```
+
++ **消费Kafka下Topic名为day_topic的消息** ：
+```shell
+cd /home/hurrican/kafka/bin/
+./kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic day_topic --from-beginning
+```
+
+
++ **往day_topic发送消息** ：
+```shell
+./kafka-console-producer.sh --broker-list localhost:9092 --topic day_topic
+```
+
++ **启动Kafka Broker** ：
+```shell
+./kafka-server-start.sh  server.properties
+```
+
++ **关闭Kafka Broker** ：
+```shell
+./kafka-server-stop.sh
+```
+
+
