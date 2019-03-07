@@ -6,7 +6,7 @@
 + <a href="#mysql_install">**MySQL安装**</a>
 
 
-+ <a href="#redis">**Redis的安装**</a>
++ <a href="#redis">**Redis编译安装**</a>
 
 
 
@@ -32,8 +32,8 @@
 
   # 在最后面追加以下内容，其中jdk解压路径(/home/hurrican/jdk)以各自具体的路径为准
   export JAVA_HOME=/home/hurrican/jdk/jdk1.8.0_181
-  export CLASSPATH=.:$JAVA_HOME/lib
-  export PATH=JAVA_HOME/bin:PATH
+  export CLASSPATH=.:${JAVA_HOME}/lib
+  export PATH=JAVA_HOME/bin:$PATH
 
   ```
 
@@ -115,7 +115,20 @@ flush privileges;
 **备注**:
 + 若进行上述操作任**无法使用外网访问服务器**上的 `MySQL` 时可以参考<a href="https://www.cnblogs.com/funnyboy0128/p/7966531.html">这篇博客</a>
 
+若**修改了MySQL日志文件存放路径**，则需要进行如下操作：
++ 修改`/etc/apparmor.d`目录下的usr.sbin.mysqld
+```sh
+vim /etc/apparmor.d/usr.sbin.mysqld
+# 假设现在把 log_error 配置为：/mnt/log/mysql/error.log
+# 在usr.sbin.mysqld 最后面添加如下内容：
+/mnt/log/mysql r,
+/mnt/log/mysql/** rw, 
+```
 
++ 重启apparmor
+```sh
+/etc/init.d/apparmor restart
+```
 
 
 <p align="right"><a href="#mysql_install">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
