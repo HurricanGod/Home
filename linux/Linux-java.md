@@ -108,8 +108,19 @@ Enter password:
 # IP 选项中 % 是通配符，表示允许所有用户登录
 create user 'Hurrican'@'%' identified by 'Xmx256Xms128';
 
+# 给 Hurrican 用户授予所有数据库的所有权限
+grant all privileges on *.* to 'Hurrican'@'%' identified by 'Xmx256Xms128';
+
 # 刷新用户权限
 flush privileges;
+
+
+# 回收 Hurrican 用户的 drop、 grant option权限
+revoke drop, grant option on *.* from 'Hurrican'@'%';
+
+
+# 查询 Hurrican用户的所有权限
+select * from mysql.user where user='Hurrican'\G;
 
 ```
 **备注**:
