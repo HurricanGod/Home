@@ -9,6 +9,7 @@
 + <a href="#redis">**Redis编译安装**</a>
 
 
++ <a href="#kafka">**Kafka安装与使用**</a>
 
 
 -----
@@ -30,9 +31,10 @@
   ```shell
   vim /etc/profile
 
-  # 在最后面追加以下内容，其中jdk解压路径(/home/hurrican/jdk)以各自具体的路径为准
+  # 在最后面追加以下内容，假设jdk解压路径(/home/hurrican/jdk)
   export JAVA_HOME=/home/hurrican/jdk/jdk1.8.0_181
-  export CLASSPATH=.:${JAVA_HOME}/lib
+  export JRE_HOME=${JAVA_HOME}/jre
+  export CLASSPATH=.:$JAVA_HOME/lib:${JRE_HOME}/lib
   export PATH=JAVA_HOME/bin:$PATH
 
   ```
@@ -75,7 +77,7 @@
 
 ## <a name="mysql_install">**MySQL5.7安装**</a>
 
-+ **准备** ：
+### 准备
 ```shell
 apt update
 
@@ -93,11 +95,10 @@ apt-get install mysql-server
 
 ```
 
-***安装过程中有个输入 root 账户密码的步骤，需要记住这个密码***
 
 
 
-+ **配置MySQL5.7**
+### 创建MySQL外网访问用户
 登录 `MySQL` 服务器
 ```mysql
 mysql -u root -p
@@ -108,7 +109,7 @@ Enter password:
 # IP 选项中 % 是通配符，表示允许所有用户登录
 create user 'Hurrican'@'%' identified by 'Xmx256Xms128';
 
-# 给 Hurrican 用户授予所有数据库的所有权限
+# 给 Hurrican 用户授予数据库的所有权限
 grant all privileges on *.* to 'Hurrican'@'%' identified by 'Xmx256Xms128';
 
 # 刷新用户权限
@@ -123,8 +124,12 @@ revoke drop, grant option on *.* from 'Hurrican'@'%';
 select * from mysql.user where user='Hurrican'\G;
 
 ```
-**备注**:
+**注意点**:
++ **安装过程中有个输入 root 账户密码的步骤，需要记住这个密码**
 + 若进行上述操作任**无法使用外网访问服务器**上的 `MySQL` 时可以参考<a href="https://www.cnblogs.com/funnyboy0128/p/7966531.html">这篇博客</a>
+
+
+### 配置MysQL服务器
 
 若**修改了MySQL日志文件存放路径**，则需要进行如下操作：
 + 修改`/etc/apparmor.d`目录下的usr.sbin.mysqld
