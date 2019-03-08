@@ -46,13 +46,23 @@
 
   ```mysql
   # 增加外键约束
-  alter table tableName add constraint FK_tb1_tb2_name foreign key(columnName)  references keyTable(pkColumnName)
-  #注意：columnName 要与 pkColumnName 类型完全一致，技术1个是int另一个是unsigned int 都是不允许的
+  alter table tableName 
+  add constraint FK_tb1_tb2_name foreign key(columnName)  
+  references keyTable(pkColumnName)
+  #注意：columnName 要与 pkColumnName 类型完全一致，1个是int另一个是unsigned int 是不允许的
   ```
 
   ​
 
 
++ **unique**约束
+```mysql
+# 建表后添加外键约束
+alter table table_name add  unique key(column_name);
+
+# 删除unique索引
+alter table table_name drop index unique_index_name;
+```
 
 
 ----
