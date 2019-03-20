@@ -40,7 +40,7 @@
 
 + 离线批处理数据统计
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/kafka/img/statistic-static.jpg)
 
 
 
@@ -48,7 +48,7 @@
 
 + 在线流式处理实时数据统计
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/kafka/img/statistic-storm.jpg)
 
 
 
