@@ -38,7 +38,7 @@
 ----
 ### 数据统计平台主流架构
 
-+ 离线批处理数据统计
++ 离线批处理数据统计架构
 
 ![](https://github.com/HurricanGod/Home/blob/master/kafka/img/statistic-static.jpg)
 
@@ -46,9 +46,23 @@
 
 
 
-+ 在线流式处理实时数据统计
++ 在线流式处理实时数据统计架构
 
 ![](https://github.com/HurricanGod/Home/blob/master/kafka/img/statistic-storm.jpg)
+
+`flume` —— 是一个分布式的数据收集系统,具有高可靠、高可用、事务管理、失败重启、聚合和传输等功能。
+核心概念：
++ event
+> flume 的数据流由事件 (event) 贯穿始终。event 是 flume 的基本数据单位，它携带日志数据并且携带数据的头信息，这些 event 由 agent 外部的 source 生成，当 source 捕获事件后会进行特定的格式化，然后 source 会把事件推入 channel 中
++ source
+> source 是数据的收集端，负责将数据捕获后进行特殊的格式化，将数据封装到 event 里，然后将事件推入 channel 中
++ channel
+> channel 是连接 source 和 sink 的组件，大家可以将它看做一个数据的缓冲区（数据队列），它可以将事件暂存到内存中也可以持久化到本地磁盘上， 直到 sink 处理完该事件。两个较为常用的 channel，MemoryChannel 和 FileChannel
++ agent
+> flume 的核心是 agent。agent 是一个 java 进程,运行在日志收集端,通过 agent 接收日志,然后暂存起来,再发送到目的地。 每台机器运行一个 agent。 agent 里面可以包含多个 source，channel，sink。
++ sink
+> sink 从 channel 中取出事件，然后将数据发到别处，可以向文件系统、数据库、hadoop、kafka，也可以是其他 agent 的 source
+
 
 
 
