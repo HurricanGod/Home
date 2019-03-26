@@ -46,7 +46,13 @@
 
 
 
-+ 在线流式处理实时数据统计架构
++ 在线流式处理数据统计架构
+
+目前主流的实时计算框架有：`spark`、`storm`、`flink`
+
+大数据领域数据实时存储：`HDFS`、`ES`
+
+
 
 ![](https://github.com/HurricanGod/Home/blob/master/kafka/img/statistic-storm.jpg)
 
@@ -58,19 +64,34 @@
 
 
 
-`flume` ： 一个分布式的数据收集系统,具有高可靠、高可用、事务管理、失败重启、聚合和传输等功能。
+`flume` ： 一个分布式的数据收集系统,具有高可靠、高可用、事务管理、失败重启、聚合和传输等功能。主要的核心概念有：`event`、`source`、`channel`、`agent`、`sink`。
 
-核心概念：
-+ event
-> flume 的数据流由事件 (event) 贯穿始终。`event` 是 flume 的**基本数据单位**，它携带日志数据并且携带数据的头信息， `event` 由 agent 外部的 source 生成，当 source 捕获事件后会进行特定的格式化，然后 source 会把事件推入 channel 中
-+ source
-> source 是数据的收集端，负责将数据捕获后进行特殊的格式化，将数据封装到 event 里，然后将事件推入 channel 中
-+ channel
-> channel 是连接 source 和 sink 的组件，可以将它看做一个数据缓冲区（数据队列），可以将事件暂存到内存中也可以持久化到本地磁盘上， 直到 sink 处理完该事件。两个较为常用是`MemoryChannel` 和 `FileChannel`
-+ agent
-> flume 的核心是 agent。agent 是一个 java 进程,运行在日志收集端,通过 agent 接收日志,然后暂存起来,再发送到目的地。 每台机器运行一个 agent。 agent 里面可以包含多个 source，channel，sink。
-+ sink
-> sink 从 channel 中取出事件，然后将数据发到别处，可以向文件系统、数据库、hadoop、kafka，也可以是其他 agent 的 source
++ event —— flume 的数据流由事件 (event) 贯穿始终。`event` 是 flume 的**基本数据单位**，它携带日志数据并且携带数据的头信息， `event` 由 agent 外部的 source 生成，当 source 捕获事件后会进行特定的格式化，然后 source 会把事件推入 channel 中
+
+
++ source —— source 是数据的收集端，负责将数据捕获后进行特殊的格式化，将数据封装到 event 里，然后将事件推入 channel 中
+
+
++ channel —— channel 是连接 source 和 sink 的组件，可以将它看做一个数据缓冲区（数据队列），可以将事件暂存到内存中也可以持久化到本地磁盘上， 直到 sink 处理完该事件。两个较为常用是`MemoryChannel` 和 `FileChannel`
+
+
++ agent —— flume 的核心是 agent。agent 是一个 java 进程,运行在日志收集端,通过 agent 接收日志,然后暂存起来,再发送到目的地。 每台机器运行一个 agent。 agent 里面可以包含多个 source，channel，sink。
+
+
++ sink —— sink 从 channel 中取出事件，然后将数据发到别处，可以向文件系统、数据库、hadoop、kafka，也可以是其他 agent 的 source
+
+
+**可靠性**：
+
+当节点出现故障时，日志能够被传送到其他节点上而不会丢失。Flume 提供了可靠性保障，收到数据首先写到磁盘上，当数据传送成功后，再删除；如果数据发送失败，可以重新发送。
+
+
+
+**可扩展性**：
+
+对于`Agent`层，每个机器部署1个`Agent`，可以水平扩展，不受限制。`Agent`到`Collector`使用的负载均衡机制，`Collector`可以线性扩展提高能力。
+
+
 
 
 
@@ -83,4 +104,5 @@
 + 产生的消息过多是否能够及时消费，硬件资源是否足够（CPU、磁盘）
 + 数据统计服务是否会与业务有耦合，比如：每次需要数据统计时都要在项目中加入Kafka的依赖，然后往Kafka发消息进行数据统计
 + 升级Kafka版本是否会对依赖数据统计业务产生影响
++ 当前版本的数据统计应用没有任何监控措施，无法得知Kafka的吞吐量，生产情况、消费情况等信息
 
