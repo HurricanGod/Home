@@ -11,6 +11,7 @@
   ```nginx
   # 每次修改 nginx 配置文件后都要进行配置文件检查
   nginx -t
+  /etc/init.d/nginx configtest
 
   # 检查指定目录下的 nginx.conf 配置文件是否正确
   nginx -t -c /特定目录/nginx.conf
@@ -39,6 +40,9 @@
   ```nginx
   # 在 nginx 已经启动的情况下重新加载配置文件
   service nginx reload
+  
+  nginx -s reload
+  /etc/init.d/nginx reload
   ```
 
   ​
