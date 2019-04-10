@@ -16,6 +16,9 @@
 
 + <a href="#iptables">**防火墙**</a>
 
+
++ <a href="#nslookup">`域名解析nslookup`</a>
+
 ----
 
 ## <a name="netstat">netstat</a>
@@ -297,4 +300,11 @@ ufw delete allow from 192.168.168.10
 ```
 
 
- <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+<p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+  
+
+### <a name="nslookup">查看域名解析 —— nslookup</a>
+
+
+<p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+
