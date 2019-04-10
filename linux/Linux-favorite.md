@@ -305,6 +305,8 @@ ufw delete allow from 192.168.168.10
 
 ### <a name="nslookup">查看域名解析 —— nslookup</a>
 
+命令格式：`nslookup ip/domain`
+
 
 <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
 
