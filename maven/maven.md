@@ -21,19 +21,21 @@ Windows测试maven**环境配置成功**的方法：命令行下运行`mvn -v`
 
 
 
-**maven**有两个配置文件：
+**maven**配置文件：
 
 + 用户配置
 + 全局配置（一般放在maven的安装目录下的conf文件夹里，名字为`setting.xml`）
 
 ### 用户配置
 
-用户配置存放在`~/.m2/repository/setting.xml`，**setting.xml**一开始是没有的，需要自己新建或把全局配置里的`setting.xml`复制过去
++ 用户默认的maven配置存放在`~/.m2/repository/setting.xml`
++ **setting.xml**如果没有需要自己新建或把全局配置里的`setting.xml`复制过去
++ 如果用户配置文件不存在，则使用全局配置
+
 ![](https://github.com/HurricanGod/Home/blob/master/img/maven1.png)
 
-**注**
 
-如果用户配置文件不存在，则使用全局配置
+
 
 
 
@@ -57,7 +59,7 @@ Project
 
 
 
-| 依赖范围(Scope) | 对于主代码classpath有效 | 对于测试代码classpath有效 | 被打包，对于运行时classpath有效 |             例子             |
+| 依赖范围(Scope) | 对于主代码classpath有效 | 对于测试代码classpath有效 | 被打包，对于运行时classpath有效 |例子|
 | :---------: | :--------------: | :---------------: | :------------------: | :------------------------: |
 |   compile   |        Y         |         Y         |          Y           |           log4j            |
 |    test     |        --        |         Y         |          --          |           junit            |
@@ -65,12 +67,23 @@ Project
 |   runtime   |        --        |        --         |          Y           | JDBC Driver Implementation |
 
 
+```xml
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <scope>provided</scope>
+</dependency>
+```
+
 
 **依赖范围**`scope`用来控制依赖和编译，测试，运行的classpath的关系，主要的3种依赖关系为：
 
-1. `compile`： 默认依赖范围，对于**编译、测试和运行** 3种classpath都有效
+1. `compile`： 默认的范围，对于**编译、测试和运行** 3种classpath都有效
 2. `test`： 测试依赖范围，只对于测试classpath有效
-3. `provided`： 已提供依赖范围。对于编译，测试的classpath都有效，但对运行无效，**打包时不把依赖加入到包里**；例如servlet-api，服务器容器里默认有这个jar包，因此项目发布时不需要把本地的`servlet-api`一起打包
+3. `provided`： 已提供依赖范围。对于编译，测试的classpath都有效，但对运行无效，**打包时不把依赖打到相应的jar包或war包中**
+
+例如：
+servlet-api，服务器容器里默认有这个jar包，因此项目发布时不需要把本地的`servlet-api`一起打包
 
 
 
@@ -92,7 +105,7 @@ Project
 </dependency>
 ```
 
-`option`b标签用于表示依赖是否会传递下去，默认为**false**，表示会传递下去
+`option`标签用于表示依赖是否会传递下去，默认为**false**，表示会传递下去
 
 
 
@@ -175,7 +188,7 @@ Maven的web工程使用`Tomcat`插件
   ----
   ## Maven命令
   ```sh
-  clean package -Dmaven.test.skip=true -P product
+  mvn clean package -Dmaven.test.skip=true -P product
   ```
   + `clean` —— 清除上次构建结果，保证本次构建不受影响
   + `-U参数` —— 强制让Maven检查所有SNAPSHOT依赖更新，确保集成是最新的状态
