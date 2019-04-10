@@ -246,6 +246,8 @@ iftop -i eth0
 
 ## <a name="iptables">防火墙</a>
 
+### iptables
+
 + 添加过滤规则
 
   ```shell
@@ -258,5 +260,41 @@ iftop -i eth0
   + `-dport`参数： 指定目标端口，指数据从外网访问服务器使用的端口号
   + `-sport`参数：数据源端口，指从服务器出去的端口
   + `-j`参数：**ACCEPT**表示接收
+  
+
+### Ubuntu防火墙配置工具 —— ufw
+
++ 启用命令：
+```shell
+# ufw 默认是没有启用的
+ufw enable
+```
+
++ 查看防火墙状态：
+```shell
+ufw status
+```
+
++ 开放&关闭端口
+```shell
+# 开放80端口
+ufw allow 80
+
+# 开放的22端口只允许使用tcp协议访问
+ufw allow 22/tcp
+
+# 删除开放的80端口
+ufw delete allow 80 
+
+```
+
++ 开放ip
+```shell
+ufw allow from 192.168.168.10
+
+# 删除开放的ip规则
+ufw delete allow from 192.168.168.10
+```
+
 
  <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
