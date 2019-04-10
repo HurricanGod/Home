@@ -5,14 +5,15 @@
 1. 管理依赖
 2. 项目构建
 
-构建过程：
+### maven生命周期
 
 + 清理 —— `clean`
 + 编译 —— `compile`
 + 测试 —— `test`
 + 报告 ——
-+ 打包 —— `package`
-+ 部署 —— `deploy`
++ 打包 —— `package`，打成jar包或war包，自动进行`clean` + `compile`
++ 安装 —— `install`，将本地生成的jar包上传到本地仓库
++ 部署 —— `deploy`，上传到私服
 
 ----
 
