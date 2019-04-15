@@ -1,5 +1,7 @@
 # <a name="top">Linux常用命令</a> 
 
++ <a href="#quick_key">快捷键</a>
+
 + <a href="#netstat">`netstat`</a>
 
 + <a href="#ps">**进程**</a>
@@ -20,6 +22,16 @@
 + <a href="#nslookup">`域名解析nslookup`</a>
 
 ----
+
+## <a name="quick_key">快捷键</a>
++ `ctrl + u`：删除光标到行首的内容
+![ctrl_u用法示例]()
+
+
+
+
+----
+
 
 ## <a name="netstat">netstat</a>
 
