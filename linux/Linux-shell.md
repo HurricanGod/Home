@@ -703,7 +703,7 @@ function function_name()
   echo "yesterday = ${yesterday} s"
 
   # 获取一天前时间戳对应的日期字符串
-  yesterday_str=`date -d ${yesterday} +"%y-%m-%d %H:%M:%S"`
+  yesterday_str=`date -d @${yesterday} +"%y-%m-%d %H:%M:%S"`
   echo "yesterday_str = ${yesterday_str}"
   ```
 
