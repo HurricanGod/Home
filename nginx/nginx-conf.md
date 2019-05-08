@@ -371,7 +371,10 @@ access_log  /var/logs/nginx/access.log main;
 
 ```
 
-
+**最佳日志格式实践**：
+```nginx
+   log_format  main '{"time":"$time_local", "ip":["$remote_addr","$http_x_forwarded_for"], "agent":"$http_user_agent", "refer":"$http_referer", "user":"$remote_user", "request_url":"$request", "sent_bytes":"$body_bytes_sent", "request_method":"$request_method", "content_type":"$content_type", "status_code":$status, "request_time":$request_time, "upstream_addr":"$upstream_addr", "upstream_response_time":$upstream_response_time, "upstream_status":$upstream_status, "request_body":"$request_body"}';
+```
 
 
 
@@ -381,13 +384,18 @@ access_log  /var/logs/nginx/access.log main;
 | :---------------------- | :----------------------------- |
 | `$remote_addr`          | 客户端IP地址                        |
 | `$remote_user`          | 客户端用户名，**用于记录浏览者进行身份验证时提供的名称** |
-| `$time_local`           |                                |
+| `$time_local`           |  请求时间|
 | `$request`              | 请求的URI和HTTP协议                  |
 | `$status`               | http状态码                        |
 | `$body_bytes_sent`      | 发送给客户端文件主体内容的大小                |
 | `$http_referer`         |                                |
 | `$http_user_agent`      |                                |
 | `$http_x_forwarded_for` | 客户端IP地址列表（**包括中间经过的代理**）       |
+| `$content_type`      |  请求头使用的content_type  |
+| `$request_time`      |  -  |
+| `$upstream_response_time`      |  -  |
+| `$upstream_addr`      |  -  |
+| `$upstream_status`      |  -  |
 
 
 
