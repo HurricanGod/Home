@@ -33,7 +33,7 @@
 
 **流量控制**是指接收方将`advertised window`的大小通知给发送方，从而指导发送方修改`offered window`的大小。接收方将该信息放在TCP头部的**窗口区域**。
 
-![]()
+![](https://github.com/HurricanGod/Home/blob/master/network/img/ctr.jpg)
 
 
 
@@ -62,6 +62,8 @@ TCP中的重传机制：
 ----
 
 ## TCP连接管理
+
+![](https://github.com/HurricanGod/Home/blob/master/network/img/tcp-connect.jpg)
 
 + 3次握手建立连接
 
