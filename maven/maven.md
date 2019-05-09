@@ -189,8 +189,11 @@ Maven的web工程使用`Tomcat`插件
   ## Maven命令
   ```sh
   mvn clean package -Dmaven.test.skip=true -P product
+  
+  mvn clean install  -Dmaven.test.skip=true -U -e
   ```
   + `clean` —— 清除上次构建结果，保证本次构建不受影响
+  + `install` —— 打包并上传到本地仓库
   + `-U参数` —— 强制让Maven检查所有SNAPSHOT依赖更新，确保集成是最新的状态
   + `-e参数` —— 构建出现异常时打印完整的**stack trace**
   + `-P参数` —— 用于激活pom.xml配置中`<profiles>`标签下的**profile**
