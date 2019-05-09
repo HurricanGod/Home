@@ -18,7 +18,7 @@
 
 ## <a name="quick_key">快捷键</a>
 + `ctrl + u`：删除光标到行首的内容
-  ![ctrl_u用法示例]()
+  ![ctrl_u用法示例](https://github.com/HurricanGod/Home/blob/master/linux/img/ctrl_u.gif)
 
 
 
@@ -247,7 +247,7 @@ ifconfig
 iftop -i eth0
 ```
 
-![iftop相关参数]()
+![iftop相关参数](https://github.com/HurricanGod/Home/blob/master/linux/img/iftop-1.jpg)
 
 + `TX` —— 发送流量
 + `RX`—— 接收流量
