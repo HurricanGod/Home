@@ -1,22 +1,15 @@
 # <a name="top">Linux常用命令</a> 
 
-+ <a href="#quick_key">快捷键</a>
-
++ <a href="#quick_key">**快捷键**</a>
 + <a href="#netstat">`netstat`</a>
-
 + <a href="#ps">**进程**</a>
-
 + <a href="#echo">`echo`</a>
-
 + <a href="#disk">**磁盘**</a>
-
 + <a href="#userManage">**用户管理**</a>
-
 + <a href="#head_tail">`head & tail`</a>
-
 + <a href="#network_monitor">**网络监控**</a>
-
 + <a href="#iptables">**防火墙**</a>
++ <a href="#tar">**打包&压缩**</a>
 
 
 + <a href="#nslookup">`域名解析nslookup`</a>
@@ -25,7 +18,7 @@
 
 ## <a name="quick_key">快捷键</a>
 + `ctrl + u`：删除光标到行首的内容
-![ctrl_u用法示例]()
+  ![ctrl_u用法示例]()
 
 
 
@@ -50,7 +43,7 @@
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-    ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+     ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
 +  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
@@ -254,6 +247,27 @@ ifconfig
 iftop -i eth0
 ```
 
+![iftop相关参数]()
+
++ `TX` —— 发送流量
++ `RX`—— 接收流量
++ `TOTAL`—— 总流量
++ `peak` —— 流量峰值
++ `rates`—— 表示过去 `2s`、`10s`、 `40s`的平均流量
+
+**可选参数**：
+
++ `iftop -n -i eth0` —— host信息默认直接都显示IP
++ `iftop -F 113.116.29.0/24 -i eth0` —— 显示特定网段的进出流量
+
+
+
+`iftop`界面操作命令：
+
++ `n`：切换显示本机的IP或主机名
++ `N`：切换显示端口号或端口服务名称
++ `t`：切换显示格式为2行/1行/只显示发送流量/只显示接收流量
++ `T`： 切换是否显示每个连接的总流量
 
 <p align="right"><a href="#network_monitor">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
@@ -275,7 +289,7 @@ iftop -i eth0
   + `-dport`参数： 指定目标端口，指数据从外网访问服务器使用的端口号
   + `-sport`参数：数据源端口，指从服务器出去的端口
   + `-j`参数：**ACCEPT**表示接收
-  
+
 
 ### Ubuntu防火墙配置工具 —— ufw
 
@@ -311,9 +325,36 @@ ufw allow from 192.168.168.10
 ufw delete allow from 192.168.168.10
 ```
 
-
 <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
-  
+
+------
+
+<a name="tar">**打包&压缩**</a>
+
+### 打包压缩
+
+```sh
+# 将/home/ubuntu打包并压缩
+tar -zcvf filename.tar.tgz /home/ubuntu
+```
+
+
+
+### 解压
+
+| 文件后缀      | 解压命令                      | 说明                                       |
+| :-------- | :------------------------ | :--------------------------------------- |
+| `7z`      | 7z x filename.7z          | 需要先安装`7z`命令：`apt-get install p7zip-full` |
+| `tar.tgz` | tar zxvf filename.tar.tgz |                                          |
+|           |                           |                                          |
+|           |                           |                                          |
+
+
+
+<p align="right"><a href="#tar">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+
+----
+
 
 ### <a name="nslookup">查看域名解析 —— nslookup</a>
 
