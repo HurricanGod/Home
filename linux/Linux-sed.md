@@ -1,4 +1,14 @@
-### sed语法
+## <a name="top">sed命令</a>
++ <a href="#del">删除功能</a>
++ <a href="#print">打印功能</a>
++ <a href="#replace">替换功能</a>
++ <a href="#nm">n/N命令</a>
+
+----
+**工作原理**
+
+顺序逐行将文件读入到内存中。然后，它执行为该行指定的所有操作，并在完成请求的修改之后将该行放回到内存中，以将其转储至终端
+<br/>
 
 `sed [address1[,address2]][options] '{command}' [filename] `
 
@@ -13,12 +23,9 @@
 |  -e  | 直接在命令列模式上进行 sed 的动作编辑                    |
 |  -f  | 直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作 |
 |  -r  | sed 的动作支持的是延伸型正规表示法的语法                   |
-<hr/><br/>
 
-**工作原理**
 
-顺序逐行将文件读入到内存中。然后，它执行为该行指定的所有操作，并在完成请求的修改之后将该行放回到内存中，以将其转储至终端
-<hr/><br/>
+----
 
 **样例文件pipe.c**
 ```c
@@ -46,7 +53,8 @@ void main()
 	//退出失败
 }
 ```
-#### 删除功能d
+#### <a name="del">删除功能</a>
+
 运行`cat -n |sed -e 'd' `<br/>
 结果 ：>**无任何内容**<br/><br/>
 
@@ -76,7 +84,7 @@ void main()
 
 ----
 
-#### 打印功能<br/>
+#### <a name="print">打印功能</a>
 
 1. 安静模式下打印1行<br/>
    运行 ：``sed -n '1p' pipe.c``<br/>
@@ -90,11 +98,19 @@ void main()
 
 ----
 
-#### 替换功能s`sed 's/old value/new value/'`<br/>
-1. 运行 ``cat -n pipe.c |sed 's/include/hello/'``<br/>
+### <a name="replace">替换功能</a>
+
+`sed "s/old value/new value/"` —— 替换每一行中出现的第一个`old value`,即一行中如果有多个`old value`的串，只会替换第1个
+`sed "s/old value/new value/"` —— 全局替换，会替换一行中的所有`old value`
+
+
+**替换样例** ：
+
+
+1. 运行 ``cat -n pipe.c |sed 's/include/hello/'``<br/>
    结果 ：pipe.c文件中所有的“include”文件被替换为<strong>“hello”</strong><br/><br/>
 
-2. 多次修改（使用-e选项）<br/>
+2. **多次替换**（使用-e选项）<br/>
    运行 ``cat -n pipe.c |sed -e 's/include/hello/' -e 's/hello/include/'``<br/>
    结果 ：先将pipe.c文件中的串include改为串hello，接着再把串hello改回串include，即对源文件未做任何修改<br/><br/>
 
@@ -103,18 +119,17 @@ void main()
    结果 ：**my name are world**<br/>
    注意 ：<strong>分号必须是紧跟在斜线之后的第一个字符</strong><br/><br/>
    例 ：
+
 ```shell
 cat -n pipe.c|sed 's/include/hello/;0~2d'
 # 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，
 # 因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
 ```
 
-1. 全局替换<br/>
-   ``sed 's/old value/new value/``默认替换的是每一行中出现的第一个old value,如果一行中有多个“old value”的串，它只会替换第1个，若要替换一行中的全部“old value”需要使用<strong>g</strong><br/><br/>
-   样例 ：<br/>
+**全局替换样例 **：
+
+
 ```shell
-echo my name is hello hello | sed 's/hello/world/'
-# 结果：my name is world hello
 echo my name is hello hello | sed 's/hello/world/g' 
 # 结果：my name is world world
  
@@ -126,7 +141,8 @@ cat -n myfile.html | sed -e 's/<b>//g' -e 's/<\/b>//g'
 # 由于“</b>”中的‘/’会引起歧义，所以需要使用“\/”对“/”进行转义
 ```
 
-1. 替换每行第N个匹配<br/>
+1. 替换每行第N个匹配
+
 ```shell
 echo my name is hello hello | sed 's/hello/world/2' 
 # my name is hello world
@@ -134,7 +150,7 @@ echo my name is hello hello | sed 's/hello/world/3'
 # my name is hello hello
 ```
 
-#### n/N命令<br/>
+### <a name="nm">n/N命令</a>
 **n命令**：读取下一行到模式空间（pattern space）。由于模式空间中有按照正常流程读取的内容，使用n命令后，模式空间中又有了一行，此时模式空间中有2行内容，但是先读取的那一行不会被取代、覆盖或删除；当n命令后，还有其他命令p的时候，此时打印出的结果是n命令读取的那一行的内容。
 ```shell
 cat -n pipe.c|sed -n 'p;n'
@@ -162,7 +178,7 @@ cat -n pipe.c|sed -n 'n;p'
       结果：输出包含"exit"行的下一行<br/><br/>
 
 4. 区别/exit/**n;p**和/exit/**{n;p}**<br/>
-      运行：``sed -n '/exit/n;p' pipe.c``<br/>
+      运行：`sed -n '/exit/n;p' pipe.c`<br/>
       结果：除了包含"exit"的行其它行都被打印出来<br/><br/>
 
 5. 为文件加行号<br/>
