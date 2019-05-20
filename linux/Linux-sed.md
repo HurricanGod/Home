@@ -124,9 +124,15 @@ void main()
 cat -n pipe.c|sed 's/include/hello/;0~2d'
 # 将pipe.c文件中的“include”替换为“hello”，接着从第0行开始，每隔2行把该行删除，
 # 因为没有第0行，所以删除的是第2，4，6，8……行，即偶数行
+
+
+# 将nginx配置中的某一行注释掉
+sed -i "s/127.0.0.1:8080/#127.0.0.1:8080/g" /etc/nginx/nginx.conf
 ```
 
-**全局替换样例 **：
+
+**全局替换样例** ：
+
 
 
 ```shell
@@ -149,6 +155,10 @@ echo my name is hello hello | sed 's/hello/world/2'
 echo my name is hello hello | sed 's/hello/world/3' 
 # my name is hello hello
 ```
+
+
+----
+
 
 ### <a name="nm">n/N命令</a>
 **n命令**：读取下一行到模式空间（pattern space）。由于模式空间中有按照正常流程读取的内容，使用n命令后，模式空间中又有了一行，此时模式空间中有2行内容，但是先读取的那一行不会被取代、覆盖或删除；当n命令后，还有其他命令p的时候，此时打印出的结果是n命令读取的那一行的内容。
