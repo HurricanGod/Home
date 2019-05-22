@@ -194,32 +194,46 @@ make install
 ## <a name="kafka">Kafka安装</a>
 假设`Kafka`目录安装在`/home/hurrican/kafka`
 
++ **启动Kafka Broker** ：
+```shell
+cd /home/hurrican/kafka/bin/
+# 如果不使用nohup，终端关闭后启动的 Kafka Broker 就会退出
+nohup ./kafka-server-start.sh  ../config/server.properties & 
+```
+
++ **关闭Kafka Broker** ：
+```shell
+cd /home/hurrican/kafka/bin/
+./kafka-server-stop.sh
+```
+
 + **查看Topic列表** ：
 ```shell
 cd /home/hurrican/kafka/bin/
 ./kafka-topics.sh --zookeeper 127.0.0.1:2181 --list
 ```
 
-+ **消费Kafka下Topic名为day_topic的消息** ：
+
++ **往Topic发消息** ：
 ```shell
 cd /home/hurrican/kafka/bin/
-./kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic day_topic --from-beginning
-```
-
-
-+ **往day_topic发送消息** ：
-```shell
 ./kafka-console-producer.sh --broker-list localhost:9092 --topic day_topic
 ```
 
-+ **启动Kafka Broker** ：
++ **消费消息** ：
 ```shell
-./kafka-server-start.sh  server.properties
+cd /home/hurrican/kafka/bin/
+# 消费Topic名为day_topic的消息
+./kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic day_topic --from-beginning
 ```
 
-+ **关闭Kafka Broker** ：
++ **查看Kafka消息消费情况** ：
 ```shell
-./kafka-server-stop.sh
+cd /home/hurrican/kafka/bin/
+./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper 127.0.0.1:2181 --group group_day_topic --topic day_topic
+# --group：指定消费者组
+# --topic：指定topic
 ```
+![Topic消费情况]()
 
 
