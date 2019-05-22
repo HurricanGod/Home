@@ -1,4 +1,21 @@
-## Maven
+## <a name="top">Maven</a>
+
++ <a href="#maven_project">maven工程</a>
+
+
++ <a href="#conflict">依赖冲突</a>
+
+
++ <a href="#plugins">插件</a>
+
+
++ <a href="#repository">Maven仓库管理</a>
+
+
++ <a href="#maven_cmd">Maven命令</a>
+
+
+----
 
 **主要功能：**
 
@@ -38,10 +55,13 @@ Windows测试maven**环境配置成功**的方法：命令行下运行`mvn -v`
 
 
 
-
 ----
 
-## maven工程结构
+## <a name="maven_project">maven工程</a>
+
+
+
+### 工程结构
 
 ```
 Project
@@ -59,7 +79,15 @@ Project
 
 
 
-| 依赖范围(Scope) | 对于主代码classpath有效 | 对于测试代码classpath有效 | 被打包，对于运行时classpath有效 |例子|
+<p align="right"><a href="#maven_project">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
+### POM文件标签元素
+
++ `scope`
+
+| 依赖范围(Scope) | 对于主代码classpath有效 | 对于测试代码classpath有效 | 被打包，对于运行时classpath有效 |             例子             |
 | :---------: | :--------------: | :---------------: | :------------------: | :------------------------: |
 |   compile   |        Y         |         Y         |          Y           |           log4j            |
 |    test     |        --        |         Y         |          --          |           junit            |
@@ -80,14 +108,35 @@ Project
 
 1. `compile`： 默认的范围，对于**编译、测试和运行** 3种classpath都有效
 2. `test`： 测试依赖范围，只对于测试classpath有效
-3. `provided`： 已提供依赖范围。对于编译，测试的classpath都有效，但对运行无效，**打包时不把依赖打到相应的jar包或war包中**
-
-例如：
-servlet-api，服务器容器里默认有这个jar包，因此项目发布时不需要把本地的`servlet-api`一起打包
+3. `provided`： 已提供依赖范围。对于编译，测试的classpath都有效，但对运行无效，**打包时不把依赖打到相应的jar包或war包中** 。比如Tomcat容器里有`servlet-api.jar`，编译期间需要该依赖，发布时不需要此依赖，因此可以将`scope置为provided`
 
 
 
-###  依赖冲突
+
+<p align="right"><a href="#maven_project">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
++ classifier`
+
+```xml
+   <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>2.4.15</version>
+      <classifier>indy</classifier>
+    </dependency>
+```
+
+ **用途**：用于区分同个版本不同环境或jdk使用的jar,如果配置了这个元素，则会将这个元素名在加在后面查找相应的jar包。添加上面依赖时，maven仓库找的jar包为 `groovy-2.4.15-indy.jar`，若没有`<classifier>indy</classifier>`找的jar包为 `groovy-2.4.15.jar`
+
+
+
+<p align="right"><a href="#maven_project">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="conflict">依赖冲突</a>
 
 在Maven中存在两种冲突方式：
 
@@ -109,7 +158,7 @@ servlet-api，服务器容器里默认有这个jar包，因此项目发布时不
 
 
 
-### 排除依赖
+### <a name="exclude">依赖排除</a>
 
 `exclusions`标签可以进行排除依赖
 
@@ -124,94 +173,97 @@ servlet-api，服务器容器里默认有这个jar包，因此项目发布时不
 
 
 
-### 插件
-
-**指定编译的jdk版本**
-
-```xml
-<plugins>
-  <!-- 编译插件，指定编译的jdk版本-->
-  <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <configuration>
-      <source>1.7</source>
-      <target>1.7</target>
-      <encoding>UTF-8</encoding>
-    </configuration>
-  </plugin>
-</plugins>
-```
-
-
-
-Maven的web工程使用`Tomcat`插件
-
-```xml
-<plugins>
-  <plugin>
-    <groupId>org.apache.tomcat.maven</groupId>
-    <artifactId>tomcat7-maven-plugin</artifactId>
-    <configuration>
-     <port>8080</port>
-      <path>/</path>
-    </configuration>
-  </plugin>
-</plugins>
-```
-
-**启动**： `tomcat[n]:run`(n表示Tomcat版本)
-
-
-
-### 父工程统一管理版本号
+父工程统一管理版本号
 
 父工程`dependencyManagement`标签用于管理的依赖，实质并没有真正依赖，它只是管理依赖的版本；**子工程**的`denpendency`标签不用`version`标签确定依赖的**版本号**，版本号由父工程确定
 
+<p align="right"><a href="#maven_project">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
+----
+
+### <a name="plugins">插件</a>
+
++ **编译插件**
+
+  ```xml
+  <plugins>
+    <!-- 编译插件，指定编译的jdk版本-->
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <configuration>
+        <source>1.7</source>
+        <target>1.7</target>
+        <encoding>UTF-8</encoding>
+      </configuration>
+    </plugin>
+  </plugins>
+  ```
+
+  ​
+
+
++ Maven的web工程使用`Tomcat`插件
+
+  ```xml
+  <plugins>
+    <plugin>
+      <groupId>org.apache.tomcat.maven</groupId>
+      <artifactId>tomcat7-maven-plugin</artifactId>
+      <configuration>
+       <port>8080</port>
+        <path>/</path>
+      </configuration>
+    </plugin>
+  </plugins>
+  <!-- tomcat[n]:run 启动-->
+  ```
+
+  ​
+
+<p align="right"><a href="#plugins">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
 ------
 
-## Maven仓库管理
+## <a name="repository">Maven仓库管理</a>
 
 **仓库分类**：
 
 + 本地仓库
   + 默认在`~/.m2/repository`，如果有用户配置则在用户指定的路径里
+
 + 远程仓库
   + 中央仓库（不包含有版本的jar包，http://repo1.maven.org/maven2 ）
   + 私服
   + http://mvnrepository.com/ (常用)
-  
-  
-  
+
+
+
+
+<p align="right"><a href="#plugins">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="maven_cmd">Maven命令</a>
+
+
+
+```sh
+mvn clean package -Dmaven.test.skip=true -P product
+
+mvn clean install  -Dmaven.test.skip=true -U -e
+```
++ `clean` —— 清除上次构建结果，保证本次构建不受影响
++ `install` —— 打包并上传到本地仓库
++ `-U参数` —— 强制让Maven检查所有SNAPSHOT依赖更新，确保集成是最新的状态
++ `-e参数` —— 构建出现异常时打印完整的**stack trace**
++ `-P参数` —— 用于激活pom.xml配置中`<profiles>`标签下的**profile**
+
+
+
+
+<p align="right"><a href="#maven_cmd">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
   ----
-  ## Maven命令
-  ```sh
-  mvn clean package -Dmaven.test.skip=true -P product
-  
-  mvn clean install  -Dmaven.test.skip=true -U -e
-  ```
-  + `clean` —— 清除上次构建结果，保证本次构建不受影响
-  + `install` —— 打包并上传到本地仓库
-  + `-U参数` —— 强制让Maven检查所有SNAPSHOT依赖更新，确保集成是最新的状态
-  + `-e参数` —— 构建出现异常时打印完整的**stack trace**
-  + `-P参数` —— 用于激活pom.xml配置中`<profiles>`标签下的**profile**
-  
-  
-  ----
-  ## <a name="pom">POM文件解析</a>
-  
-  + `classifier`用途：用于区分同个版本不同环境或jdk使用的jar,如果配置了这个元素，则会将这个元素名在加在后面查找相应的jar包
-  ```xml
-  <dependency>
-    <groupId>org.codehaus.groovy</groupId>
-    <artifactId>groovy</artifactId>
-    <version>2.4.15</version>
-    <classifier>indy</classifier>
-  </dependency>
-  ```
-  添加上面依赖时，maven仓库找的jar包为 `groovy-2.4.15-indy.jar`，若没有`<classifier>indy</classifier>`找的jar包为 `groovy-2.4.15.jar`
-  
-  
-  
+  ​
+

@@ -16,6 +16,10 @@
 
 
 + <a href="#log">**日志**</a>
+  + <a href="#off_log">**关闭日志**</a>
+  + <a href="#log_cut">**日志切割**</a>
+
+
 
 
 + <a href="#virtual_host">**虚拟主机**</a>
@@ -380,24 +384,28 @@ access_log  /var/logs/nginx/access.log main;
 
 **日志格式相关的内置变量** ：
 
-| 内置变量                    | 含义                             |
-| :---------------------- | :----------------------------- |
-| `$remote_addr`          | 客户端IP地址                        |
-| `$remote_user`          | 客户端用户名，**用于记录浏览者进行身份验证时提供的名称** |
-| `$time_local`           |  请求时间|
-| `$request`              | 请求的URI和HTTP协议                  |
-| `$status`               | http状态码                        |
-| `$body_bytes_sent`      | 发送给客户端文件主体内容的大小                |
-| `$http_referer`         |                                |
-| `$http_user_agent`      |                                |
-| `$http_x_forwarded_for` | 客户端IP地址列表（**包括中间经过的代理**）       |
-| `$content_type`      |  请求头使用的content_type  |
-| `$request_time`      |  -  |
-| `$upstream_response_time`      |  -  |
-| `$upstream_addr`      |  -  |
-| `$upstream_status`      |  -  |
+| 内置变量                      | 含义                             |
+| :------------------------ | :----------------------------- |
+| `$remote_addr`            | 客户端IP地址                        |
+| `$remote_user`            | 客户端用户名，**用于记录浏览者进行身份验证时提供的名称** |
+| `$time_local`             | 请求时间                           |
+| `$request`                | 请求的URI和HTTP协议                  |
+| `$status`                 | http状态码                        |
+| `$body_bytes_sent`        | 发送给客户端文件主体内容的大小                |
+| `$http_referer`           |                                |
+| `$http_user_agent`        |                                |
+| `$http_x_forwarded_for`   | 客户端IP地址列表（**包括中间经过的代理**）       |
+| `$content_type`           | 请求头使用的content_type             |
+| `$request_time`           | -                              |
+| `$upstream_response_time` | -                              |
+| `$upstream_addr`          | -                              |
+| `$upstream_status`        | -                              |
 
 
+
+<p align="right"><a href="#log">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
+
+----
 
 ### <a name="off_log">**关闭日志**</a>
 
@@ -414,6 +422,49 @@ error_log  /dev/null;
 ```
 
 
+
+----
+
+### <a name="log_cut">日志切割</a>
+
+使用nginx内嵌变量`$time_iso8601`获取时间，`$time_iso8601`时间格式为：`2019-05-21T23:30:00+02:00`，可以使用正则表达式截取时间日期。正则表达式匹配结果参考：
+
+
+
+| 判断条件  | 说明                                |
+| :---- | :-------------------------------- |
+| `==`  | 等值比较                              |
+| `~`   | 与指定正则表达式模式匹配时返回`true`，区分大小写       |
+| `~*`  | 与指定正则表达式模式匹配时返回`true`，**不区分大小写**  |
+| `!~`  | 与指定正则表达式模式不匹配时返回`true`，区分大小写      |
+| `!~*` | 与指定正则表达式模式不匹配时返回`true`，**不区分大小写** |
+| `-f`  | 判断指定路径的文件是否存在                     |
+| `!-f` | `-f`结果取反                          |
+| `-d`  | 判断指定路径是否为目录                       |
+| `-e`  | 判断指定的文件或目录是否存在                    |
+
+
+
+```nginx
+server{
+  	listen 80;
+  	server_name localhost;
+  	if ($time_iso8601 ~ "^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})") {
+  		set $year $1;
+  		set $month $2;
+  		set $day $3;
+    	set $hour $4;
+    	set $minutes $5;
+    	set $seconds $6;
+	}
+  	location / {
+    	# 按天分割日志
+  		access_log /home/nginx/$day-$month-$year-access.log;
+    	# 按小时分割错误日志
+    	error_log /home/nginx/$hour-$day-error.log;
+	}
+}
+```
 
 
 

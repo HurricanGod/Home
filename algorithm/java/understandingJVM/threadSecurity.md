@@ -40,7 +40,11 @@
 
 
 
-Java中最基本实现互斥的手段是`synchronized`关键字，经过编译后`synchronized`同步块前后分别形成`monitorenter`和`monitorexit`两个字节码指令，这两个字节码指令都需要一个references类型来指明要锁定和解锁的对象；如果`synchronized`是加在类方法或对象方法上的，则通过该方法找到类对象或Class对象对其加锁。
+Java中最基本实现互斥的手段 —— `synchronized`关键字
+
++ 经过编译后`synchronized`同步块前后分别形成`monitorenter`和`monitorexit`两个字节码指令
++ `monitorenter`和`monitorexit`字节码指令都***需要一个references类型**来指明要锁定和解锁的对象
++ 如果`synchronized`是加在类方法或对象方法上的，则通过该方法找到类对象或Class对象对其加锁。
 
 
 
