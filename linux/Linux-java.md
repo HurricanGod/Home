@@ -234,6 +234,6 @@ cd /home/hurrican/kafka/bin/
 # --group：指定消费者组
 # --topic：指定topic
 ```
-![Topic消费情况]()
+![Topic消费情况](https://github.com/HurricanGod/Home/blob/master/linux/img/kafka-consumer-detail.png)
 
 
