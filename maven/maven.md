@@ -202,14 +202,16 @@ Maven的web工程使用`Tomcat`插件
   ----
   ## <a name="pom">POM文件解析</a>
   
-  + `classifier`用途：
+  + `classifier`用途：用于区分同个版本不同环境或jdk使用的jar,如果配置了这个元素，则会将这个元素名在加在后面查找相应的jar包
   ```xml
   <dependency>
     <groupId>org.codehaus.groovy</groupId>
     <artifactId>groovy</artifactId>
-    <version>${groovy.version}</version>
+    <version>2.4.15</version>
     <classifier>indy</classifier>
   </dependency>
   ```
+  添加上面依赖时，maven仓库找的jar包为 `groovy-2.4.15-indy.jar`，若没有`<classifier>indy</classifier>`找的jar包为 `groovy-2.4.15.jar`
+  
   
   
