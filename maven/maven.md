@@ -199,3 +199,17 @@ Maven的web工程使用`Tomcat`插件
   + `-P参数` —— 用于激活pom.xml配置中`<profiles>`标签下的**profile**
   
   
+  ----
+  ## <a name="pom">POM文件解析</a>
+  
+  + `classifier`用途：
+  ```xml
+  <dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy</artifactId>
+    <version>${groovy.version}</version>
+    <classifier>indy</classifier>
+  </dependency>
+  ```
+  
+  
