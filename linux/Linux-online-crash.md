@@ -72,7 +72,21 @@ uptime
 
 
 
-`sar`：查看网络设备的吞吐率，通过网络设备的吞吐量，判断网络设备是否饱和
+`sar(System Activity Reporter)`：是Linux上系统性能分析工具。可用于查看网络设备的吞吐率，通过网络设备的吞吐量，判断网络设备是否饱和
+
+**命令格式**  ——  `sar [ 选项 ] [ <时间间隔> [ <次数> ] ]`，常用选项如下：
++ `-B`： 显示换页状态
++ `-b`： 显示I/O和传递速率的统计信息
++ `-i`： 设置状态信息刷新的间隔时间
++ `–u`： 输出cpu使用情况和统计信息
++ `-R`： 显示内存状态
++ `-d`： 磁盘使用详情统计
++ `-n`： 统计网络信息，后面跟的可选参数有：`DEV`、`EDEV`、`SOCK`、`ALL`...
+  + `DEV` —— 网络接口信息
+  + `EDEV` —— 网络错误的统计数据
+  + `SOCK` —— 套接字信息
+  + `ALL` —— 所有信息
+
 
 ```sh
 # 
@@ -86,7 +100,7 @@ sar -n TCP,ETCP 1
 
 ```
 
-![sar-n]()
+![sar-n](https://github.com/HurricanGod/Home/blob/master/linux/img/sar-n-TCP.png)
 
 
 
@@ -98,7 +112,7 @@ sar -n TCP,ETCP 1
 # %util —— 设备利用率
 iostat -xz 1
 ```
-
+![](https://github.com/HurricanGod/Home/blob/master/linux/img/iostat-xz1.png)
 
 
 <p align="right"><a href="#top">返回目录</a></p>
