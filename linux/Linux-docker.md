@@ -2,25 +2,145 @@
 
 
 
-**拉取基础镜像**
-
-当我们在本地主机上使用一个不存在的镜像时，Docker就会自动下载这个镜像。如果我们想预先下载这个镜像，我们可以使用docker pull命令来下载它。
-
-利用docker pull命令即可从相关Hub网站上拉取镜像到本地。
 
 
+----
+
+## <a name="container">容器</a>
 
 
 
-1.docker images   //命令用来查看docker中所包含的镜像信息
+### <a name="create-container">创建**新容器**</a>
 
-各个选项说明：
+**命令格式** ： `docker run [options] IMAGE [command] [args...]`
 
-- REPOSITORY：表示镜像的仓库源
-- TAG：镜像的标签
-- IMAGE ID：镜像ID
-- CREATED：镜像创建时间
-- SIZE：镜像大小
+常用`options`：
+
++ `-d`：  指定容器运行于前台还是后台
++ `-i`： 打开STDIN，用于控制台交互
++ `-t`： 分配tty设备，该可以支持终端登录，默认为false
++ `-w`： 指定容器的工作目录
++ `-e`： 指定环境变量，容器中可以使用该环境变量
++ `-p`： 指定容器暴露的端口
++ `-h`： 指定容器的主机名
++ `-v`： 给容器挂载存储卷，挂载到容器的某个目录
++ `--name=${name}`： 指定容器名字，`${name}`即为要指定的名字。后续可以通过名字进行容器管理，links特性需要使用名字
++ `--link=[]`： 指定容器间的关联，使用其他容器的IP、env等信息
++ `--privileged=false`： 指定容器是否为特权容器，特权容器拥有所有的capabilities
++ `--cidfile=""`： 运行容器后，在指定文件中写入容器PID值，一种典型的监控系统用法
++ `--net="bridge"`： 容器网络设置，bridge 使用docker daemon指定的网桥
+
+
+
+```shell
+#通过镜像redis-cluster-4.0.10创建名为redis-6380的容器，映射到宿主机端口为6380
+docker run -d --name redis-6380 -p  6380:6379 redis-cluster-4.0.10
+
+# 创建可以进入命令行的容器
+docker run -it -d --name redis-6381 -p  6381:6379 redis-cluster-4.0.10
+
+
+# 指定宿主机 /mnt/log 目录与容器里的 /var/log/redis 目录共享
+docker run -it -d --name redis-6382 -p  6382:6379  -v /mnt/log/:/var/log/redis redis-cluster-4.0.10
+
+# 创建 → 运行  → 进入容器
+docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis redis-cluster-4.0.10 /bin/bash
+```
+
+
+
+### <a name="inspect">获取容器元数据</a>
+
+**命令格式** ：`docker inspect [options] name|ID [NAME|ID...]`
+
+`options`说明：
+
++ `-f, --format string`： 使用给定的Go模板格式化输出
+
+
++ `-s`： 显示总的文件大小
++ `--type string`： 为指定类型返回JSON
+
+![docker-inspect]()
+
+
+
+
+
+
+
+
+
+
+
+-----
+
+## <a name="image">镜像</a>
+
++ **简介**
+
+在本地主机上使用一个不存在的镜像时，Docker就会自动下载这个镜像。下载镜像相关的命令 —— `docker pull`，该命令可从相关Hub网站上拉取镜像到本地。
+
+
+
++ **拉取镜像** —— `docker pull`
+
+
+
+
+
++ **查看镜像信息** —— `docker images`
+
+  ![docker-images]()
+
+  **选项说明**：
+
+  + `REPOSITORY` —— 镜像的仓库源
+  + `TAG` —— 镜像的标签
+  + `IMAGE ID` —— 镜像ID
+  + `CREATED` —— 镜像创建时间
+  + `SIZE` —— 镜像大小
+
+
+
+
+
++ **创建镜像** —— `docker build `
+
+> Dockerfile创建完成后可以使用docker build命令根据Dockerfile构建镜像
+>
+> 命令格式： docker  build  [options]  PATH | URL | -
+
+可选的命令选项包括：
+
++	`-t`：指定镜像名称
+
++ `-f`：显式指定 `Dockerfile`，不显式指定`Dockerfile`情况下，默认使用上下文路径下名字为`Dockerfile`的文件构建镜像
+
+
+
+**构建镜像的过程中，可以引用上下文中的任何文件**
+
+```sh
+# 在当前文件夹构建名字为 redis-cluster-4.0.10 的镜像
+docker build -t redis-cluster-4.0.10 .
+
+# 
+docker  build  -t  redis-cluster-4.0.10:v2  .
+```
+
+
+
+
+
+
+
++ **删除镜像**
+
+
+
+-----
+
 
 
 
@@ -30,7 +150,7 @@
 
   4.docker build -it 镜像name:镜像tag Dockerfile所在路径    //这是通过Dockerfile来构建一个镜像
 
-  5.docker run -d -p  宿主机端口:容器端口  --name 容器名称 image   //这是通过一个image来构建一个container
+
 
   6.docker rmi 镜像名称:镜像tag/镜像Id    //通过一个镜像名称或者镜像Id来删除一个镜像
 
@@ -60,10 +180,6 @@ docker exec -it 9298 bash
 
 
 
-用docker run可以一步到位创建并运行一个容器，然后进入该容器：
-
-docker run -it --name runUbuntuContainer ubuntu:18.04 /bin/bash
-
 
 
 **commit容器，创建新镜像**
@@ -86,8 +202,6 @@ Dockerfile的格式统统为
 
 INSTRUCTION arguments
 
-
-
 必须以FROM BASE_IMAGE开头指定基础镜像。
 
 
@@ -95,40 +209,5 @@ INSTRUCTION arguments
 1. `FROM rccoder/myworkspace:v1`
 2. `RUN mkdir a`
 
-docker build -t newfiledocker:v1 .
 
-1. ` 新建基于 newfiledocker 的容器并在终端中打开，发现里面已经有 a 文件夹了。`
-2. `> docker docker run -it newfiledocker:v1 /bin/bash`
-3. `root@e3bd8ca19ffc:/# ls`
-
-**通过Dockerfile构建**
-
-创建Dockerfile。
-
-首先，创建目录php-fpm，用于存放后面的相关东西：
-
-```
-runoob@runoob:~$ mkdir -p ~/php-fpm/logs ~/php-fpm/conf
-```
-
-logs目录将映射为php-fpm容器的日志目录。
-
-conf目录里的配置文件将映射为php-fpm容器的配置文件。
-
-进入创建的php-fpm目录，创建Dockerfile。
-
-通过Dockerfile创建一个镜像，替换成你自己的名字：
-
-```
-runoob@runoob:~/php-fpm$ docker build -t php:5.6-fpm .
-```
-
-创建完成后，我们可以在本地的镜像列表里查找到刚刚创建的镜像：
-
-```
-runoob@runoob:~/php-fpm$ docker imagesREPOSITORY          TAG                 IMAGE ID            CREATED             SIZEphp                 5.6-fpm             025041cd3aa5        6 days ago          456.3
-
-
-
-```
 
