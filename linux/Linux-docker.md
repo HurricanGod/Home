@@ -61,7 +61,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 + `-s`： 显示总的文件大小
 + `--type string`： 为指定类型返回JSON
 
-![docker-inspect]()
+![docker-inspect](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-inspect.png)
 
 
 
@@ -91,7 +91,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 + **查看镜像信息** —— `docker images`
 
-  ![docker-images]()
+  ![docker-images](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-images.png)
 
   **选项说明**：
 
