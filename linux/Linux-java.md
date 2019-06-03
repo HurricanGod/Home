@@ -3,7 +3,12 @@
 + <a href="#jdk">**JDK安装**</a>
 
 
-+ <a href="#mysql_install">**MySQL安装**</a>
++ <a href="#mysql_install">**MySQL安装与配置**</a>
+  + <a href="#mysql-install">安装</a>
+  + <a href="#create-user">创建外网访问用户</a>
+  + <a href="#config-mysql">配置MysQL服务器</a>
+
+
 
 
 + <a href="#redis">**Redis编译安装**</a>
@@ -69,15 +74,14 @@
 
   ​
 
-    
 
 <p align="right"><a href="#jdk">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 -----
 
-## <a name="mysql_install">**MySQL5.7安装**</a>
+## <a name="mysql_install">**MySQL5.7安装与配置**</a>
 
-### 准备
+### <a name="mysql-install">安装</a>
 ```shell
 apt update
 
@@ -98,9 +102,10 @@ apt-get install mysql-server
 
 
 
-### 创建MySQL外网访问用户
+### <a name="create-user">创建MySQL外网访问用户</a>
 登录 `MySQL` 服务器
 ```mysql
+# mysql -u root -p${password} 直接一步登录MySQL
 mysql -u root -p
 Enter password: 
 
@@ -122,14 +127,15 @@ revoke drop, grant option on *.* from 'Hurrican'@'%';
 
 # 查询 Hurrican用户的所有权限
 select * from mysql.user where user='Hurrican'\G;
-
 ```
 **注意点**:
 + **安装过程中有个输入 root 账户密码的步骤，需要记住这个密码**
 + 若进行上述操作任**无法使用外网访问服务器**上的 `MySQL` 时可以参考<a href="https://www.cnblogs.com/funnyboy0128/p/7966531.html">这篇博客</a>
 
 
-### 配置MysQL服务器
+------
+
+### <a name="config-mysql">配置MysQL服务器</a>
 
 若**修改了MySQL日志文件存放路径**，则需要进行如下操作：
 + 修改`/etc/apparmor.d`目录下的usr.sbin.mysqld
@@ -146,9 +152,50 @@ vim /etc/apparmor.d/usr.sbin.mysqld
 /etc/init.d/apparmor restart
 ```
 
-
 <p align="right"><a href="#mysql_install">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
+----
+
+<a name="mysql-connections-conf">MySQL连接数配置</a>
+
++ 查看MySQL最大连接数
+
+  ```mysql
+  # 查看MySQL最大连接数配置
+  select @@global.max_connections;
+
+  show variables like '%connections%';
+  ```
+
+  ![connections]()
+
+> max_user_connections —— 配置一个用户session的连接数，若max_user_connections = 1，任何用户与MySQL服务器的session个数只能为1
+
++ 修改MySLQ最大连接数
+
+  ```mysql
+  set @@global.max_connections=10000;
+  ```
+
+  **注意**： 
+
+  1. 上面命令是在不重启MySQL服务器情况下动态调整MySQL最大连接数，服务器重启后失效。
+  2. `max_connections`配置的值过小会造成`ERROR 1040 (HY000): Too many connections`错误
+
+
+
++ 收回非`root`用户的`super`权限
+
+  ```mysql
+  # 收回非root用户的super的权限，当发生 Too many connections 错误时数据库管理员可以通过 root 用户登录MySQL服务器进行处理
+  revoke super on *.* from 'hurrican'@'%';
+  ```
+
+  ​
+
+
+
+<p align="right"><a href="#mysql_install">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ----
 ## <a name="redis">Redis的安装</a>
@@ -172,6 +219,9 @@ redis-server /etc/redis/redis.conf
 
 # 停止 redis 服务
 redis-cli -h 127.0.0.1 -p 6379 shutdown
+
+# 登录有密码的 redis-cluster 
+redis-cli -c -h 127.0.0.1 -p 6379 -a auth
 ```
 
 
