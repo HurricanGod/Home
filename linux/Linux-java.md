@@ -167,7 +167,7 @@ vim /etc/apparmor.d/usr.sbin.mysqld
   show variables like '%connections%';
   ```
 
-  ![connections]()
+  ![connections](https://github.com/HurricanGod/Home/blob/master/linux/img/linux-mysql-connections.png)
 
 > max_user_connections —— 配置一个用户session的连接数，若max_user_connections = 1，任何用户与MySQL服务器的session个数只能为1
 
