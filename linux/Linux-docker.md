@@ -117,6 +117,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 ***退出方式*** ： `ctrl + p` +  `ctrl + q`
 
+![](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-attach.png)
 
 
 ####  方式2
@@ -145,6 +146,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 **命令格式** ：`docker commit <CONTAINER-ID> [repo:tag]`
 
 
+![](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-commit.png)
 
 通过`docker commit`虽然产生了一个新`image`，但实际上没有独立占用磁盘空间，而是在旧镜像的基础上修改，与旧镜像共享大部分内容。
 
@@ -190,7 +192,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 ​	`--no-trunc` ： 不截断输出，显示完整输出，默认为`false`
 
-![docker-search]()
+![docker-search](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-search.png)
 
 + `NAME`： 镜像仓库名称
 + `DESCRIPTION`： 镜像仓库描述
@@ -266,7 +268,7 @@ docker  build  -t  redis-cluster-4.0.10:v2  .
 
   ​
 
-  ![docker-rmi]()
+  ![docker-rmi](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-rmi.png)
 
 
 
