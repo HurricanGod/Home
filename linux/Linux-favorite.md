@@ -43,7 +43,7 @@
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-     ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+       ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
 +  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
@@ -64,19 +64,47 @@
 
 ## <a name="ps">进程</a>
 
-+ ***查找进程***
-  `ps -ef|grep 搜索串` —— 查看含有**搜索串**的进程信息
+***命令格式***  ：`ps [options]`
+
+**常用options** ：
+
++ `-a` ： 显示终端上的所有进程，包括其他用户的进程
++ `-u`： 以用户为主的格式来显示程序状况
++ `-x`： 显示没有控制终端的进程
++ `-aux`： 显示所有包含其他使用者的行程
++ `-e` ： 显示所有进程,环境变量
++ `-f`： 全格式输出
++ `-w`： 宽格式输出
++ `-l`：长格式输出
++ `--sort`—— 根据`sort`后面的key进行排序，其中`-`表示逆序，`+`表示正序
 
 
-+ ***查找僵尸进程并kill掉***
 
-```shell
+**常用命令** ：
+
+```sh
+# 根据进程名搜索进程信息
+ps -ef|grep 搜索串
+
 # 列出进程表中的僵尸进程
 ps aux|grep Z
 
 # 杀掉僵尸进程
 kill -s SIGCHLD pid
+
+# 根据占用物理内存大小由高到低输出进程信息
+# VSZ：占用的虚拟内存
+# RSS：占用的物理内存
+ps -auxw --sort=-rss
+
+#  查看所有进程信息，按照物理内存占用由高到低，cpu使用率由低到高排序
+ps -auxw --sort=-rss,+%cpu
 ```
+
+
+
+
+
 
 
 
@@ -133,6 +161,9 @@ du -h /home
 # 目录的总磁盘大小
 du -sh /home
 
+# 查看当前目录及其子目录磁盘空间占用情况
+du -h  --max-depth=1
+du -h -d 1 
 ```
 
 ![du-h](https://github.com/HurricanGod/Home/blob/master/linux/img/du-h.png)

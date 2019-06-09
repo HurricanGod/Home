@@ -14,10 +14,11 @@
 
 
 
-
 ----
 
 ## <a name="container">容器</a>
+
+`docker`容器在命令执行完后会自动退出，容器的生命周期取决于命令执行所需的时间，容器中执行的bash能够长期运行就能保证容器不会退出。
 
 
 
@@ -25,7 +26,7 @@
 
 **命令格式** ： `docker run [options] IMAGE [command] [args...]`
 
-常用`options`：
+***常用options*** ：
 
 + `-d`：  指定容器运行于前台还是后台
 + `-i`： 打开STDIN，用于控制台交互
@@ -34,7 +35,7 @@
 + `-e`： 指定环境变量，容器中可以使用该环境变量
 + `-p`： 指定端口映射
 + `-h`： 指定容器的主机名
-+ `-v`： 给容器挂载存储卷，挂载到容器的某个目录
++ `-v`： 给容器挂载存储卷，挂载到容器的某个目录，**容器对数据卷的修改将立即存储到宿主机的文件系统上**
 + `--name=${name}`： 指定容器名字，`${name}`即为要指定的名字。后续可以通过名字进行容器管理，links特性需要使用名字
 + `--link=[]`： 指定容器间的关联，使用其他容器的IP、env等信息
 + `--privileged=false`： 指定容器是否为特权容器，特权容器拥有所有的capabilities
@@ -56,6 +57,10 @@ docker run -it -d --name redis-6382 -p  6382:6379  -v /mnt/log/:/var/log/redis 
 
 # 创建 → 运行  → 进入容器
 docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis redis-cluster-4.0.10 /bin/bash
+
+# 将宿主机的 /etc/localtime 和 /etc/timezone 挂载到容器内共享
+# 目的：保证容器内和宿主机的时间一致
+docker run -itd --name redis-6386 -p 6386:6379 -v /etc/localtime:/etc/localtime -v /etc/timezone:/etc/timezone 55a493c67a70 
 ```
 
 
@@ -83,13 +88,16 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 
 
+
 ### <a name="stop-container">**停止容器**</a>
 
 **命令格式** ：`docker stop [OPTIONS] CONTAINER-ID`
 
 **强制停止容器**： `docker kill [OPTIONS] CONTAINER-ID`  
 
+<p align="right"><a href="#container">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
+----
 
 ### <a name="start-container">**启动容器**</a>
 
@@ -100,8 +108,6 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 ### <a name="restart-container">**重启容器**</a>
 
 **命令格式** ：`docker restart CONTAINER-ID`
-
-
 
 
 
@@ -128,13 +134,15 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 
 
+<p align="right"><a href="#container">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
 -----
 
 ### <a name="remove-container">**删除容器**</a>
 
 **命令格式** ：`docker rm [OPTIONS] CONTAINER-ID `
 
-***Options*** ：
+***常用Options*** ：
 
 + `-f`：通过`SIGKILL`信号强制删除正在运行的容器
 + `-v`：删除与容器关联的卷
@@ -174,6 +182,45 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 
 
+###  <a name="docker-cp">容器与宿主机间的文件复制</a>
+
+**命令格式** ：
+
+`docker cp  CONTAINER:SRC_PATH DEST_PATH`
+
+`docker cp SRC_PATH CONTAINER:DEST_PATH` 
+
+
+
+### <a name="docker-logs">查看容器日志</a>
+
+**命令格式** ：`docker logs [OPTIONS] CONTAINER`
+
+***常用Options*** ：
+
++ `--details` ： 查询详细日志
++ `--since` ：后面跟一个**时间**字符串或相对时间
++ `--tail` ：显示日志最后多少行
++ `--until` ： 显示自某个timestamp之前的日志，或相对时间，与`--since`对应
++ `-t` ： 显示日志时间
++ `-f` ： 跟踪实时日志
+
+
+
+```sh
+# 查看容器7c787daa13e4最近30分钟的日志
+docker logs --since 30m 7c787daa13e4
+
+# 查看容器7c787daa13e4 6月8日12:00:00后产生的日志信息
+docker logs --since "2019-06-08T12:00:00" 7c787daa13e4
+
+
+# 查看容器7c787daa13e4在 2019-06-08 00:25:00 到 00:26:00 时间段内产生的日志
+docker logs --since "2019-06-08T00:25:00" --until "2019-06-08T00:26:00"  7c787daa13e
+```
+
+
+
 <p align="right"><a href="#container">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
 -----
@@ -186,11 +233,11 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 
 + **搜索镜像** —— `docker search [options] keyword`
 
-​	用于搜索Docker Hub上的公共镜像
+  ​用于搜索Docker Hub上的公共镜像
 
-​	`--limit` ：显示最大搜索结果，默认的搜索结果为25
+  ​`--limit` ：显示最大搜索结果，默认的搜索结果为25
 
-​	`--no-trunc` ： 不截断输出，显示完整输出，默认为`false`
+  ​`--no-trunc` ： 不截断输出，显示完整输出，默认为`false`
 
 ![docker-search](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-search.png)
 
@@ -199,7 +246,7 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 + `STARTS`： 参考github的`stars`
 + `OFFICIAL`： 表示是否是官方仓库，`OK`的是官方维护的镜像
 
-​	
+  ​
 
 + **拉取镜像** —— `docker pull [OPTIONS] NAME[:TAG]`
 
@@ -234,8 +281,8 @@ docker run -it -d --name redis-6383 -p  6383:6379  -v /mnt/log/:/var/log/redis 
 可选的命令选项包括：
 
 +	`-t`：设置镜像标签，格式：**name:tag**， `tag`为可选项
-+	`-f`：显式指定 `Dockerfile`，不显式指定`Dockerfile`情况下，默认使用上下文路径下名字为`Dockerfile`的文件构建镜像
-+	`--force-rm`： 删除中间容器
+  +`-f`：显式指定 `Dockerfile`，不显式指定`Dockerfile`情况下，默认使用上下文路径下名字为`Dockerfile`的文件构建镜像
+  +`--force-rm`： 删除中间容器
 
 
 
