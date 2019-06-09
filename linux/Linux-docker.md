@@ -281,8 +281,8 @@ docker logs --since "2019-06-08T00:25:00" --until "2019-06-08T00:26:00"  7c787da
 可选的命令选项包括：
 
 +	`-t`：设置镜像标签，格式：**name:tag**， `tag`为可选项
-  +`-f`：显式指定 `Dockerfile`，不显式指定`Dockerfile`情况下，默认使用上下文路径下名字为`Dockerfile`的文件构建镜像
-  +`--force-rm`： 删除中间容器
++	`-f`：显式指定 `Dockerfile`，不显式指定`Dockerfile`情况下，默认使用上下文路径下名字为`Dockerfile`的文件构建镜像
++	`--force-rm`： 删除中间容器
 
 
 
@@ -326,9 +326,80 @@ docker  build  -t  redis-cluster-4.0.10:v2  .
 
 ## <a name="dockfile">**Dockerfile**</a>
 
+`Dockerfile` 用于编写docker镜像生成过程的文件，有13个基本指令：
+
++ `FROM` —— `Dockerfile`第一个指令必需是**FROM**，指定一个构建镜像的基础源镜像，如果本地没有就会从公共库中拉取，没有指定镜像的标签会使用默认的latest标签。 **指令格式** ： `FROM <image-name[:tag]>`
+
+  ​
+
++ `MAINTAINER` —— 用于描述镜像创建者名称和邮箱。**指令格式** ：`MAINTAINER <name> <email>`
+
+  ​
+
++ `RUN` —— `RUN`命令在镜像中创建一个容器并执行指定指令，执行结束后commit修改作为镜像的一层，**如果有多个`RUN`指令最好使用`&&`指令连接**。指令格式有两种：
+
+  + **命令行式** ： `RUN command args...`
+  + **函数调用式** ： `RUN ["command", "args"]`
+
+  ​
+
++ `ONBUILD` —— 镜像创建后，如果其它镜像以这个镜像为基础，会先执行这个镜像的`ONBUILD`命令，后面跟的是其它指令，比如 `RUN`、 `COPY` 。**指令格式**：`ONBUILD [INSTRUCTION]`
+
+  ​
+
++ `EXPOSE` —— **声明运行时容器提供的服务端口，但在运行时并不会因为这个声明应用就会开启这个端口的服务**，如果使用了随机端口映射将会使用`EXPOSE`暴露的端口。 **指令格式**： `EXPOSE <port> [<port1>...]`
+
+  ​
+
++ `ENV` —— 用于为容器设置环境变量，定义环境变量后，**后面的其它指令**或**运行时的应用**都可以使用这个环境变量。指令格式：`EVN <key>=<value> [<key>=<value>]`
+
+  ​
+
++ `ADD` —— 升级版的`COPY`指令，源路径可以是个`URL`，Docker引擎会试图下载链接里的文件放到目标路径，如果源路径是压缩包，复制到镜像时会自动解压。***适用于需要自动解压缩的场合***。**指令格式**： `ADD src-path desc-path`
+
+  ​
+
++ `COPY` —— `COPY`指令将**构建上下文**路径的文件或目录复制到新一层镜像的目的路径，目的路径如果不存在会自动创建。**指令格式**： `COPY src-path desc-path`
+
+  ​
+
++ `VOLUMN` —— 定义匿名卷，容器运行时应该尽量保持容器存储层不发生写操作，对于数据库类需要保存动态数据的应用，其数据库文件应该保存于卷中。为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 `Dockerfile `中可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户不指定挂载，应用也可以正常运行，不会向容器存储层写入大量数据。`docker run`时指定 `-v`选项将覆盖`Dockerfile`指定的路径。**指令格式**：`VOLUMN [ "path1", "path2" ]`
+
+  ​
+
++ `USER` —— 用于指定容器中的当前用户,后续的`RUN`、`CMD`、`ENTRYPOINT`也会使用指定的用户运行命令。**指令格式**：`USER <username>`
+
+  ​
+
++ `WORKDIR` —— 用于指定容器的默认工作目录，为`RUN`、`CMD`、`ENTRYPOINT`指令配置**工作目录**。**指令格式**：`WORKDIR path`
+
+  ​
+
++ `CMD` —— 用于指定启动容器的指令，**默认的容器主进程的启动命令**，指令格式有两种：
+
+  + **shell格式**： `CMD <命令>`，`shell格式`最后会包装成`exec格式`
+  + **exec格式**： `CMD [ "可执行文件", "参数1", "参数2" ...]`
+
+  ​
+
++ `ENTRYPOINT` —— 用于指定启动容器的指令，和 `CMD` 一样，都是在指定容器启动程序及参数。指定了 `ENTRYPOINT `后， `CMD` 不再是直接的运行其命令，而是将 `CMD `的内容作为参数传给 `ENTRYPOINT` 指令。指令格式
+
+  + **shell格式**： `ENTRYPOINT <命令>`，`shell格式`最后会包装成`exec格式`
+  + **exec格式**： `ENTRYPOINT [ "可执行文件", "参数1", "参数2" ...]`
 
 
 
+**案例** ：
+
+```dockerfile
+FROM java:8
+WORKDIR  /home/java
+ADD DateTestApp.class  . 
+VOLUME ["/home/hurrican/docker/data"]
+ENTRYPOINT [ "java", "DateTestApp" ]
+```
+
+使用`ENTRYPOINT`构建出的Java程序镜像，启动时可以很方便地添加启动参数。
 
 <p align="right"><a href="#dockfile">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
