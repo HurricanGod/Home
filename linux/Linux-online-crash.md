@@ -10,7 +10,6 @@
 
 
 
-
 -----
 
 ## <a name="reason">原因</a>
@@ -171,11 +170,11 @@ iostat -xz 1
     ​
 
 
-  + `jmap -dump:format=b,file=/var/log/dump.log` —— 导出JVM内存信息
++ `jmap -dump:format=b,file=/var/log/dump.log` —— 导出JVM内存信息
 
-    ​
+  ​
 
-  + `jmap -dump:format=b,live, file=/var/log/dump.log` —— 先做一次`Full GC`再Dump JVM中存活的对象信息
++ `jmap -dump:format=b,live, file=/var/log/dump.log` —— 先做一次`Full GC`再Dump JVM中存活的对象信息
 
 
 
@@ -194,7 +193,14 @@ iostat -xz 1
 
 + `jinfo(Java Configuration Information)`
 
-> 用于打印Java进程的配置信息，动态修改JVM参数配置
+> 实时查看和动态修改JVM参数配置
+
+**命令格式** ：`jinfo [option] pid`
+
+***常用选项*** ：
+
++ `-v`： 查看虚拟机启动时显式指定的参数列表
++ `-flag`： 查询**未被显式指定的虚拟机参数的默认值**
 
 
 
@@ -202,11 +208,43 @@ iostat -xz 1
 
 + `jstat(JVM Statistic Monitoring Tool)`
 
-> 监控JVM性能统计信息
+> 监控JVM各种运行状态信息的命令行工具，可以显示虚拟机进程中类装载、内存、垃圾收集、JIT编译等运行时数据
+
+**命令格式** ：`jstat [ option vmid [ interval [s|ms]  [count] ] ]`
+
+***常用选项*** ：
+
++ `-class`： 监视类装载、卸载数量、总空间以及类装载所耗费的时间
++ `-gc`： 监视Java堆状况，包括`Eden`、`Survivor`、 老年代、方法区、已用空间、GC时间合计等信息
++ `-gccapacity`： 输出Java各个堆各个区域使用的最大、最小空间
++ `-gcutil`： 输出主要关注已使用空间占总空间的百分比
++ `-gcnew`： 监视新生代GC状况
 
 
+
+**案例** ：
+
+```sh
+# 每500ms监控一次Java堆状况，一共监控20次
+jstat -gc pid 500ms 20
+```
+
+
+
+-----
 
 + `jcmd`
+
+
+
+
++ `jps` —— 虚拟机进程状况工具
+
+  **命令格式** ：`jps [options] [hostid]`
+
+  + `-l`： 输出主类全名
+  + `-v`： 输出虚拟机进程的启动时JVM参数
+
 
 
 
@@ -229,7 +267,6 @@ iostat -xz 1
 + JVM内存设置经验法则：完成`Full GC`后，应该释放出70%的内存
 + 老年代优先使用 `Parallel GC (-XX:+UseParallel[Old]GC)`，可以保证最大吞吐量
 + 开启GC日志
-
 
 
 -----
