@@ -56,7 +56,7 @@
 
 
 + `ps -T -p pid` —— 显示进程 `pid` 包含的线程
-  ![thread_in_pid]()
+  ![thread_in_pid](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-T-p.png)
 
 <p align="right"><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
