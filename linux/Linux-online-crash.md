@@ -144,7 +144,79 @@ iostat -xz 1
   >
   > 命令格式：jstack  <pid> 
 
-  + ​
+  **查看CPU占用最高的Java线程栈信息**：
+
+  ```sh
+  #!/bin/bash
+  # 获取CPU使用率最高的Java进程信息
+  process_line=$(top -d 1 -n 1|head -15|grep java |head -1)
+
+  while [ -z "${process_line}" ]
+  do
+      echo "could not fount target process line..."
+      process_line=$(top -d 1 -n 1|head -15|grep java |head -1)
+
+  done
+  # 获取到的Java进程信息可能如下：
+  # 13893 root      20   0 2487744 207852  17024 S  6.7 10.1  62:49.49 java
+  echo "find target,done!"
+  echo "${process_line}"
+
+  # 正则匹配进程pid
+  pid=$(echo "${process_line}" | grep -Po '[0-9]+' |head -1)
+  echo "length=${#pid}"
+  echo "target pid:${pid}!"
+
+  [ "${pid}" == "" ] && exit 0
+
+
+  #top -d 1 -n 1 -Hp ${pid} → 查看java线程CPU使用情况
+
+
+  declare -A count_map
+  for((i=0;i<10;i++))
+  do
+      tid=$(top -d 1 -n 1 -Hp ${pid} |head -8| tail -1 | grep -P '[0-9]+' -o|head -1)
+      echo "pid=${pid}   tid=${tid}"
+      if [ "${count_map["${tid}"]}" == "" ]
+      then
+  	count_map["${tid}"]=1
+      else
+  	tmp=${count_map["${tid}"]}
+  	((tmp=tmp+1))
+          count_map["${tid}"]=${tmp}
+      fi
+  done
+
+  max=0
+  target_tid=""
+  for key in ${!count_map[@]}
+  do
+      echo "key=${key}, count= ${count_map[$key]}"
+      if [ ${count_map[$key]} -gt ${max}  ]
+      then
+  	max=${count_map[$key]}
+  	target_tid=${key}
+  	echo "swap, max=${max}"
+      fi
+  done
+
+  echo "max=${max}"
+  echo "target_tid=${target_tid}"
+
+  # 将线程id转换为16进制
+  hex_tid=$(printf "0x%x" ${target_tid})
+  echo "hex_thread_id: ${hex_tid}"
+  # 定位java进程文件路径
+  pwdx ${pid}
+
+  # 打印CPU使用率最高的java线程栈信息
+  jstack ${pid} | grep -A 30 ${hex_tid} 
+  ```
+
+  ​
+
+  ​
 
 
 

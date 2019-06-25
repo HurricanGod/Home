@@ -341,6 +341,18 @@ declare -a var
   ​
 
 
++ **获取字符串长度**
+
+  ```sh
+  string='aaa_b   '
+  # string.length=8
+  ${#string}
+  ```
+
+  ​
+
+
+
 
 
 
