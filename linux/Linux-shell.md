@@ -693,6 +693,16 @@ function function_name()
 
 + 获取当前时间戳 ——  `date "+%s"`(**以秒为单位**)
 
++ `%Y`：以四位数字格式打印年份
++ `%y`：以二位数字格式打印年份
++ `%m`：月份
++ `%d`：日期
++ `%H`：小时
++ `%M`：分钟
++ `%S`：秒
++ `%w`：星期，**0表示周日**
+
+
 
 + 获取当前日期字符串 —— `date +"%y-%m-%d %H:%M:%S"` → **18-09-09 01:14:35**
 
@@ -718,6 +728,9 @@ function function_name()
   # 获取一天前时间戳对应的日期字符串
   yesterday_str=`date -d @${yesterday} +"%y-%m-%d %H:%M:%S"`
   echo "yesterday_str = ${yesterday_str}"
+  
+  # 获取30天前的日期
+  date -d "-30 day" +"%Y-%m-%d"
   ```
 
 
