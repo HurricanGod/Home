@@ -731,8 +731,32 @@ function function_name()
   
   # 获取30天前的日期
   date -d "-30 day" +"%Y-%m-%d"
+  
+  # 获取1个月后的日期
+  date -d  `+1 month` +"%Y-%m-%d"
+  
+  # 获取1年后的日志
+  date -d  `+1 year` +"%Y-%m-%d"
   ```
 
 
 
 <p align="right"><a href="#datetime">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+## <a name="#crontab">定时任务</a>
+
+**crontab格式**： ```分钟 小时 日 月 星期 命令```
+
+```sh
+
+# 列出root用户的计时器设置
+crontab -l -u root
+
+# 编辑定时任务
+crontab -e
+
+# 添加定时任务
+crontab clean-job.sh
+
+```
+
