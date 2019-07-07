@@ -10,9 +10,14 @@
 + <a href="#network_monitor">**网络监控**</a>
 + <a href="#iptables">**防火墙**</a>
 + <a href="#tar">**打包&压缩**</a>
++ <a href="#nslookup">**域名解析nslookup**</a>
 
 
-+ <a href="#nslookup">`域名解析nslookup`</a>
+
+
+
+
+
 
 ----
 
@@ -43,7 +48,7 @@
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-       ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+        ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
 +  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
@@ -391,6 +396,18 @@ tar -zcvf filename.tar.tgz /home/ubuntu
 
 命令格式：`nslookup ip/domain`
 
-
 <p align="right"><a href="#iptables">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+
+
+
+
+
+----
+
+## <a name="cut">分割文件</a>
+
+`cut -d "分隔符" -f${index} 文件`
+
++ `-d`： 指定分隔符
++ `-f`： 选择要提取哪些字段值
 

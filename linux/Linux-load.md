@@ -1,4 +1,4 @@
-# <a name="top">查看Linux内存、CPU相关命令</a>
+# <a name="top">Linux系统负载相关命令</a>
 
 
 
@@ -102,6 +102,28 @@
 + `top` → `shift + f` 
 + 使用 `↑` 或 `↓` 选择排序列，使用 `s` 进行确定
 + `q` 退出生效
+
+
+
+**Top常用参数**：
+
++ `-d`：设置延迟间隔，用法示例：`top -d 1 `——表示以1s的间隔启动top
++ `-n`： 指定top命令迭代的次数，用法示例：`top -n 3`——表示迭代3次后退出
++ `-p`： 监控指定进程pid
+
+
+
+```sh
+# 组合用法
+# 查看指定pid进程的线程占用cpu、内存等信息
+top -Hp pid
+
+top -d 1 -n 10
+```
+
+
+
+
 
 <p align="right"><a href="#top_cmd">返回</a>&nbsp&nbsp|&nbsp<a href="#top">返回顶部</a></p>
 

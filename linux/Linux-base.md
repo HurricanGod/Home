@@ -118,7 +118,11 @@ apt-get install language-pack-zh-hans
 
 ```sh
 # 输出home目录下的文件，将标准错误重定向到标准输出
+# &：表示重定向的目标不是一个文件，而是一个文件描述符
 rm -f /home/* > rm.log 2>&1 
+
+# 查看某个pid所打开的文件描述符信息
+cd /proc/${pid}/fd && ll
 ```
 
 
