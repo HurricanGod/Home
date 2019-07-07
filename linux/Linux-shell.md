@@ -29,12 +29,17 @@
   + <a href="#for">**for语法**</a>
 
 
-
-
 + <a href="#function">**函数**</a>
 
 
 + <a href="#datetime">**时间日期**</a>
+
+
++ <a href="#crontab">**定时任务crontab**</a>
+
+
++ <a href="#set">**set命令**</a>
+
 
 
 ----
@@ -692,15 +697,17 @@ function function_name()
 ## <a name="datetime">**时间日期**</a>
 
 + 获取当前时间戳 ——  `date "+%s"`(**以秒为单位**)
+  + `%Y`：以四位数字格式打印年份
+  + `%y`：以二位数字格式打印年份
+  + `%m`：月份
+  + `%d`：日期
+  + `%H`：小时
+  + `%M`：分钟
+  + `%S`：秒
+  + `%w`：星期，**0表示周日**
 
-+ `%Y`：以四位数字格式打印年份
-+ `%y`：以二位数字格式打印年份
-+ `%m`：月份
-+ `%d`：日期
-+ `%H`：小时
-+ `%M`：分钟
-+ `%S`：秒
-+ `%w`：星期，**0表示周日**
+
+
 
 
 
@@ -728,13 +735,13 @@ function function_name()
   # 获取一天前时间戳对应的日期字符串
   yesterday_str=`date -d @${yesterday} +"%y-%m-%d %H:%M:%S"`
   echo "yesterday_str = ${yesterday_str}"
-  
+
   # 获取30天前的日期
   date -d "-30 day" +"%Y-%m-%d"
-  
+
   # 获取1个月后的日期
   date -d  `+1 month` +"%Y-%m-%d"
-  
+
   # 获取1年后的日志
   date -d  `+1 year` +"%Y-%m-%d"
   ```
@@ -745,7 +752,7 @@ function function_name()
 
 ----
 
-## <a name="#crontab">定时任务</a>
+## <a name="crontab">定时任务</a>
 
 **crontab格式**： ```分钟 小时 日 月 星期 命令```
 
@@ -759,14 +766,24 @@ crontab -e
 
 # 添加定时任务
 crontab clean-job.sh
-
 ```
 
 
+
+<p align="right"><a href="#crontab">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
 -----
 
-## <a name="#set">set命令</a>
+## <a name="set">set命令</a>
 
 `set -o nounset`：在默认情况下，遇到不存在的变量，会忽略并继续执行，开启该选项后，若使用了未初始化的变量则会让bash自动退出
 `set -o errexit`：在默认情况下，遇到执行出错，会跳过并继续执行，开启该选项后，执行出错则终止脚本的执行
+
+
+
+<p align="right"><a href="#set">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+
+-----
+
+
 
