@@ -38,8 +38,7 @@
 + <a href="#crontab">**定时任务crontab**</a>
 
 
-+ <a href="#set">**set命令**</a>
-
++ <a href="#set_cmd">**set命令**</a>
 
 
 ----
@@ -774,14 +773,14 @@ crontab clean-job.sh
 
 -----
 
-## <a name="set">set命令</a>
+## <a name="set_cmd">set命令</a>
 
 `set -o nounset`：在默认情况下，遇到不存在的变量，会忽略并继续执行，开启该选项后，若使用了未初始化的变量则会让bash自动退出
 `set -o errexit`：在默认情况下，遇到执行出错，会跳过并继续执行，开启该选项后，执行出错则终止脚本的执行
 
 
 
-<p align="right"><a href="#set">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
+<p align="right"><a href="#set_cmd">返回</a>&nbsp |  &nbsp<a href="#top">返回目录</a></p>
 
 -----
 
