@@ -452,7 +452,7 @@ Linux下的主要文件包括：
   cat /proc/${pid}/fd/${待恢复文件描述符id} > recover-file
   ```
 
-  ![lsof-1]()
+  ![lsof-1](https://github.com/HurricanGod/Home/blob/master/linux/img/lsof-1.png)
 
 + 查看当前文件被哪些进程打开：`lsof filename`
 
