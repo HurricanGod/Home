@@ -11,6 +11,7 @@
 + <a href="#iptables">**防火墙**</a>
 + <a href="#tar">**打包&压缩**</a>
 + <a href="#nslookup">**域名解析nslookup**</a>
++ <a href="#lsof">**lsof**</a>
 
 
 
@@ -48,7 +49,7 @@
 
 
 +  `netstat -nlt | grep 330[67]` —— 查看`3306、3307`端口监听情况
-        ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
+         ![netstat-nlt](https://github.com/HurricanGod/Home/blob/master/linux/img/netstat-nlt.png)
 
 +  `netstat -tulp n` —— 显示对应进程**pid**的网络端口
 
@@ -400,8 +401,6 @@ tar -zcvf filename.tar.tgz /home/ubuntu
 
 
 
-
-
 ----
 
 ## <a name="cut">分割文件</a>
@@ -410,4 +409,76 @@ tar -zcvf filename.tar.tgz /home/ubuntu
 
 + `-d`： 指定分隔符
 + `-f`： 选择要提取哪些字段值
+
+
+
+
+
+
+<p align="right"><a href="#cut">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
+
+
+
+-----
+
+## <a name="lsof">lsof</a>
+
+Linux下的主要文件包括：
+
++ 普通文件
++ 目录
++ 符号链接
++ 设备文件
++ 管道和命名管道
++ 套接字
+
+
+
+`lsof`即**list open files**，该命令的默认行为是对结果进行***或*** 运算，使用`-a`选项可以将多个组合的条件变为 **与** 的关系
+
+**命令格式**： `lsof [option] filename`
+
+**常用功能** ：
+
++ 恢复打开但被删除的文件（**进程还在运行，但可执行文件被删除了**）
+
+  ```sh
+  # 找到文件被删除，但进程还运行着的进程pid
+  lsof |grep keyword
+  # 查看该进程打开的文件描述符
+  ll /proc/${pid}/fd
+
+  # 恢复被删除的文件，通过重定向的方式恢复
+  cat /proc/${pid}/fd/${待恢复文件描述符id} > recover-file
+  ```
+
+  ![lsof-1]()
+
++ 查看当前文件被哪些进程打开：`lsof filename`
+
++ 查看进程打开了哪些文件：`lsof -c 进程名` 或 `lsof -p ${pid}`
+
++ 查看端口被占用情况：`lsof -i :${port}`
+
++ 查看`TCP/UDP`连接情况
+
+  ```sh
+  # 查看tcp连接情况
+  lsof -i tcp
+
+  # 查看udp连接情况
+  lsof -i udp
+
+  # 查看处于 LISTEN 状态的tcp连接
+  lsof -i  -sTCP:LISTEN
+
+  # 查看处于 ESTABLISHED 状态的tcp连接
+  lsof -i  -sTCP:ESTABLISHED
+  ```
+
+  ​
+
+  ​
+
+<p align="right"><a href="#lsof">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p> 
 
