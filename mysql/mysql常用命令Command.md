@@ -1,73 +1,69 @@
-## Mysql常用命令
+#  <a name="top">Mysql常用命令</a>
 
 
 
-+ **创建用户**
-
-  + 用户名、密码
-
-    ```mysql
-    # 创建用户
-    create user 'username'@'host' identified by 'password'
-    # username为用户名，@'host' 指定主机或IP，password为用户密码
-    # 查询创建的用户
-    select  user,host from mysql.user;
-    # 删除用户
-    drop user username@host
-    ```
-
-    ​
-
-  + 指定来访者
-
-    ```mysql
-    grant privilege_name on *.* to 'username'@'host' identified by 'password';
-    # privilege_name 为权限名
-    ```
-
-    ![privileges](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-user-privileges.png)
-
-    ​
-
-  + 查看用户权限
-
-    ```mysql
-    # 查看用户拥有的授权（1）
-    show grants for 'uername'@'host'
-
-    # 查看用户拥有的授权（2）
-    select * from mysql.db where user = 'username' \G
-    ```
++ <a href="#user">**用户相关命令**</a>
 
 
------
++ <a href="#character_code">**字符集编码**</a>
 
-+ **外键**
+
++ <a href="#problem">**MySQL进程CPU占用率高排查**</a>
+
+
+
+
+
+------
+
+## <a name="user">**用户相关命令**</a>
+
+
+
++ 用户创建、查询与删除
 
   ```mysql
-  # 增加外键约束
-  alter table tableName 
-  add constraint FK_tb1_tb2_name foreign key(columnName)  
-  references keyTable(pkColumnName)
-  #注意：columnName 要与 pkColumnName 类型完全一致，1个是int另一个是unsigned int 是不允许的
+  # 创建用户，username为用户名，@'host' 指定主机或IP，password为用户密码
+  create user 'username'@'host' identified by 'password';
+
+  # 查询创建的用户
+  select user,host from mysql.user;
+
+  # 删除用户
+  drop user username@host;
   ```
 
   ​
 
++ 指定来访者
 
-+ **unique**约束
-```mysql
-# 建表后添加外键约束
-alter table table_name add  unique key(column_name);
+  ```mysql
+  grant privilege_name on *.* to 'username'@'host' identified by 'password';
+  # privilege_name 为权限名
+  ```
 
-# 删除unique索引
-alter table table_name drop index unique_index_name;
-```
+  ![privileges](https://github.com/HurricanGod/Home/blob/master/mysql/img/mysql-user-privileges.png)
 
+  ​
+
++ 查看用户权限
+
+  ```mysql
+  # 查看用户拥有的授权（1）
+  show grants for 'uername'@'host';
+
+  # 查看用户拥有的授权（2）
+  select * from mysql.db where user = 'username' \G;
+  ```
+
+
+
+
+<p align="right"><a href="#user">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
 ----
 
-## <a name="character_code">查看字符集编码</a>
+## <a name="character_code">字符集编码</a>
 
 
 
@@ -75,6 +71,37 @@ alter table table_name drop index unique_index_name;
 show variables where variable_name like 'character_set_%';
 ```
 
+
+
+
+
+<p align="right"><a href="#character_code">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+-----
+
+## <a name="problem">MySQL进程CPU占用率高排查</a>
+
++ `show processlist` —— 默认只列出100条
+
+
+
+
+
++ `show full processlist`
+
+
+
+
+
+-----
+
+## <a name="query_log">查询日志</a>
+
+
+
+
+
+----
 ## 查询数据库里的表数量
 ```mysql
 select count(*) tables, table_schema 
