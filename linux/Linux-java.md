@@ -17,6 +17,10 @@
 + <a href="#kafka">**Kafka安装与使用**</a>
 
 
++ <a href="#jar">**jar包方式启动java服务**</a>
+
+
+
 -----
 
 ## <a name="jdk">JDK安装</a>
@@ -241,6 +245,8 @@ make install
 
 <p align="right"><a href="#redis">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
 
+-----
+
 ## <a name="kafka">Kafka安装</a>
 假设`Kafka`目录安装在`/home/hurrican/kafka`
 
@@ -287,3 +293,55 @@ cd /home/hurrican/kafka/bin/
 ![Topic消费情况](https://github.com/HurricanGod/Home/blob/master/linux/img/kafka-consumer-detail.png)
 
 
+
+<p align="right"><a href="#kafka">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+-----
+
+## <a name="jar">**jar包方式启动java服务**</a>
+
+**命令格式**：`jar {ctxui}[vfmn0PMe] [jar-file] [manifest-file] [entry-point] [-C dir] files`
+
++ `-c`： 创建新归档
++ `-t`： 列出归档目录 
++ `-f`：定归档文件名 
++ `-u`：更新现有的归档文件
++ `-x`：从档案中提取指定的 (或所有) 文件 
+
+
+
+**常用命令**：
+
+```sh
+# 列出jar包内的文件清单
+jar tf test.jar
+
+# 解压jar包
+unzip test.jar
+
+# 解压后直接修改需要修改的配置文件
+find ./ -name *.properties
+vim ./BOOT-INF/classes/properties/config-preprod.properties
+
+# 将修改后的配置文件更新回jar包
+jar uf test.jar BOOT-INF/classes/properties/config-preprod.properties
+
+# 使用vim验证修改是否生效
+vim test.jar
+
+# enter 表示进入选中的文件，退出使用q
+:/config-preprod.properties
+
+```
+
+
+
+![jar-tf]()
+
+
+
+
+
+
+
+<p align="right"><a href="#jar">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
