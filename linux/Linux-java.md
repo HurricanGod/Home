@@ -239,6 +239,12 @@ make
 make install   
 ```
 
+**make test**过程中若出现`couldn't execute "src/redis-benchmark": no such file or directory.`可以尝试跳过`make test`
+```shell
+make distclean
+make
+make install
+```
 
 
 
