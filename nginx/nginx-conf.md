@@ -187,7 +187,17 @@ http{
   error_page 502 =  /default.html
   ```
 
-  ​
+
+ + **指定返回类型**
+ 
+ 
+ ```nginx
+ location / {
+     default_type application/json;
+     return 200  '{"retCode":"0","msg":"success"}';
+ }
+
+ ```
 
 
 
@@ -450,12 +460,12 @@ server{
   	listen 80;
   	server_name localhost;
   	if ($time_iso8601 ~ "^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})") {
-  		set $year $1;
-  		set $month $2;
-  		set $day $3;
-    	set $hour $4;
-    	set $minutes $5;
-    	set $seconds $6;
+  	    set $year $1;
+  	    set $month $2;
+  	    set $day $3;
+    	    set $hour $4;
+    	    set $minutes $5;
+    	    set $seconds $6;
 	}
   	location / {
     	# 按天分割日志
