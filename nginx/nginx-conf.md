@@ -20,6 +20,11 @@
   + <a href="#log_cut">**日志切割**</a>
 
 
++ <a href="#set">**set指令**</a>
+
+
++ <a href="#if">**if指令**</a>
+
 
 
 + <a href="#virtual_host">**虚拟主机**</a>
@@ -162,42 +167,53 @@ http{
 
   + **为每种类型的错误单独设置处理方式**
 
-  ```nginx
-  # 指定网站根目录下的 40x.html 页面处理403错误
-  error_page 403 /40x.html
-  ```
+    ```nginx
+    # 指定网站根目录下的 40x.html 页面处理403错误
+    error_page 403 /40x.html
+    ```
+
+    ​
 
   <br/>
 
   + **利用在线资源进行错误处理**
 
-  ```nginx
-  error_page 500 502 504 http://www.baidu.com
-  ```
+    ```nginx
+    error_page 500 502 504 http://www.baidu.com
+    ```
+
+    ​
 
   <br/>
 
   + **更改响应状态码**
 
-  ```nginx
-  # 当服务端响应状态码为502时，通过nginx转发后返回给浏览器的状态码为200
-  error_page 502 = 200 /default.html
+    ```nginx
+    # 当服务端响应状态码为502时，通过nginx转发后返回给浏览器的状态码为200
+    error_page 502 = 200 /default.html
 
-  # 当返回502状态码时返回 default.html，状态码由重定向后经过决定
-  error_page 502 =  /default.html
-  ```
+    # 当返回502状态码时返回 default.html，状态码由重定向后经过决定
+    error_page 502 =  /default.html
+    ```
+
+    <br/>
+
+    ​
+
+  + 指定response默认的`content-type`
+
+    ```nginx
+     location / {
+         default_type application/json;
+         return 200  '{"retCode":"0","msg":"success"}';
+     }
+    ```
+
+    ​
 
 
- + **指定返回类型**
- 
- 
- ```nginx
- location / {
-     default_type application/json;
-     return 200  '{"retCode":"0","msg":"success"}';
- }
 
- ```
+
 
 
 
@@ -264,7 +280,7 @@ deny all;
 
 -----
 
-### <center><a name="location">**location前缀**</a></center>
+### <a name="location">**location**</a>
 
 | 前缀   | 说明                                       |
 | :--- | :--------------------------------------- |
@@ -290,6 +306,10 @@ deny all;
 多种类型的`location`同时出现时，**优先级如下**：
 
 精准匹配(`=`)   >  最大前缀匹配(``^~``)   >  正则匹配  >  普通最大前缀匹配
+
+
+
+
 
 <p align="right"><a href="#control">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
 
@@ -355,6 +375,23 @@ location /img/ {
 
 + `root` 将请求路径映射为 `/var/hurrican/website/img/hello.png`
 + `alias` 将请求路径映射为 `/var/hurrican/website/hello.png`
+
+
+
+
+**使用案例**：
+
+**正则匹配请求URL中的参数进行转发**：
+
+```nginx
+
+```
+
+
+
+
+
+
 
 
 
@@ -481,6 +518,30 @@ server{
 
 
 <p align="right"><a href="#log">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
+
+-----
+
+## <a name="set">**set指令**</a>
+
+**语法**： `set variable value` —— `set $flag true`
+
+**使用环境**： `server`、`location`、`if`
+
+
+
+<p align="right"><a href="#set">返回</a> &nbsp&nbsp<a  href="#top">返回目录</a></p>
+
+-----
+
+## <a name="if">**if指令**</a>
+
+**使用环境**： `server`、`location`
+
+检查一个条件是否符合，如果条件符合，则执行大括号内的语句；**不支持嵌套**，不支持多个条件，即不能使用 `&&` 或 `||`，但可以使用非`!`
+
+
+
+
 
 ------
 
