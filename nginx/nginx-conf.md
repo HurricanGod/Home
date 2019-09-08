@@ -209,7 +209,21 @@ http{
      }
     ```
 
-    ​
+    **常用的content-type有**
+
+    + `text/html`
+
+    + `text/plain` —— 纯文本，有些浏览器的表现形式为直接下载文件
+
+    + `application/json` —— json格式字符串
+
+      ​
+
+    `mime-type`和`content-type`的关系：web服务器收到静态的资源文件请求时，依据请求文件的后缀名在服务器的**mime配置文件**中找到对应的`mime-type`，再根据`mime-type`设置**HTTP Response的content-type**，然后浏览器根据`content-type`的值处理文件。
+
+    通常只有一些在互联网上获得广泛应用的格式才会获得一个`mime-type`，如果是某个客户端自己定义的格式，一般只能以` application/x- `开头。
+
+    在`mime.types`文件里添加`text/plain plist;`会让`content-type`为`text/plain`响应以浏览器的方式渲染，而不是下载文件。
 
 
 
@@ -422,7 +436,7 @@ access_log  /var/logs/nginx/access.log main;
 
 ```
 
-**最佳日志格式实践**：
+**json日志格式实践**：
 ```nginx
    log_format  main '{"time":"$time_local", "ip":["$remote_addr","$http_x_forwarded_for"], "agent":"$http_user_agent", "refer":"$http_referer", "user":"$remote_user", "request_url":"$request", "sent_bytes":"$body_bytes_sent", "request_method":"$request_method", "content_type":"$content_type", "status_code":$status, "request_time":$request_time, "upstream_addr":"$upstream_addr", "upstream_response_time":$upstream_response_time, "upstream_status":$upstream_status, "request_body":"$request_body"}';
 ```

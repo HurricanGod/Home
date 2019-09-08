@@ -23,7 +23,17 @@
 **案例**：
 
 ```sh
-#
+# 根据 ":" 把一行分割成多列，打印第1列和倒数第二个列
 awk -F ':' '{print $1, $(NF-1)}' demo.txt
 ```
+
+
+
++ 对列进行求和
+
+  ```sh
+  cat data.log | awk '{sum += $1}; END {print sum}'
+  ```
+
+  ​
 
