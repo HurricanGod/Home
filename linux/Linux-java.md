@@ -340,6 +340,60 @@ vim test.jar
 
 ```
 
+**jar包启动脚本模版**：
+```sh
+#!/bin/bash
+
+
+PORT=8088
+deploy_dir=/mnt/webservice/service-${PORT}
+log_path=${deploy_dir}/logs
+tmp_dir=${deploy_dir}/tmp
+jar_name=web.jar
+
+[ ! -d ${log_path} ] && `mkdir -p ${log_path}`
+[ ! -d ${tmp_dir} ] && `mkdir -p ${tmp_dir}`
+
+#  -XX:+PrintHeapAtGC
+JAVA_OPS=" -Xms896m -Xmx1536m -XX:MetaspaceSize=128m "
+OOM_OPS=" -XX:-HeapDumpOnOutOfMemoryError  "
+GC_OPS=" -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintGCApplicationStoppedTime "
+GC_OPS=" ${GC_OPS} -XX:ParallelGCThreads=4 "
+GC_LOG_OPS=" -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1M -Xloggc:${deploy_dir}/logs/gc.log "
+JAVA_OPS=" ${JAVA_OPS} ${GC_OPS} ${GC_LOG_OPS} ${OOM_OPS} $1 "
+echo "JAVA_OPS = ${JAVA_OPS}"
+
+SPRING_ARGS=" --server.port=${PORT} "
+SPRING_ARGS="${SPRING_ARGS} --spring.profiles.active=product  "
+SPRING_ARGS="${SPRING_ARGS} --server.tomcat.basedir=${tmp_dir}  "
+SPRING_ARGS="${SPRING_ARGS} --server.tomcat.max-connections=1500  "
+SPRING_ARGS="${SPRING_ARGS} --server.tomcat.max-threads=600  "
+SPRING_ARGS="${SPRING_ARGS} $2  "
+
+echo "SPRING_ARGS = ${SPRING_ARGS}"
+set -o nounset
+
+
+pid_file=${deploy_dir}/pid
+cd ${deploy_dir} && ls -al
+
+if [[ -s ${pid_file} ]] ; then
+    kill -15 $(cat ${pid_file})
+    echo "kill process [ pid = $(cat ${pid_file}) ]"
+    rm -f ${pid_file}
+    echo "sleep 5s"
+    sleep 5
+fi
+
+nohup java ${JAVA_OPS} -jar ${deploy_dir}/${jar_name}.jar ${SPRING_ARGS} > /dev/null  2>&1  &
+echo '$! = '$!
+echo $! > ${deploy_dir}/pid
+sleep 15
+ps -ef|grep "${jar_name}.jar"
+
+
+
+```
 
 
 ![jar-tf](https://github.com/HurricanGod/Home/blob/master/linux/img/jar-tf.png)
