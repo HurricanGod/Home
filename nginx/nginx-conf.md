@@ -161,6 +161,7 @@ http{
 | `error_page`         | 自定义错误页面                            |
 | `user`               | 配置用户和组的指令                          |
 |                      |                                    |
+| `client_max_body_size` |  配置上传文件大小，如：`client_max_body_size 10m;`在nginx层设置上传文件大小为10M|
 |                      |                                    |
 
 + `error_page`可以指定单个错误的处理页面，利用在线资源处理指定错误，更改网站响应状态码
