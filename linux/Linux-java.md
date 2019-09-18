@@ -366,6 +366,8 @@ echo "JAVA_OPS = ${JAVA_OPS}"
 SPRING_ARGS=" --server.port=${PORT} "
 SPRING_ARGS="${SPRING_ARGS} --spring.profiles.active=product  "
 SPRING_ARGS="${SPRING_ARGS} --server.tomcat.basedir=${tmp_dir}  "
+# 配置内嵌tomcat上传文件大小限制，不配置默认为1M
+SPRING_ARGS="${SPRING_ARGS} --spring.servlet.multipart.max-file-size=10MB  "
 SPRING_ARGS="${SPRING_ARGS} --server.tomcat.max-connections=1500  "
 SPRING_ARGS="${SPRING_ARGS} --server.tomcat.max-threads=600  "
 SPRING_ARGS="${SPRING_ARGS} $2  "
