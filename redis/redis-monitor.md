@@ -16,6 +16,9 @@ redis-cli -p 6380 -a password -c info stats |grep instantaneous_ops_per_sec
 ```
 
 
+-----
+
+
 ## <a name="memory">**内存利用率**</a>
 
 ```shell
@@ -36,6 +39,46 @@ redis-cli -h 127.0.0.1 -p 6380 -a password -c info memory |grep used_memory_peak
 redis-cli -h 127.0.0.1 -p 6380 -a password -c info memory |grep used_memory_dataset
 
 
+```
 
+-----
+## <a name="hit-rate">**命中率**</a>
+
+```shell
+# 命中的次数
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info memory | grep keyspace_hits
+
+# 未命中缓存的次数
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info memory | grep keyspace_misses
 
 ```
+
+
+
+-----
+
+## <a name="clients-server">**客户端连接&服务器信息**</a>
+
+```shell
+
+# 查看客户端连接数
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info clients | grep connected_clients
+
+# 查看被阻塞的连接数
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info clients | grep blocked_clients
+
+# Redis服务器监听的端口
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info server | grep tcp_port
+
+# Redis启动时使用的配置文件
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info server | grep config_file
+
+# Redis服务器进程ID
+redis-cli -h 127.0.0.1 -p 6380 -a password -c info server | grep process_id
+
+```
+
+
+
+
+
