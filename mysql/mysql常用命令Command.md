@@ -145,7 +145,7 @@ show engine innodb status \G;
 show index from t_cmb_openuser_0;
 ```
 
-![showIndex.png]()
+![showIndex.png](https://github.com/HurricanGod/Home/blob/master/mysql/img/showIndex.png)
 
 + `Non_unique`：是否为非唯一的索引，0表示唯一索引
 + `Key_name`：索引的名字
