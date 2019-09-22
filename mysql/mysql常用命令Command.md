@@ -11,6 +11,10 @@
 + <a href="#problem">**MySQL进程CPU占用率高排查**</a>
 
 
++ <a href="#showIndex">**查看表中的索引使用情况**</a>
+
+
+
 
 
 ------
@@ -131,3 +135,31 @@ show engine innodb status \G;
 
 
 
+
+
+
+
+## <a name="showIndex">查看表中的索引使用情况</a>
+
+```shell
+show index from t_cmb_openuser_0;
+```
+
+![showIndex.png]()
+
++ `Non_unique`：是否为非唯一的索引，0表示唯一索引
++ `Key_name`：索引的名字
++ `Seq_in_index`：索引中该列的位置
++ `Column_name`：索引列的名称
++ `Collation`：列以什么方式存储在索引中，可以是`A`或`NULL`，B+树索引总是A，即排序的，如果使用了Heap存储引擎，并且建立了Hash索引，就会显示为NULL
++ `Cardinality`：表示索引中唯一值的数目的估计值，**Cardinality表的行数应该尽可能接近1**，优化器会根据这个值来判断是否使用该索引，这个值并非实时更新，需要更新索引的`Cardinality`的值可以使用`analyze table `命令
++ `Sub_part`：是否表示对列的部分进行索引
++ `Packed`：关键字被压缩的方式，没有被压缩则表示为null
++ `Null`：是否索引的列包含null值
++ `Index_type`：索引的类型，一般为B+树索引
+
+
+
+
+
+<p align="right"><a href="#showIndex">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
