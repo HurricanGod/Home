@@ -13,7 +13,6 @@
 
 
 
-
 ------
 
 ## <a name="user">**用户相关命令**</a>
@@ -92,7 +91,6 @@ show variables where variable_name like 'character_set_%';
 
 
 
-
 -----
 
 ## <a name="query_log">查询日志</a>
@@ -102,11 +100,34 @@ show variables where variable_name like 'character_set_%';
 
 
 ----
-## 查询数据库里的表数量
+## <a name="queryTableInfo">查询数据库里的表数量</a>
+
+
+
 ```mysql
 select count(*) tables, table_schema 
 from information_schema.TABLES 
 where table_schema = 'database_name' 
 group by table_schema;
 ```
+
+
+
+
+
+<p align="right"><a href="#queryTableInfo">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a></p>
+
+
+
+-----
+
+##  <a name="showInnodbStatus">查看InnoDB状态</a>
+
+
+
+```mysql
+show engine innodb status \G;
+```
+
+
 

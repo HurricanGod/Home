@@ -11,7 +11,7 @@
 
 <a name="redoFile">**重做日志文件**</a>
 
-+ 默认情况下，在InnoDB存储引擎的数据目录下会有两个名为`ib_logfile0` 和`iblogfile1`的文件，该文件为`InnoDB` **存储引擎的日志文件**，即**重做日志文件**
++ 默认情况下，在InnoDB存储引擎的数据目录下会有两个名为`ib_logfile0` 和`ib_logfile1`的文件，该文件为`InnoDB` **存储引擎的日志文件**，即**重做日志文件**
 + **重做日志文件**记录了对于存储引擎的事务日志，可以使用**重做日志文件**对数据库进行恢复，**保证数据库的完整性**
 + 每个`InnoDB`存储引擎至少有1个重做日志文件组，每个文件组下至少有2个重做日志文件
 + 日志组中的每个重做日志文件的大小一致，以循环写的方式运行。（`InnoDB`存储引擎先写重做日志文件1，写到文件的最后会切换到日志文件2，重做日志文件2也被写满后又会切换到重做日志文件1）
@@ -73,8 +73,13 @@
   + 两种一致性锁定读**必须在一个事务中**，事务提交时，锁也就释放了，务必加上`begin,start transaction或者set autocommit=0`
 
 ![](https://github.com/HurricanGod/Home/blob/master/redis/img/%E9%9D%9E%E9%94%81%E5%AE%9A%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%BB.png)
+
+
+
 ![](https://github.com/HurricanGod/Home/blob/master/redis/img/%E9%9D%9E%E9%94%81%E5%AE%9A%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%BB.gif)
+
 -----
+
 
 **自增长与锁**
 
