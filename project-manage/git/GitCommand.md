@@ -18,7 +18,7 @@
 +  查看配置
 
    ```shell
-   git config --list
+    git config --list
    ```
 
 
@@ -76,8 +76,6 @@
 
   > ​     有1个文件在某次提交时被删除或者清空了，但一时没有注意到。经过n多次commit后才发现这个文件内容没了，此时我要多么希望能回到过去把文件复制出来，当前版本可以不用做任何改动，只需再`commit`一次就好了！
   >
-  > ​    在 git 的世界里还真可以穿越，哈哈，没想到吧~
-  >
   > ​
 
   ```shell
@@ -99,6 +97,76 @@
   # 醒醒，回到现实吧
   git reset --hard c3fbadcb7d28b37da3807a4e8981063cefe82fa7
 
+  ```
+
+  ​
+
++ 暂存 —— **git stash**
+
+  ```shell
+  # 将当前已被git管理的文件的修改暂存
+  git stash save "tip"
+
+  # 列出所有的暂存项
+  git stash list
+
+  # 将暂存区最新的暂存项应用到当前工作空间，暂存区会将对应的stash删除
+  git stash pop
+
+  # 暂存区存在多个暂存项时选择应用某一项
+  # 应用第二个stash并删除： git stash pop stash@{1}
+  git stash pop stash@{$num}
+
+  # 清空暂存区所有stash
+  git stash clear
+
+  # 将暂存区的某个stash应用到当前工作空间，该命令不删除暂存区的stash
+  # $num 从0开始
+  git stash apply stash@{$num}
+
+  # 将暂存区的某个stash删除
+  # $num 从0开始
+  git stash drop stash@{$num}
+  ```
+
+  ​
+
++ 从远程分支拉取代码
+
+  ```shell
+  git fetch + git merge => git pull
+
+
+  # 拉取特定分支的更新
+  # git fetch origin 表示拉取当前分支最新的更新
+  git fetch origin branch_name
+
+  # 查看拉取的分支在远程仓库的变更
+  git log -p FETCH_HEAD
+  ```
+
+  ​
+
++ 提交 —— **git commit**
+
+  ```shell
+  # 修改上一个commit的注释内容
+  git commit --amend -m "新注释"
+
+  # 在上次的提交中附加一些内容，保持注释内容不变
+  git commit --amend --no-edit
+
+  # 空提交，用于重新触发CI构建场景
+  git commit --allow-empty -m "commit log"
+  ```
+
+  ​
+
++ 合并推送 —— **git merge**
+
+  ```shell
+  # 将branch多个commit合为1个合并到当前分支
+  git merge --squash branch
   ```
 
   ​
