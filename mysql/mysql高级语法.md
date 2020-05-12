@@ -113,6 +113,30 @@ CREATE TABLE `exception_log` (
 
   ​
 
++ 查询结果输出到文件
+
+  ```mysql
+  # 如果有写文件的权限
+  select t1.field1, t1.field2
+  from t1 
+  into outfile '/tmp/result.log'
+  ;
+
+  # 直接在shell命令行执行查询
+  # -p：指定数据库名称
+  # -P：指定端口号
+  # -e：指定要执行的sql
+  mysql -h 10.8.63.115  -u root -p testdb -P 3306 -e "select t1.field1, t1.field2 from t1 where id < 10" > /tmp/result.log
+  ```
+
+  ​
+
++ ​
+
+
+
+
+
 
 
 <p align="right"><a href="#lock_query">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
