@@ -765,6 +765,9 @@ crontab -e
 
 # 添加定时任务
 crontab clean-job.sh
+
+# 编辑 crontab 默认的编辑器相关命令
+select-editor
 ```
 
 
