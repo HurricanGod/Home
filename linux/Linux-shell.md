@@ -270,7 +270,7 @@ declare -a var
 
 ---
 
-### <a name="string">**字符串处理**</a>
+### <a name="string">**string**</a>
 
 + **删除字符串前缀**
 
