@@ -79,6 +79,26 @@ CREATE TABLE `exception_log` (
 
   ​
 
++ 插入前判断记录是否存在
+
+  ```mysql
+  insert into table_name(field0, field1) 
+  select fieldVal0, fieldVal1
+  from tmp
+  where not exists (
+  	select *
+    	from  table_name
+    	where field0 = fieldVal0 and field1 = fieldVal1
+  )
+  ```
+
+  + 表`tmp`为临时表
+  + 上面sql如果数据库里已有`where`条件的记录将不会插入
+
+  ​
+
++ ​
+
 
 <p align="right"><a href="#insert">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回顶部</a></p>
 

@@ -12,22 +12,22 @@
 + <a href="#list">**列表**</a>
 
 
-+ <a href="#">**元组**</a>
++ <a href="#tuple">**元组**</a>
 
 
 + <a href="#dict">**字典**</a>
 
 
-+ <a href="#">**类**</a>
++ <a href="#class">**类**</a>
 
 
-+ <a href="#">**集合**</a>
++ <a href="#set">**集合**</a>
 
 
-+ <a href="#">**函数**</a>
++ <a href="#function">**函数**</a>
 
 
-+ <a href="#">**异常**</a>
++ <a href="#exception">**异常**</a>
 
 
 + <a href="#ternaryOperator">**三元运算符**</a>
@@ -124,7 +124,7 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
 
 
 
-<br/><br/>
+<br/>
 
 `str.format()`格式化字符串
 
@@ -147,7 +147,7 @@ sql = "insert into tb1(id,nane)  values(%(id)d, %(name)s)" % {'name':'张三', '
   # >> 1,Hurrican,admin,3306
   ```
 
-  ​
+  
 
 
 <br/>
@@ -211,7 +211,7 @@ item = [i for l in data_list for i in l]
 
 
 
-### ****切片技巧****
+### 切片技巧
 
 - 反转列表
 
@@ -236,24 +236,51 @@ item = [i for l in data_list for i in l]
   sequence = [i for i in range(0,5)] + [i for i in range(6,10)]
   ```
 
-  ​
-
+  
 
 <br/>
 
-
-
-
-
 <p align="right"><a href="#list">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
+
+
+
+-----
+
+## <a name="tuple">**元组**</a>
+
+`namedtuple`：collections模块的`namedtuple`子类不仅可以使用item的index访问item，还可以通过item的name进行访问。**可以将namedtuple理解为C语言中的结构体**。
+
+
+
+**使用**：
+
+```python
+from collections import namedtuple
+
+# 定义一个叫做 Goods 的namedtuple
+Goods = namedtuple("Goods", ["goods_id", "org_code", "channel_id", "spu_code"])
+goods = Goods(1000000, "0087", 6, "1536420001")
+print("Goods[id={}, spu_code={}]".format(goods.goods_id, goods.spu_code))
+```
+
+
+
+
+
+
+
+<p align="right"><a href="#tuple">返回</a>&nbsp | &nbsp <a href="#top">返回顶部</a></p>
 
 -----
 
 ## <a name="dict">**字典**</a>
 
++ `OrderedDict` —— 有序字典
++ `defaultdict` —— `dict` 的子类。初始化时，可以给key指定默认值。普通的dict对象，使用`dict[key]方式`访问一个不存在的key时会报错，`defaultdict`可以**给不存在的 key 一个默认的初始值**
 
 
-### **构造字典**
+
+### 构造字典
 
 ```python
 d = dict(zip('abcdefg', range(7)))
@@ -261,6 +288,10 @@ d = dict(zip('abcdefg', range(7)))
 
 d = dict(a=1, b=2, name='Hurrican')
 # {'a': 1, 'c': 'Hurrican', 'b': 2}
+
+d = defaultdict(list)
+# >>> d["key"]
+# []
 ```
 
 
