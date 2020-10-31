@@ -38,4 +38,4 @@ awk -F ':' '{print $1, $(NF-1)}' demo.txt
   ​
 
 
-![](https://goss1.cfp.cn/creative/vcg/800/new/VCG211141894767-FHQ.jpg)
+![图片](https://goss1.cfp.cn/creative/vcg/800/new/VCG211141894767-FHQ.jpg)
