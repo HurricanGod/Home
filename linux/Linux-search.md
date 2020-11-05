@@ -132,21 +132,27 @@ grep [-acinv]  [--color=aotu]  '待查找的字符串'  filename
 -c: 计算找到的 '待查找的字符串' 的次数
 -i: 忽略大小写不同
 -n: 输出行号
+-o: 只输出匹配的文本行
 -v: 反向选择，即显示出没有 '待查找的字符串' 内容的那一行
 -R: 递归搜索
 -e: 匹配多个模式
 --color: 可以将找到的关键字部分加上颜色显示 
 ```
 
-**例**：利用`grep`筛选配置文件中的非注释和非空行
+**示例**：
 
-`grep -v '^$' filename | grep -v '^#'`
++ 利用`grep`筛选配置文件中的非注释和非空行
+
+  `grep -v '^$' filename | grep -v '^#'`
+  ![grep-n](https://github.com/HurricanGod/Home/blob/master/linux/img/grep-v.png)
+
++ 匹配多个模式
+
+  `grep -e "Allocation Failure" -e "2020-02-26"  gc.log`
+
+  包含 `Allocation Failure` 和 `2020-02-26` 的行将会被输出
 
 
-
-
-
-![grep-n](https://github.com/HurricanGod/Home/blob/master/linux/img/grep-v.png)
 
 
 
