@@ -28,8 +28,12 @@
   + `const|system` —— 常量
   + `null`
 + `key` —— 使用到的索引名，**没有选择索引值为null**
++ `key_len` —— 表示使用索引字段的长度
 + `rows` —— 扫描行数
-+ `extra` —— 详细说明，重点关注`using filesort`和`using temporary(对查询结果排序使用了临时表)`
++ `extra` —— 详细说明，重点关注`using filesort`和`using temporary(对查询结果排序使用了临时表)`，通常性能由好到坏的排序结果为：
+  + `using index` —— 表示使用覆盖索引
+  + `using where`
+  + `using filesort` | ``using temporary`
 
 ```sql
  explain select * from testindex where id<3;
@@ -51,7 +55,7 @@
 
 + 客户端将查询请求发送到服务器
 + 服务器检查查询缓存，如果找到了就从缓存中返回结果，否则进行下一步
-+ 服务器解析，预处理和查询优化，生成执行计划
++ 服务器进行SQL解析，预处理，再由查询优化器生成对应的执行计划
 + 执行引擎调用存储引擎API执行查询
 + 服务器将结果发送会客户端
 
@@ -62,6 +66,25 @@
 预处理：检查解析器生成的结果树，进行语义分析，语义分析完成后如果没有错误进行**权限检查**
 
 查询优化：找到最优的查询执行方式
+
+
+
+有慢查询或者执行 SQL 遇到瓶颈时，可以参考 MySQL 执行计划分析“三步曲”
+
++ 查看 SQL 执行计划
+  + `explain select_sql`
+  + `desc table_name`
+  + `show create table_name`
++ 通过`Profile`定位查询代价消耗
+  + `set profiling = 1`
+  + 执行查询sql
+  + show profiles —— **获取** `Query_ID`
+  + show profile for query `Query_ID` —— 查看详细的profile信息
++ 通过 `Optimizer Trace` 表查看SQL执行计划树
+  + `set session optimizer_trace='enabled=on';`
+  + 执行sql
+  + 查询 information_schema.optimizer_trace 表，获取 SQL 查询计划树——`select * from information_schema.optimizer_trace\G;`
+  + `set session optimizer_trace=‘enabled=off';` —— 关闭`optimizer_trace`，开启会影响性能
 
 ----
 
@@ -104,7 +127,7 @@
 
   >union和union all的区别：union需要将结果集合并后再进行唯一性过滤操作，会涉及到排序，增加CPU运算，加大资源消耗及延迟。
   >
-  >​
+  >
 
 + `in`用于***外表大内表小***的情况，`exists`适用于**外表小内标大**的情况
 
@@ -191,7 +214,7 @@
 + **水平拆分**
   + 分库
   + 分库内分表
-+ ​
++ 
 
 
 

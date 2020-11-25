@@ -69,6 +69,19 @@
 <a name="binaryLog">**二进制日志**</a>
 
 + 二进制日志文件默认情况下没有启动，需要使用手动指定参数来启动
++ binlog 可配置的系统参数
+  + `max_binlog_size`：
+  + `binlog_cache_size`：支持事务的存储引擎所有未提交事务的二级制日志都会被记录到一个缓存中，等到事务提交时才会将缓冲中的二进制日志写入到日志文件，缓冲的大小就是由`binlog_cache_size`决定，默认大小为32k，`binlog_cache_size` 是基于**会话的**
+  + `sync_binlog`：
+  + `binlog-do-db`：
+  + `binlog-ignore-db`：
+  + `log-slave-update`：
+  + `binlog_format`：**动态参数，可直接修改**
+    + statement：binlog日志记录的是逻辑sql语句
+    + row：记录表的行更改情况。对磁盘空间要求有一定的增加，复制的网络开销也有一定的增加
+    + mixed：默认使用 `statement` 格式进行二进制日志文件记录，特殊情况下会用 `row` 格式记录
+
+
 
 
 

@@ -30,36 +30,45 @@
   log-error	= /var/log/mysql/error.log
   ```
 
-  ​
+  
 
 
 + **慢查询日志相关的配置**
 
   ```sh
-  # 开启慢查询
+  # 开启慢查询， on 或 1 表示开启，off 或 0 表示关闭
   slow_query_log = ON
 
+  # 用来控制 select 语句的最大执行时间，单位毫秒
+  # 超过此值 MySQL 自动 kill 掉该查询
+max_execution_time = 6000
+  
   # 慢查询日志存放的位置
-  slow_query_log_file = /var/log/mysql/mysql-slow.log
-
+slow_query_log_file = /var/log/mysql/mysql-slow.log
+  
   # 慢查询时间阀值
   long_query_time = 2
 
   # 记录没有使用索引的查询语句
   log_queries_not_using_indexes = 1
-  log_queries_not_using_indexes = on
-
-  # 查看没有使用索引查询配置参数
+log_queries_not_using_indexes = on
+  
+  # 表示每分钟记录到慢查询文件中未使用索引的 SQL 语句上限
+# 0 表示没限制
+  log_throttle_queries_not_using_indexes = 0
+  
+# 查看没有使用索引查询配置参数
   show variables like 'log_queries_not_using_indexes';
-
+  
   # 查看慢查询相关的配置
   show variables like '%slow_query%';
-
+  
   # 查看慢查询日志格式，默认为file，为table时慢查询日志将记录在mysql.slow_log表
   show variables like '%log_output%';
-
+  
   # 扫描全表少于min_examined_row_limit的记录将不会被记录至慢查询日志
   show variables like  'min_examined_row_limit';
+  ```
 
 
   # 将慢查询日志输出方式改为table
@@ -104,7 +113,7 @@
   expire_logs_days = 30
   ```
 
-  ​
+  
 
 
 
@@ -132,7 +141,7 @@
   show variables like '%query_cache%';
   ```
 
-  ​
+  
 
 
 + 查询缓存大小相关的配置
@@ -148,7 +157,7 @@
   query_cache_min_res_unit = 4k
   ```
 
-  ​
+  
 
 
 + **查询缓存使用情况**
