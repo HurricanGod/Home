@@ -98,9 +98,8 @@
   + `serialize()` —— 是否序列化
 
   + `deserialize()` —— 是否反序列化
-
-    ```java
-  @Data
+```java
+@Data
     public class Foo {
     
         private Date createTime;
@@ -118,7 +117,7 @@
         System.out.println(JSON.toJSONString(foo));
         // {"createTime":1607438771308}
     }
-    ```
+```
   
     
   
