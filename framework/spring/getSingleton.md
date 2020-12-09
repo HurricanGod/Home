@@ -159,3 +159,12 @@
 
 ```
 
+
+
+
+
+
+
+`DefaultListableBeanFactory#getBean()`
+
++ `DefaultListableBeanFactory#resolveBean()`
