@@ -1,12 +1,21 @@
 # <a name="top">Docker</a>
 
 + <a href="#container">**容器**</a>
-  + <a href="#create-container">***创建新容器***</a>
-  + <a href="#enter-container">***进入容器***</a>
-  + <a href="#stop-container">***停止容器***</a>
+  + <a href="#create-container">**创建容器**</a>
+  + <a href="#list-container">**列出容器**</a>
+  + <a href="#enter-container">**进入容器**</a>
+  + <a href="#stop-container">**停止容器**</a>
+  + <a href="#inspect">**获取容器元数据**</a>
+  + <a href="#docker-cp">**容器与宿主机间的文件复制**</a>
+  + <a href="#docker-logs"> **看容器日志**</a>
 
 
 + <a href="#image">**镜像**</a>
+  + <a href="#search-image">搜索镜像 </a>
+  + <a htrf="#pull-image">拉取镜像</a>
+  + <a href="#see-image">查看本地镜像</a>
+  + <a href="#build-image">构建镜像</a>
+  + <a href="#delete-image">删除镜像</a>
 
 
 + <a href="#dockfile">**Dockerfile**</a>
@@ -22,7 +31,7 @@
 
 
 
-### <a name="create-container">创建**新容器**</a>
+### <a name="create-container">创建容器</a>
 
 **命令格式** ： `docker run [options] IMAGE [command] [args...]`
 
@@ -231,7 +240,7 @@ docker logs --since "2019-06-08T00:25:00" --until "2019-06-08T00:26:00"  7c787da
 
 
 
-### 搜索镜像 
+### <a name="search-image">搜索镜像 </a>
 
 > 用于搜索Docker Hub上的公共镜像
 
@@ -250,11 +259,11 @@ docker search [options] keyword
 
 ![docker-search](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-search.png)
 
+<br/><br/>
 
+-----
 
-
-
-### 拉取镜像
+### <a name="pull-image">拉取镜像</a>
 
 ```sh
 docker pull [OPTIONS] NAME[:TAG]
@@ -262,9 +271,11 @@ docker pull [OPTIONS] NAME[:TAG]
 
   
 
+<br/><br/>
 
+----
 
-### 查看本地镜像
+### <a name="see-image">查看本地镜像</a>
 
 ```sh
 docker images
@@ -282,9 +293,10 @@ docker images
  ![docker-images](https://github.com/HurricanGod/Home/blob/master/linux/img/docker/docker-images.png)
 
 <p align="right"><a href="#image">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+<br/><br/>
 
 ----
-### 构建镜像
+### <a name="build-image">构建镜像</a>
 
 Dockerfile创建完成后可以使用docker build命令根据Dockerfile构建镜像，**构建镜像的过程中，可以引用上下文中的任何文件**
 
@@ -304,6 +316,12 @@ docker build -t redis-cluster-4.0.10 .
 docker  build  -t  redis-cluster-4.0.10:v2  .
 ```
 
+<p align="right"><a href="#image">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+
+<br/><br/>
+
+
 ---
 ### <a name="push_image">推送镜像到远程仓库</a>
 
@@ -311,8 +329,11 @@ docker  build  -t  redis-cluster-4.0.10:v2  .
 docker push repository/image_name:tag
 ```
 
+
+<br/><br/>
+
 -----
-### 删除镜像
+### <a name="delete-image">删除镜像</a>
 
 **镜像删除失败的场景**：
 + 若有其它镜像依赖于被删除的镜像，则会删除失败
