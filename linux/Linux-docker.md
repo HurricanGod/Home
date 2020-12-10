@@ -12,7 +12,7 @@
 
 + <a href="#image">**镜像**</a>
   + <a href="#search-image">搜索镜像 </a>
-  + <a htrf="#pull-image">拉取镜像</a>
+  + <a href="#pull-image">拉取镜像</a>
   + <a href="#see-image">查看本地镜像</a>
   + <a href="#build-image">构建镜像</a>
   + <a href="#delete-image">删除镜像</a>
