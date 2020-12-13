@@ -118,15 +118,15 @@
         // {"createTime":1607438771308}
     }
 ```
-  
-    
-  
-    
-  
+
+​    
+
+​    
+
   + `Class<?> serializeUsing()` 
   
     +  使用指定的类进行序列化，该类需要实现 `com.alibaba.fastjson.serializer.ObjectSerializer`接口
-  
+    
       ```java
       public static class YnSerializer implements ObjectSerializer{
       
@@ -146,15 +146,15 @@
           }
       }
       ```
-  
+    
     + 在注解上指定序列化使用的类`@JSONField(serializeUsing = YnSerializer.class)`
+
   
-  
-  
+
   + `Class<?> deserializeUsing()` 
   
     + 使用指定的类进行反序列化，该类需要实现 `com.alibaba.fastjson.parser.deserializer.ObjectDeserializer` 接口
-  
+    
       ```java
       public static class YnDeSerializer implements ObjectDeserializer{
       
@@ -176,17 +176,17 @@
       }
       
       ```
-  
+    
       
-  
+    
     + 在注解上指定反序列化使用的类 `@JSONField(deserializeUsing =YnDeSerializer.class)`
-  
     
-  
     
-  
     
-  
+    
+    
+    
+    
     ----
   
     ## 自定义序列化&&反序列化
@@ -197,42 +197,44 @@
   
     + 实现 `com.alibaba.fastjson.serializer.ObjectSerializer`接口
     + 注册到`SerializeConfig`中
-  
+    
+    
+    
+    
+    
+    
+    
+    
+  **参考**
+    
+  + <a href="https://github.com/alibaba/fastjson/wiki/ObjectSerializer_cn">fastjson自定义序列化官方文档</a>
+      
+  -----
     
   
     
-  
+  ### 自定义反序列化
     
-  
-    **参考**
-  
-    + <a href="https://github.com/alibaba/fastjson/wiki/ObjectSerializer_cn">fastjson自定义序列化官方文档</a>
-  
-    -----
-  
-    
-  
-    ### 自定义反序列化
-  
     + 实现 `com.alibaba.fastjson.parser.deserializer.ObjectDeserializer` 接口
-    + 将自定义反序列化类注册到 `ParserConfig`中
+  + 将自定义反序列化类注册到 `ParserConfig`中
+      
   
-    
+      
   
     **参考**
   
     + <a href="https://github.com/alibaba/fastjson/wiki/ObjectDeserializer_cn">fastjson自定义反序列化官方文档</a>
-  
     
-  
     
-  
+    
+    
+    
     -----
   
     
   
     
-  
+    
     
 
 ## Reference
