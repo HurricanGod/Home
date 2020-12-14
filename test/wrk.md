@@ -68,7 +68,7 @@ wrk.body = '{ "body": {"goodsSn": "1006311001","organizationCode": "szpszx", "ch
 -----
 ## <a name="wrk-lifecycle">wrk生命周期</a>
 
-[!git-pic](https://github.com/HurricanGod/Home/blob/master/test/img/wrk.png)
+![git-pic](https://github.com/HurricanGod/Home/blob/master/test/img/wrk.png)
 
 [![ruI9qx.png](https://s3.ax1x.com/2020/12/14/ruI9qx.png)](https://imgchr.com/i/ruI9qx)
 
