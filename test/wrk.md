@@ -64,9 +64,38 @@ wrk.body = '{ "body": {"goodsSn": "1006311001","organizationCode": "szpszx", "ch
 ```
 
 
+**压测结果**：
+```
+
+root@4dabc94ba387:/home/app/lua# wrk -t8 -c40 -d30s -T15s -s /home/app/lua/GoodsDetailV1.lua --latency  http://goods-test.kt3.pagoda.com.cn/goods/detail 
+# 压测时间30s
+Running 30s test @ http://goods-test.kt3.pagoda.com.cn/goods/detail
+  Thread Stats   Avg      Stdev     Max   +/- Stdev 
+      Latency    1.76s    2.55s   13.81s    88.81%                                                                                                            
+      Req/Sec    4.32     3.97    20.00     66.74%
+  Latency Distribution 
+     50%  656.46ms 
+     75%    1.99s 
+     90%    4.58s 
+     99%   13.24s     
+  524 requests in 30.08s, 123.59KB read
+  Socket errors: connect 0, read 0, write 0, timeout 15
+Requests/sec:     17.42 
+Transfer/sec:      4.11KB
+
+```
++ `Avg` —— 平均值
++ `Stdev` —— 标准偏差，标准差大说明样本离散程度比较高，系统性能波动很大
++ `Max` —— 最大值
++ `+/- Stdev` —— 正负一个标准差所占比例
++ `524 requests in 30.08s, 123.59KB read` —— 30s内发送了524个请求，读取的数据量为123.59KB
++ `Socket errors: connect 0, read 0, write 0, timeout 15` —— 超时错误15个（超时时间为15s）
++ `Requests/sec: 17.42` —— 每个线程每秒平均完成17.42个请求
++ `Transfer/sec: 4.11KB` —— 每个线程每秒平均传输4.11KB
+
 
 -----
-## <a name="wrk-lifecycle">wrk生命周期</a>
+## <a name="wrk-lifecycle">wrk执行生命周期</a>
 
 ![git-pic](https://github.com/HurricanGod/Home/blob/master/test/img/wrk.png)
 
