@@ -90,8 +90,8 @@ Transfer/sec:      4.11KB
 + `+/- Stdev` —— 正负一个标准差所占比例
 + `524 requests in 30.08s, 123.59KB read` —— 30s内发送了524个请求，读取的数据量为123.59KB
 + `Socket errors: connect 0, read 0, write 0, timeout 15` —— 超时错误15个（超时时间为15s）
-+ `Requests/sec: 17.42` —— 每个线程每秒平均完成17.42个请求
-+ `Transfer/sec: 4.11KB` —— 每个线程每秒平均传输4.11KB
++ `Requests/sec: 17.42` —— 每秒平均完成17.42个请求
++ `Transfer/sec: 4.11KB` —— 每秒平均传输4.11KB
 
 
 -----
