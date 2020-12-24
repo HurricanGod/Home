@@ -84,6 +84,6 @@ jetcache:
 |args|root对象|#root.args|数组|被调用方法的参数列表，可以使用索引下标进行访问|
 |caches|root对象|#root.caches|?|当前方法调用使用的缓存列表|
 |Argument Name|执行上下文|#name|Object|被调用方法的参数，当前被调用的方法假设为`Service#run(String name)`，可以通过#name获取到方法参数|
-|result|执行上下文|result|Object|方法执行后的返回值|
+|result|执行上下文|#result|Object|方法执行后的返回值|
 
 
