@@ -29,6 +29,12 @@ list = multimap.get("100654");
 ArrayListMultimap等价于`Map<K, Set<V>>`
 
 
+
+----
+## <a name="ImmutableListMultimap">ImmutableListMultimap</a>
+
+
+
   
 ----
 ## <a name ="HashBiMap">HashBiMap</a>
