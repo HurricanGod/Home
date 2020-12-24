@@ -1,6 +1,16 @@
 
 # Guava常用类
 
+## maven依赖
+```xml
+<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>28.0-jre</version>
+</dependency>
+
+```
+
 
 ## <a name ="ArrayListMultimap">ArrayListMultimap</a>
 ArrayListMultimap等价于`Map<K, List<V>>`
@@ -24,7 +34,7 @@ list = multimap.get("100654");
 
 
 ----
-## <a name="HashMultimap"></a>
+## <a name="HashMultimap">HashMultimap</a>
 
 `HashMultimap`等价于`Map<K, Set<V>>`
 
