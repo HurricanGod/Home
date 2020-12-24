@@ -26,7 +26,7 @@ list = multimap.get("100654");
 ----
 ## <a name="HashMultimap"></a>
 
-ArrayListMultimap等价于`Map<K, Set<V>>`
+`HashMultimap`等价于`Map<K, Set<V>>`
 
 
 
