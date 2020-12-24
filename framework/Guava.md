@@ -91,6 +91,11 @@ goodsId = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, "GoodsID");
 ```
 
 
+## <a name="IO">IO</a>
+
++ `com.google.common.io.Resources`—— 通过URL操作IO
++ `com.google.common.io.Files` —— 通过文件操作IO
+
 
 
 
