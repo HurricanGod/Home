@@ -181,6 +181,21 @@ public class SimpleTest {
 
 
 
+```java
+public interface ParameterizedType extends Typ{
+    
+    Type[] getActualTypeArguments();
+    
+    
+    Type getRawType();
+    
+    
+    Type getOwnerType();
+}
+```
+
+
+
 
 
 
