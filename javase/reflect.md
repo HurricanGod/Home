@@ -107,6 +107,20 @@ public class SimpleTest {
 
 
 
++ `public native boolean isAssignableFrom(Class<?> cls)`
+
+  判断参数给定的类是否属于当前类的子类或者跟当前类是相同的类型
+
+  ```java
+  // true
+  List.class.isAssignableFrom(ArrayList.class);
+  
+  // false
+  ArrayList.class.isAssignableFrom(List.class);
+  ```
+
+  
+
 
 
 <p align="right"><a href="#class">返回</a> &nbsp&nbsp| <a href="#top">返回目录</a> </p>
