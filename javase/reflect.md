@@ -186,7 +186,11 @@ public interface ParameterizedType extends Typ{
     
     Type[] getActualTypeArguments();
     
-    
+    /**
+    *  返回参数化类型的原始类型
+    *  假设有成员变量list, 类型为List<Integer>
+    *  getRawType() 返回 List
+    */
     Type getRawType();
     
     
