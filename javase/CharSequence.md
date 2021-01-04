@@ -44,6 +44,7 @@ public final class String  implements java.io.Serializable,
 + 实例数据
 + 直接填充
 
+![Java对象内存布局](https://github.com/HurricanGod/Home/blob/master/javase/img/%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png)
 ![Java对象内存布局](https://s3.ax1x.com/2021/01/05/sFSimF.png)
 
 
