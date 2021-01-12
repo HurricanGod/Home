@@ -13,7 +13,7 @@
 
 
 
-`AQS`中定义的成员变量 `state` 用于表示是否获取到锁。`state=0`表示没有线程占有锁，`state>0`表示当前线程获取到锁。
+`AQS`中定义的成员变量 `state` 用于表示是否获取到锁。`state=0`表示没有线程占有锁，`state>0`表示锁被线程占用。
 
 
 
@@ -44,7 +44,7 @@ public void lock(){
 
 <br/>
 
-<a name="fairSync-lock">`ReentrantLock.FairSync#lock`</a>
+#### <a name="fairSync-lock">`ReentrantLock.FairSync#lock`</a>
 
 ```java
 final void lock(){
@@ -56,7 +56,7 @@ final void lock(){
 
 
 
-<a name="nonfairSync-lock">`ReentrantLock.NonfairSync#lock`</a>
+#### <a name="nonfairSync-lock">`ReentrantLock.NonfairSync#lock`</a>
 
 ```java
 final void lock(){
@@ -75,7 +75,7 @@ final void lock(){
 
 <br/>
 
-<a name="AQS-acquire">`AbstractQueuedSynchronizer#acquire`</a>
+#### <a name="AQS-acquire">`AbstractQueuedSynchronizer#acquire`</a>
 
 ```java
 public final void acquire(int arg){
@@ -457,4 +457,74 @@ if (p == head && tryAcquire(arg)){
 
 
 ----
+
+### <a name="lockInterruptibly">`ReentrantLock#lockInterruptibly`</a>
+
+`lockInterruptibly()`方法在等待锁期间如果被其它线程 `interrupt`，当前线程并不会立即响应中断，只有等当前线程获取到锁时才会抛出 `InterruptedException`
+
+
+
+```java
+public void lockInterruptibly() throws InterruptedException {
+    sync.acquireInterruptibly(1);
+}
+```
+
+
+
+
+
+<br/>
+
+<a name="acquireInterruptibly">`AbstractQueuedSynchronizer#acquireInterruptibly`</a>
+
+```java
+public final void acquireInterruptibly(int arg) throws InterruptedException {
+    // 如果当前线程被打断了直接抛出一个 InterruptedException
+    if (Thread.interrupted())
+        throw new InterruptedException();
+    if (!tryAcquire(arg)) // ① 尝试cas方式获取锁
+        doAcquireInterruptibly(arg); // ②
+}
+```
+
+① 具体实现在<a href="#FairSync-tryAcquire">`ReentrantLock.FairSync#tryAcquire`</a>或<a href="#NonfairSync-tryAcquire">`ReentrantLock.NonfairSync#tryAcquire`</a>
+
+
+
+② <a href="#doAcquireInterruptibly">`doAcquireInterruptibly()`</a> 跟前面的<a href="#AQS-acquireQueued">`acquireQueued()`</a>比较相似，不同点在于前者如果被中断直接**抛出异常**。
+
+
+
+
+
+-----
+
+<a name="doAcquireInterruptibly">`AbstractQueuedSynchronizer#doAcquireInterruptibly`</a>
+
+```java
+private void doAcquireInterruptibly(int arg) throws InterruptedException{
+    final Node node = addWaiter(Node.EXCLUSIVE);
+    boolean failed = true;
+    try {
+        for (;;) {
+            final Node p = node.predecessor();
+            if (p == head && tryAcquire(arg)) {
+                setHead(node);
+                p.next = null; // help GC
+                failed = false;
+                return;
+            }
+            if (shouldParkAfterFailedAcquire(p, node) &&
+                 parkAndCheckInterrupt()){
+                throw new InterruptedException();
+            }
+        }
+    }finally {
+        if (failed)
+            cancelAcquire(node);
+    }
+    
+}
+```
 
