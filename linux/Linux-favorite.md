@@ -34,6 +34,10 @@
 
 ## <a name="netstat">netstat</a>
 
+
+### Linux
+
+
 + `netstat` **-ntlp**  —— 显示**TCP相关**的进程监听的端口信息
   + `-a (all)`：显示所有选项，默认不显示LISTEN相关
   + `-t (tcp)`：仅显示tcp相关选项
@@ -63,6 +67,16 @@
 
 + `ps -T -p pid` —— 显示进程 `pid` 包含的线程
   ![thread_in_pid](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-T-p.png)
+
+
+### Windows
+
+**查看端口对应的进程信息**
+
+```sh
+netstat -ano|findstr 8082
+```
+
 
 <p align="right"><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
