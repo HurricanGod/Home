@@ -132,7 +132,7 @@ Errors were encountered while processing:
  docker-ce
 ```
 
-**如果安装或卸载docker时报如上错误则先把 `/var/lib/dpkg/info/docker-ce*`下的文件删除再重试
+**如果安装或卸载docker时报如上错误则先把** `/var/lib/dpkg/info/docker-ce*` **下的文件删除再重试**
 
 ```sh
 rm -f /var/lib/dpkg/info/docker-ce*
