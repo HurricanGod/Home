@@ -34,6 +34,10 @@
 
 ## <a name="netstat">netstat</a>
 
+
+### Linux
+
+
 + `netstat` **-ntlp**  —— 显示**TCP相关**的进程监听的端口信息
   + `-a (all)`：显示所有选项，默认不显示LISTEN相关
   + `-t (tcp)`：仅显示tcp相关选项
@@ -63,6 +67,29 @@
 
 + `ps -T -p pid` —— 显示进程 `pid` 包含的线程
   ![thread_in_pid](https://github.com/HurricanGod/Home/blob/master/linux/img/ps-T-p.png)
+
+
+-----
+
+### Windows
+
+**常用的可选参数**：
+
++ `-a`：显示所有连接和侦听端口
++ `-n`：以数字形式显示地址和端口号
++ `-o`：显示拥有的与每个连接关联的进程 ID
++ `-r`：显示路由表
++ `-s`：显示每个协议的统计信息。默认情况下，显示 IP、IPv6、ICMP、ICMPv6、TCP、TCPv6、UDP 和 UDPv6 的统计信息
+
+
+```sh
+# 查找占用 8082 端口的进程PID
+netstat -ano|findstr 8082
+
+# netstat 帮助命令
+netstat/? 
+```
+
 
 <p align="right"><a href="#netstat">返回</a>&nbsp&nbsp|&nbsp&nbsp<a href="#top">返回目录</a><p>
 
@@ -219,6 +246,15 @@ p: kill 命令只打印相关进程的进程号，而不发送任何信号
 s: 指定要送出的信息
 ```
 
+**扩展**：
+
+Windows系统与 `kill` 命令相对应的命令是 `taskkill`
+
+```sh
+# -PID：指定要删除的进程号
+# -F：强制终止进程
+taskkill -PID pid -F
+```
 
 
 <a href="http://man.linuxde.net/kill">参考博客</a>
