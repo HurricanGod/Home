@@ -90,7 +90,27 @@
 `boost` 给字段增加权重，用法如下：
 
 ```json
-
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "name": {
+              "query": "西瓜",
+              "boost": 1
+            }
+          }
+        },
+        {
+          "match": {
+            "parentName": "西瓜"
+          }
+        }
+      ]
+    }
+  }
+}
 ```
 
 
@@ -100,7 +120,7 @@
 **样例**：
 
 ```sh
-curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_category/_search" \
+curl -X GET --location "http://127.0.0.1:9200/diep-system-category/mt_category/_search" \
     -H "Content-Type: application/json" \
     -d "{
           \"query\": {
@@ -119,6 +139,26 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 
 
 <p align="right"><a href="#match">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="match_all">match_all</a>
+
+`match_all`用于查询所有文档，用法如下：
+
+```json
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
+
+
+
+
+
+<p align="right"><a href="#match_all">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
 ----
 
@@ -174,8 +214,34 @@ curl -X GET --location "http://127.0.0.1:9200/index-name/type/_search" \
 
 
 
-```json
+`multi_match`支持在多个 `field` 上进行查询，并允许指定 `field` 的权重(field后面加`^数字`)改变 `_score` 从而影响排序。
 
+```json
+{
+  "query": {
+    "multi_match": {
+      "query": "芒果",
+      "fields": ["name", "parentName^10"]
+    }
+  }
+}
+```
+
+
+
+**curl请求样例**：
+
+```sh
+curl -X POST --location "http://127.0.0.1:9200/diep-system-category/mt_category/_search" \
+    -H "Content-Type: application/json" \
+    -d "{
+          \"query\": {
+            \"multi_match\": {
+              \"query\": \"芒果\",
+              \"fields\": [\"name\", \"parentName^10\"]
+            }
+          }
+        }"
 ```
 
 
@@ -190,11 +256,35 @@ curl -X GET --location "http://127.0.0.1:9200/index-name/type/_search" \
 
 ## <a name="term">term</a>
 
+`term`用于精确匹配，精确值可以是数字、日期、bool、keyword类型的字符串。
 
 
 
+```json
+{
+  "query": {
+    "term": {
+      "categoryCode": "100100zzvzzqzxb"
+    }
+  }
+}
+```
 
 
+
+**curl请求样例**：
+
+```sh
+curl -X POST --location "http://127.0.0.1:9200/diep-system-category/_search" \
+    -H "Content-Type: application/json" \
+    -d "{
+          \"query\": {
+            \"term\": {
+              \"categoryCode\": \"100100zzvzzqzxb\"
+            }
+          }
+        }"
+```
 
 
 
@@ -314,7 +404,9 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 
 ## <a name="sort">sort</a>
 
-`sort`不能对 `text` 类型字段排序，但可以对 `keyword` 类型字段排序。文档默认的排序规则为根据相关度 `_score` 降序排序
++ `sort`不能对 `text` 类型字段排序，但可以对 `keyword` 类型字段排序
++ 文档默认的排序规则为根据相关度 `_score` 降序排序
++ `sort` 可以同时指定多个字段进行排序，一旦使用 `sort` 排序后，文档相关度 `score` 得分将变得没有意义
 
 
 
@@ -325,7 +417,8 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 ----
 ## <a name="filter">filter</a>
 
-
++ `filter`仅按照搜索条件把需要的数据筛选出来，不进行**相关度分数**计算。只做过滤不做排序，并且会把结果缓存到内存中，性能非常高
++ 如果查询只有 `filter` 过滤条件，可以使用 `constanr_score` 代替 `bool` 查询
 
 
 
@@ -343,4 +436,20 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 
 
 <p align="right"><a href="#post_filter">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+----
+
+## <a name="explain">explain</a>
+
+
+
+```sh
+curl -X GET --location "http://127.0.0.1:9200/index-name/type/_validate/query?explain" -d '{"query":{"match":{"fieldName": "queryString"}}}'
+```
+
+
+
+
+
+<p align="right"><a href="#explain">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
