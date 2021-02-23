@@ -7,9 +7,19 @@
 + 每次 `git push` 都要输入账号和密码
 
   ```shell
+  # 查看本地仓库关联的远程仓库地址
+  git remote -v
+  
+  # 方法1
+  # 删除本地仓库关联的远程仓库配置
   git remote rm origin
 
   git remote add origin git@github.com:HurricanGod/home.git
+  
+  
+  # 方法2
+  # 进入项目所在目录执行以下命令
+  git config --global credential.helper store
   ```
 
 
