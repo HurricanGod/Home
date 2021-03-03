@@ -2,11 +2,103 @@
 
 
 
++ <a href="#match">match</a>
++ <a href="#match_all">match_all</a>
++ <a href="#match_phrase">match_phrase</a>
++ <a href="#multi_match">multi_match</a>
++ <a href="#term">term</a>
++ <a href="#terms">terms</a>
++ <a href="#range">range</a>
++ <a href="#bool">bool</a>
++ <a href="#fuzzy">fuzzy</a>
++ <a href="#sort">sort</a>
++ <a href="#filter">filter</a>
++ <a href="#post_filter">post_filter</a>
++ <a href="#explain">explain</a>
 
 
 
 
 
+
+
+----
+
+## <a name="id">根据id查询</a>
+
+
+
+### 根据文档id查单个文档
+
+格式：`http://host:port/index/type/id`
+
+如果需要筛选返回的字段可以添加 `_source` 参数，值有多个用 `,` 分割
+
+**样例** ：
+
+```sh
+http://localhost:9200/diep-system-category/mt_category/20201103178664?_source=categoryCode%2Cname%2CparentName
+```
+
+
+
+
+
+### 根据id批量查文档
+
+```json
+{
+  "query": {
+    "ids": {
+      "type": "mt_category",
+      "values": [
+        "20201103178664",
+        "20201103179605",
+        "20201103178661"
+      ]
+    }
+  },
+  "_source": [
+    "id",
+    "name",
+    "parentName"
+  ]
+}
+```
+
+
+
+
+
+**curl样例**：
+
+```sh
+curl -X GET --location "http://localhost:9200/diep-system-category/_search" \
+    -H "Content-Type: application/json" \
+    -d "{
+          \"query\": {
+            \"ids\": {
+              \"type\": \"mt_category\",
+              \"values\": [
+                \"20201103178664\",
+                \"20201103179605\",
+                \"20201103178661\"
+              ]
+            }
+          },
+          \"_source\": [
+            \"id\",
+            \"name\",
+            \"parentName\"
+          ]
+        }"
+```
+
+
+
+
+
+<p align="right"><a href="#id">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
 
 ---
 
@@ -156,6 +248,15 @@ curl -X GET --location "http://127.0.0.1:9200/diep-system-category/mt_category/_
 
 
 
+**idea httpclient插件**
+
+```
+GET {{baseUrl}}/index-name/_search
+Content-Type: application/json
+```
+
+
+
 
 
 <p align="right"><a href="#match_all">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
@@ -242,6 +343,15 @@ curl -X POST --location "http://127.0.0.1:9200/diep-system-category/mt_category/
             }
           }
         }"
+```
+
+
+
+**相似http简单查询**：
+
+```
+### 相当于对diep-channel-goods索引的所有字段进行multi_match查询
+GET {{baseUrl}}/diep-channel-goods/goods/_search?q=大枣
 ```
 
 
@@ -384,6 +494,36 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 
 ## <a name="fuzzy">fuzzy</a>
 
+实际搜索中可能因为错别字导致搜索不到结果，搜索时可以使用 `fuzziness` 属性进行模糊查询，`fuzziness` 可以被设置的值有：
+
++ `0`
++ `1`
++ `2`
++ `auto` —— **推荐选项**，会根据查询串的长度定义距离
+
+使用模糊查询时，elasticsearch会在指定**编辑距离**内创造搜索词的所有变化或扩展集合，然后返回这个扩展的完全匹配。模糊查询CPU开销大。
+
+
+
+**idea httpclient请求样例**
+
+```sh
+POST {{baseUrl}}/idx-channel-goods/goods/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "goodsName": {
+        "query": "Kest",
+        "fuzziness": "2"
+      }
+    }
+  },
+  "_source": ["goodsName"]
+}
+```
+
 
 
 
@@ -393,6 +533,31 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 ----
 
 ## <a name="wildcard">wildcard</a>
+
+`wildcard` 通配符查询也是一种底层基于词的查询，需要扫描倒排索引中的词列表才能找到所有匹配的词，然后依次获取每个词相关的文档 ID。通配符使用标准的 shell 通配符：
+
++  `?`  —— 匹配任意字符
++  `*`  —— 匹配 0 或多个字符
+
+
+
+**idea httpclient请求样例**：
+
+```sh
+POST {{baseUrl}}/diep-channel-goods/goods/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "wildcard": {
+      "goodsName": "redis*"
+    }
+  },
+  "_source": ["goodsName"]
+}
+```
+
+
 
 
 
@@ -425,6 +590,8 @@ curl -X GET --location "http://106.52.185.89:9007/diep-system-category/mt_catego
 
 
 <p align="right"><a href="#filter">返回</a>&nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+
 
 ----
 ## <a name="post_filter">post_filter</a>
