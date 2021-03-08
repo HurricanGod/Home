@@ -59,7 +59,11 @@ Content-Type: application/json
 
 
 <p align="right"><a href="#createIndex">返回</a> &nbsp|&nbsp<a href="#top">返回目录</a></p>
+
+
 ----
+
+
 
 #### <a name="translog">`translog`</a>
 
@@ -83,6 +87,8 @@ ES写入时索引并没有实时落盘到索引文件，而是先双写到内存
 
 <p align="right"><a href="#createIndex">返回</a> &nbsp|&nbsp<a href="#top">返回目录</a></p>
 -----
+
+
 
 #### <a name="analysis">analysis</a>
 
@@ -154,6 +160,8 @@ ES写入时索引并没有实时落盘到索引文件，而是先双写到内存
 
 <p align="right"><a href="#mapping">返回</a> &nbsp|&nbsp<a href="#top">返回目录</a></p>
 ----
+
+
 
 #### <a name="mapping-parameters">Mapping parameters</a>
 
@@ -283,7 +291,7 @@ ES写入时索引并没有实时落盘到索引文件，而是先双写到内存
 `analysis/synonym.txt`是相对于 `config`目录的文件，格式有以下2种：
 
 + `番茄,西红柿` —— 若 `token` 匹配 **番茄** 或 **西红柿**，则会将**番茄** 和 **西红柿**都添加到搜索词里
-+ `番茄,西红柿  => 西红柿` ——  若 `token` 匹配 **番茄** 或 **西红柿**，只会将*西红柿**添加到搜索词里
++ `番茄,西红柿  => 西红柿` ——  若 `token` 匹配 **番茄** 或 **西红柿**，只会将**西红柿**添加到搜索词里
 
 
 
