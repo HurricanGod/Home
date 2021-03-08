@@ -2,6 +2,10 @@
 
 
 
++ <a href="#shadow-deep-clone">深拷贝与浅拷贝</a>
+
+
+
 
 
 ----
@@ -98,9 +102,24 @@
 
 
 
+----
+
+## <a name="dynamic-proxy">动态代理</a>
 
 
-+ 动态代理的几种实现方式？各自有什么特点？
+
+**动态代理** 常用的实现方式是反射，除此之外还可以使用 `CGLib`实现(`CGLib`基于ASM，操作字节码)。
+
+`JDK Proxy` 与 `CGLib` 的区别：
+
++ `JDK Proxy` 是 Java 语言自带的功能，无需通过加载第三方类实现
++ Java 对 `JDK Proxy` 提供了稳定的支持，并且会持续的升级和更新 `JDK Proxy`
++ `JDK Proxy`是通过拦截器加反射的方式实现的， **只能代理继承接口的类**， 实现和调用起来比较简单
++ `CGLib` 是第三方提供的工具，基于 ASM 实现的，**无需通过接口来实现**，它是通过实现子类的方式来完成调用的
+
+
+
+
 
 
 
@@ -110,7 +129,17 @@
 
 
 
+
+
+<p align="right"><a href="#dynamic-proxy">返回</a>&nbsp | &nbsp <a href="#top">返回目录</a></p>
+
+-----
+
+
+
 + `final`的用途有哪些？
+
+
 
 
 
@@ -126,9 +155,77 @@
 
 
 
-+ **深拷贝** 与 **浅拷贝** 的区别？
+----
+
+## <a name="shadow-deep-clone">深拷贝与浅拷贝</a>
 
 
+
+### <a name="shadow-clone">浅克隆</a>
+
+把原型对象中的成员变量为值类型的属性都复制给克隆对象，把原型对象中成员变量类型为**引用类型**的**引用地址也复制给克隆对象**，即原型对象中如果有成员变量为引用对象，则此引用对象的地址是共享给原型对象和克隆对象的。
+
+
+
+
+
+
+### <a name="deep-clone">深克隆</a>
+
+将原型对象中所有类型，无论值类型还是引用类型，都复制一份给克隆对象。
+
+
+
+Java中要实现克隆需要实现 `Cloneable` 接口，并重写 `Object` 类的 `clone()`方法，`clone()`方法定义如下：
+
+```java
+protected native Object clone() throws CloneNotSupportedException;
+```
+
+
+
+**克隆**常见考点：
+
++ `Object` 中对 `clone()` 方法的约定有哪些？
++ `Arrays.copyOf()` 是深克隆还是浅克隆？
++ 深克隆的实现方式有几种？
++ Java 中的克隆为什么要设计成，既要实现空接口 Cloneable，还要重写 Object 的 clone() 方法？
+
+
+
+`Object` 中对 `clone()` 方法的约定有哪些？
+
+> 1. 对于所有对象来说，x.clone() !=x 应当返回 true，因为克隆对象与原对象不是同一个对象
+> 2. 对于所有对象来说，x.clone().getClass() == x.getClass() 应当返回 true，因为克隆对象与原对象的类型是一样的
+> 3. 对于所有对象来说，x.clone().equals(x) 应当返回 true，因为使用 equals 比较时，它们的值都是相同的
+
+
+
+`Arrays.copyOf()` 是深克隆还是浅克隆？
+
+>  Arrays.copyOf() 是浅克隆，只是把引用地址复制了一份给克隆对象，如果修改了它的引用对象，那么指向它的（引用地址）所有对象都会发生改变。
+
+
+
+深克隆的实现方式有几种？
+
++ 所有对象都实现了克隆方法
++ 通过构造方法实现深克隆
++ 使用JDK自带的字节流实现深克隆
++ 使用第三方工具实现深克隆，比如：`Apache Commons Lang`
++ 使用JSON工具类实现深克隆（序列化&&反序列化）
+
+
+
+为什么要在 Object 中添加一个 clone() 方法？
+
+> 因为 clone() 方法语义的特殊性，因此最好有JVM的直接支持，最直接的做法就是将 clone() 方法添加到 Object 类中。
+
+
+
+<p align="right"><a href="#shadow-deep-clone">返回</a>&nbsp | &nbsp <a href="#top">返回目录</a></p>
+
+---
 
 
 
